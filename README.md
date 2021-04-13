@@ -2,7 +2,7 @@
 # Hoop'n - a pick-up game app
 #### By Hamid Ebrahimi, David Cibin, Kentdrick Barnes, and Matt Packer  
 
-![hoop'n - unit 3 project](public/images/mobile-wireframe.png)  
+
 *Hoop'n* is a full 'MERN' (MongoDB, Express, React, Node) stack application that makes full use of CRUD (Create, Read, Update, Delete) data operations.  
 
 This application is designed to...
@@ -20,17 +20,7 @@ We used [Trello]() to...
 
 ### Screenshots:
 
-##### Landing Page
-
-##### View 2
-![View]()
-
-##### View 3
-![View]()
-
-##### View 4
-![View]()
-
+![hoop'n - unit 3 project](public/images/mobile-wireframe.png)  
 
 ### Technologies Used:
 * MongoDB (Atlas)
