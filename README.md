@@ -1,3 +1,3 @@
-# react-jwt-template
+#hoop'n
 
-This is a template for a full-stack MERN application with built in user authentication utilizing JWT.
+![hoop'n - unit 3 project](public/images/mobile-wireframe.png)
