@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component} from "react";
+import Text from "react"
 import { Link } from "react-router-dom";
 import authService from "../../services/authService"
 import "./Login.css";
@@ -33,6 +34,8 @@ class LoginPage extends Component {
       <main className="Login">
         <h3>Log In</h3>
         <form autoComplete="off" onSubmit={this.handleSubmit}>
+        <label htmlFor="email">Email</label>
+        <br></br>
           <input
             type="text"
             autoComplete="off"
@@ -41,7 +44,11 @@ class LoginPage extends Component {
             name="email"
             onChange={this.handleChange}
           />
-          <label htmlFor="email">Email</label>
+          <br></br>
+        
+          <label htmlFor="password">Password {"\t"}</label>
+          <t></t>
+          <br></br>
           <input
             type="password"
             autoComplete="off"
@@ -50,8 +57,9 @@ class LoginPage extends Component {
             name="pw"
             onChange={this.handleChange}
           />
-          <label htmlFor="password">Password</label>
+          <br></br>
           <button className="btn green">Log In</button>&nbsp;&nbsp;&nbsp;
+          <br></br>
           <Link className="btn red" to="/">
             Cancel
           </Link>
