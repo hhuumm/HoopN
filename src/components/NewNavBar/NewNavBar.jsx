@@ -49,6 +49,7 @@ const NewNavBar = ({ user, handleLogout }) => {
         unmountOnExit
       >
         <nav className="Nav">
+          {user ? <span>{user.name}</span> : 'not logged' }
           <a href="/">Home</a>
           <a href="/">Articles</a>
           <a href="/">About</a>
@@ -67,6 +68,7 @@ const NewNavBar = ({ user, handleLogout }) => {
       {/* not logged in */}
       </>}
     </header>
+    
   );
 }
 

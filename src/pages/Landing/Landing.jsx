@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import './Landing.css'
 
-function Landing({ user }) {
-
-
-
+function Landing({ user, handleLogout }) {
 
     return (
         <>
@@ -13,10 +10,9 @@ function Landing({ user }) {
 
 
             {user ?
-                <>
-                    {/* <button onClick={toggleNav} className="Burger"> */}
-                        <img src="https://i.ibb.co/ZdyrMTz/menu.png" width="50px" height="auto"></img>
-                    {/* </button> */}
+                <>                    
+                    <h2>Welcome, {user}</h2>
+                    <NavLink to="" onClick={handleLogout}>LOG OUT</NavLink>
                 </>
                 :
                 <>
