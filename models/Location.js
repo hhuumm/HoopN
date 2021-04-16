@@ -10,7 +10,6 @@ const locationScema = new Schema({
     lng: {type: Number, required: true},
     court: {type: String, required: true}, 
     reviews: [reviewSchema]
-
 })
 
 module.exports = mongoose.model('Loaction', locationScema);
