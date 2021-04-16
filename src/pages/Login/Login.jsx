@@ -58,7 +58,7 @@ class LoginPage extends Component {
             onChange={this.handleChange}
           />
           <br></br>
-          <button className="btn green">Log In</button>&nbsp;&nbsp;&nbsp;
+          <button className="btn green">Log In</button>
           <br></br>
           <Link className="btn red" to="/">
             Cancel
