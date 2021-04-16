@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
-import NavBar from "../../components/NavBar/NavBar";
+// import NavBar from "../../components/NavBar/NavBar";
+import NewNavBar from "../../components/NewNavBar/NewNavBar";
 import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
 import Users from "../Users/Users"
@@ -35,7 +36,8 @@ class App extends Component {
     const {user} = this.state
     return (
       <>
-        <NavBar user={this.state.user} handleLogout={this.handleLogout}/>
+        <NewNavBar user={this.state.user} handleLogout={this.handleLogout}/>
+        {/* <NavBar user={this.state.user} handleLogout={this.handleLogout}/> */}
         <Route
           exact
           path="/"

@@ -13,30 +13,30 @@ main {
 }
 .logo-img {
   /* grid-column: 1 / 3; */
-  grid-area: logo-img;
-  margin-left: 10px;
+  /* grid-area: logo-img; */
+  /* margin-left: 10px; */
 }
 .logo {
   color: #F24726;
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 3em;
   /* grid-column: 2 / 3; */
-  grid-area: logo;
+  /* grid-area: logo; */
 }
 .menu-img {
   /* grid-column: 3 / 3; */
   /* float: right; */
-  grid-area: menu-img;
+  /* grid-area: menu-img; */
 }
-
+/* 
 nav {
   height: 115px;
-  /* background: #ccc; */
+  background: #ccc;
   display: grid;
   align-items: center;
   grid-template-columns: 100px 1fr 70px;
   grid-template-rows: auto;
   margin-top: 0;
   grid-template-areas: 
-    "logo-img logo menu-img"
-}
+    "logo-img logo menu-img";
+} */
