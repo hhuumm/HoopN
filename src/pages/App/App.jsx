@@ -32,6 +32,8 @@ class App extends Component {
     this.setState({ user: authService.getUser() })
   }
 
+  //! add handleAddEvent async function here
+
   render() {
     const {user} = this.state
     return (
@@ -72,6 +74,7 @@ class App extends Component {
             user ? <Users /> : <Redirect to="/login" />
           }
         />
+        //! add Route to /events/add with handleAddEvent function here
       </>
     );
   }

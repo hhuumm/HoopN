@@ -4,7 +4,9 @@ import './CreateEvent.css'
 class CreateEvent extends Component {
     state = {  }
     render() { 
-        return (  );
+        return ( 
+            //! Insert CreateEventForm
+         );
     }
 }
  
