@@ -8,6 +8,7 @@ import Users from "../Users/Users"
 import authService from "../../services/authService"
 import "./App.css";
 import Landing from '../Landing/Landing'
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
   state = {
