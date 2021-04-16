@@ -49,12 +49,18 @@ const NewNavBar = ({ user, handleLogout }) => {
         unmountOnExit
       >
         <nav className="Nav">
-          {user ? <span>{user.name}</span> : 'not logged' }
+        {user ?
+        <> 
           <a href="/">Home</a>
           <a href="/">Articles</a>
           <a href="/">About</a>
-          {/* <button>Logout</button> */}
-          <NavLink to="/" onClick={handleLogout}>LOG OUT</NavLink>
+          <NavLink className="button" to="/" onClick={handleLogout}>Logout</NavLink>
+        </>
+        :
+        <>
+          <NavLink className="button login-btn" to="/login">Log In</NavLink>
+        </>
+        }
         </nav>
       </CSSTransition>
       {user ?
