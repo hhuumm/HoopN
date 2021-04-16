@@ -9,7 +9,7 @@ const reviewSchema = new Schema({
     timestamps: true
 });
 
-const locationScema = new Schema({
+const locationSchema = new Schema({
     name: { 
         type: String, required: true
     },
@@ -19,4 +19,4 @@ const locationScema = new Schema({
     reviews: [reviewSchema]
 })
 
-module.exports = mongoose.model('Loaction', locationScema);
+module.exports = mongoose.model('Loaction', locationSchema);
