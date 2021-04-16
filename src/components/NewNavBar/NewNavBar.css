@@ -69,8 +69,16 @@ a.button {
 .login-btn {
   grid-column: none;
 }
+
 .main-login-btn{
-  visibility: hidden;
+  margin: 0 auto;
+  display: table;
+  position: absolute;
+  bottom: 40px;
+  left: 35%;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-decoration: none;
 }
 
 .button:active {
@@ -93,6 +101,11 @@ a.button {
 .Burger:active {
   transform: rotateX(90deg);
   transition: 0.3s;
+}
+@media (min-width: 700px) {
+  .main-login-btn{
+    visibility: hidden;
+  }
 }
 
 @media (max-width: 700px) {
@@ -120,7 +133,10 @@ a.button {
     padding-right: 30px;
     text-decoration: none;
   }
-  
+  .login-btn {
+    visibility: hidden;
+  }
+    
   .Burger {
     display: inline;
   }
