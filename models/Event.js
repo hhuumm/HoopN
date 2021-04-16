@@ -10,7 +10,6 @@ const eventSchema = new Schema ({
     participant: { type: Schema.Types.ObjectId, ref: 'User'},
     date: {type: Date, required: true}
 
-
 }, { timestamps: true })
 
 module.exports =mongoose.model('Event', eventSchema)
