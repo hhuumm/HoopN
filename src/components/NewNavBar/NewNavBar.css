@@ -50,21 +50,30 @@
 .Nav a:hover {
   transform: scale(1.1);
 }
-.Nav button {
+.button {
   padding: 10px;
   outline: none;
   border: none;
   font-size: 20px;
   color: #fff;
   font-weight: 600;
-  background-color: rgba(255, 0, 0, 0.5);
+  background-color: #F24726;
   box-shadow: 0px 5px 0px 0px rgba(255, 0, 0, 0.25);
   border-radius: 10px;
   cursor: pointer;
   transition: 70ms;
 }
+a.button {
+  color: #fff;
+}
+.login-btn {
+  grid-column: none;
+}
+.main-login-btn{
+  visibility: hidden;
+}
 
-.Nav button:active {
+.button:active {
   transform: translateY(3px);
   box-shadow: 0px 2px 0px 0px rgba(255, 0, 0, 0.25);
 }
@@ -101,6 +110,17 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
   }
+  .main-login-btn{
+    margin: 0 auto;
+    display: table;
+    position: absolute;
+    bottom: 40px;
+    left: 35%;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-decoration: none;
+  }
+  
   .Burger {
     display: inline;
   }

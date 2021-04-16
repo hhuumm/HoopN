@@ -42,7 +42,7 @@ class App extends Component {
           exact
           path="/"
           render={() => (
-           <Landing> </Landing>
+            <Landing user = {authService.getUser()} handleSignupOrLogin handleLogout loc = {this.state.loc} lat={this.state.lat}> </Landing>
           )}
         />
         <Route
