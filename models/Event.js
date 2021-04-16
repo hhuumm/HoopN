@@ -7,7 +7,7 @@ const eventSchema = new Schema ({
     },
     location: { type: Schema.Types.ObjectId, ref: 'Location'},
     createdBy: { type: Schema.Types.ObjectId, ref: 'User'},
-    participant: { type: Schema.Types.ObjectId, ref: 'User'},
+    participant: [{ type: Schema.Types.ObjectId, ref: 'User'}],
     date: {type: Date, required: true}
 
 }, { timestamps: true })
