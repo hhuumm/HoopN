@@ -30,7 +30,7 @@ const NewNavBar = ({ user, handleLogout }) => {
   const toggleNav = () => {
     setNavVisibility(!isNavVisible);
   };
-
+  
   return (
     <header className="Header">
       <div className="nav-logo">
@@ -54,7 +54,7 @@ const NewNavBar = ({ user, handleLogout }) => {
           <a href="/">Home</a>
           <a href="/">Articles</a>
           <a href="/">About</a>
-          <NavLink className="button" to="/" onClick={handleLogout}>Logout</NavLink>
+          <NavLink onClick={handleLogout} className="button" to="/">Logout</NavLink>
         </>
         :
         <>
@@ -71,7 +71,7 @@ const NewNavBar = ({ user, handleLogout }) => {
       </>
       :
       <>
-      {/* not logged in */}
+        {/* when user log out >> .Nav {visibility: hidden;}  ++responsive++ */}
       </>}
     </header>
     

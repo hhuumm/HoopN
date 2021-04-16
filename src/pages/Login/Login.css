@@ -6,10 +6,30 @@
   margin-bottom: 50px;
 }
 
-label{
-  text-align: "center";
-  margin-right:
+.Login label{
+  display: none;
+  visibility: hidden;
 }
-input{
-  margin-left:5px;
+.Login input{
+  margin-bottom:30px;
+  width: 300px;
+  font-size: 1em;
+  padding: 8px;
+  border-radius: 8px;
+  margin-top: 10px;
 }
+.Login h2 {
+    color: #F24726;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+.sign-up-link{
+  color: #F24726;
+  font-weight: bold;
+  margin-top: 30px;
+  padding-bottom: 20px;
+}
+
+.Login button{
+  margin-top: 30px;
+} 
