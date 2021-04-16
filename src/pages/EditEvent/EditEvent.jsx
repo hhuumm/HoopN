@@ -4,7 +4,12 @@ import './EditEvent.css'
 class EditEvent extends Component {
     state = {  }
     render() { 
-        return (  );
+        return ( <>
+        
+        
+        </>
+        
+        );
     }
 }
  

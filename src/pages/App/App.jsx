@@ -6,11 +6,20 @@ import Login from "../Login/Login";
 import Users from "../Users/Users"
 import authService from "../../services/authService"
 import "./App.css";
+import Landing from '../Landing/Landing'
 
 class App extends Component {
   state = {
-    user: authService.getUser(),
+    user: authService.getUser(),latitude: null, longitude: null 
+
   };
+
+
+  componentDidMount() {
+    window.navigator.geolocation.getCurrentPosition(
+        success => this.setState({ latitude: success.coords.latitude, longitude: success.coords.longitude })
+    );
+}
 
   handleLogout = () => {
     authService.logout();
@@ -31,9 +40,7 @@ class App extends Component {
           exact
           path="/"
           render={() => (
-            <main>
-              {/* <h1>Welcome. This is an authorization template.</h1> */}
-            </main>
+           <Landing> </Landing>
           )}
         />
         <Route
