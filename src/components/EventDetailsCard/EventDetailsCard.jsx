@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function EventDetailsCard({user, event, handleDeleteEvent}) {
+function EventDetailsCard({user, event, court, handleDeleteEvent}) {
     return(
         <>
         <div className="card-content">
@@ -17,7 +17,8 @@ function EventDetailsCard({user, event, handleDeleteEvent}) {
 					<h6>Created By:  {event.createdBy.name}</h6>
 					<h6>Location: {event.location.name}</h6>
 					<div>Participants:  {event.participant}</div>
-					<div>Reviews:  {event.location.reviews}</div>
+					<div>Court:  {court.name}</div>
+                    <div>Reviews:  {event.location.reviews}</div>
 					
 					{user && (user._id === event.createdBy._id) &&
 						<>
