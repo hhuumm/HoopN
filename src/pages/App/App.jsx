@@ -84,6 +84,7 @@ class App extends Component {
             user ? <Users /> : <Redirect to="/login" />
           }
         />
+
         //! create event route stubbed up based on BINGE app...this may need to be updated
         <Route exact path='/events/add' render={() => 
           authService.getUser() ?
@@ -94,6 +95,9 @@ class App extends Component {
           :
             <Redirect to='/login' />
         }/>
+
+        
+
       </>
     );
   }

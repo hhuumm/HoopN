@@ -11,10 +11,18 @@
 }
 
 .slider-text h3 {
-  color: #F24726;
+  font-size: 22px;
+  text-shadow: 0 0 5px #F24726;
+  font-weight: bold;
 }
 
 .slider-text {
-  background: #fff;
-  padding: 5px;
+  color: #fff;
+  margin-bottom: 15px;
+}
+@supports (-webkit-text-stroke: 1px black) {
+  .slider-text h3 {
+    -webkit-text-stroke: 0.5px #F24726;
+    -webkit-text-fill-color: #fff;
+  }
 }
