@@ -5,7 +5,7 @@ import "./NewNavBar.css";
 import { CSSTransition } from "react-transition-group";
 
 const NewNavBar = ({ user, handleLogout }) => {
-// export default function Header() {
+  // export default function Header() {
   const [isNavVisible, setNavVisibility] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
@@ -30,7 +30,7 @@ const NewNavBar = ({ user, handleLogout }) => {
   const toggleNav = () => {
     setNavVisibility(!isNavVisible);
   };
-  
+
   return (
     <header className="Header">
       <div className="nav-logo">
@@ -49,32 +49,35 @@ const NewNavBar = ({ user, handleLogout }) => {
         unmountOnExit
       >
         <nav className="Nav">
-        {user ?
-        <> 
-          <a href="/">Home</a>
-          <a href="/">Articles</a>
-          <a href="/">About</a>
-          <NavLink onClick={handleLogout} className="button" to="/">Logout</NavLink>
-        </>
-        :
-        <>
-          <NavLink className="button login-btn" to="/login">Log In</NavLink>
-        </>
-        }
+          {user ?
+            <>
+              <a href="/">Home</a>
+              <a href="/">Articles</a>
+              <a href="/">About</a>
+              <NavLink onClick={handleLogout} className="button" to="/">Logout</NavLink>
+            </>
+            :
+            <>
+              <NavLink className="button login-btn" to="/login">Log In</NavLink>
+            </>
+          }
         </nav>
       </CSSTransition>
       {user ?
-          <>
-      <button onClick={toggleNav} className="Burger">
-        <img src="https://i.ibb.co/ZdyrMTz/menu.png" width="50px" height="auto"></img>
-      </button>
-      </>
-      :
-      <>
-        {/* when user log out >> .Nav {visibility: hidden;}  ++responsive++ */}
-      </>}
+        <>
+          <button onClick={toggleNav} className="Burger">
+            <img src="https://i.ibb.co/ZdyrMTz/menu.png" width="50px" height="auto"></img>
+          </button>
+        </>
+        :
+        <>
+          {/* when user log out >> .Nav {visibility: hidden;}  ++responsive++ */}
+          <button onClick={toggleNav} className="Burger">
+            <img src="https://i.ibb.co/ZdyrMTz/menu.png" width="50px" height="auto"></img>
+          </button>
+        </>}
     </header>
-    
+
   );
 }
 
