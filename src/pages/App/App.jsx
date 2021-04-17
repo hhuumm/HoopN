@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
-// import NavBar from "../../components/NavBar/NavBar";
 import NewNavBar from "../../components/NewNavBar/NewNavBar";
 import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
@@ -15,6 +14,7 @@ import * as apiService from '../../services/apiService'
 import CreateEvent from '../CreateEvent/CreateEvent'
 import EventList from '../EventList/EventList'
 import DatePicker from "../DateTimePicker/DateTimePicker"
+
 
 class App extends Component {
   state = {
@@ -82,13 +82,6 @@ class App extends Component {
           exact path="/Main"
           render={({ history }) => (
             <Main history={history} />
-          )}
-        />
-        <Route
-          exact
-          path="/date"
-          render={({ history }) => (
-            <DatePicker history={history} />
           )}
         />
         <Route

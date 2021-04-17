@@ -1,6 +1,4 @@
 import React, { Component} from "react";
-import Button from 'react-bootstrap/Button';
-import Text from "react"
 import { Link } from "react-router-dom";
 import authService from "../../services/authService"
 import "./Login.css";
@@ -63,7 +61,6 @@ class LoginPage extends Component {
           </Link>
           <br></br>
           <button className="button">Log In</button>
-          {/* <Button variant="success">Log In</Button> */}
           <br></br>
         </form>
       </main>
