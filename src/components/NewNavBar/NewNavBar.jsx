@@ -31,6 +31,11 @@ const NewNavBar = ({ user, handleLogout }) => {
     setNavVisibility(!isNavVisible);
   };
 
+  function logOutCloseNav() {
+    toggleNav();
+    handleLogout();
+}
+
   return (
     <header className="Header">
       <div className="nav-logo">
@@ -54,7 +59,7 @@ const NewNavBar = ({ user, handleLogout }) => {
               <a href="/">Home</a>
               <a href="/">Articles</a>
               <a href="/">About</a>
-              <NavLink onClick={handleLogout} className="button" to="/">Logout</NavLink>
+              <NavLink onClick={logOutCloseNav} className="button" to="/">Logout</NavLink>
             </>
             :
             <>
@@ -72,9 +77,9 @@ const NewNavBar = ({ user, handleLogout }) => {
         :
         <>
           {/* when user log out >> .Nav {visibility: hidden;}  ++responsive++ */}
-          <button onClick={toggleNav} className="Burger">
+          {/* <button onClick={toggleNav} className="Burger">
             <img src="https://i.ibb.co/ZdyrMTz/menu.png" width="50px" height="auto"></img>
-          </button>
+          </button> */}
         </>}
     </header>
 
