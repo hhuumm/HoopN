@@ -14,25 +14,27 @@ import * as eventAPI from '../../services/events-api'
 import * as apiService from '../../services/apiService'
 import CreateEvent from '../CreateEvent/CreateEvent'
 import EventList from '../EventList/EventList'
+import DatePicker from "../DateTimePicker/DateTimePicker"
+
 
 class App extends Component {
   state = {
-    user: authService.getUser(),latitude: null, longitude: null 
+    user: authService.getUser(), latitude: null, longitude: null
 
   };
 
 
   componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
-        success => this.setState({ latitude: success.coords.latitude, longitude: success.coords.longitude })
+      success => this.setState({ latitude: success.coords.latitude, longitude: success.coords.longitude })
     );
-}
+  }
 
-//! in BINGE, used componentDidMount as part of the getAll movies function, may need that for our EventList (index/getAll) page - - may need to be combined with the component did mount above.
-// async componentDidMount() {
-//   const events = await eventAPI.getAll();
-//   this.setState({ events })
-// }
+  //! in BINGE, used componentDidMount as part of the getAll movies function, may need that for our EventList (index/getAll) page - - may need to be combined with the component did mount above.
+  // async componentDidMount() {
+  //   const events = await eventAPI.getAll();
+  //   this.setState({ events })
+  // }
 
   handleLogout = () => {
     authService.logout();
@@ -54,7 +56,7 @@ class App extends Component {
   }
 
   handleDeleteEvent = async id => {
-    if(authService.getUser()){
+    if (authService.getUser()) {
       await eventAPI.deleteOne(id);
       this.setState(state => ({
         events: state.events.filter(m => m._id !== id)
@@ -65,33 +67,31 @@ class App extends Component {
   }
 
   render() {
-    const {user} = this.state
+    const { user } = this.state
     return (
       <>
-        <NewNavBar user={this.state.user} handleLogout={this.handleLogout}/>
+        <NewNavBar user={this.state.user} handleLogout={this.handleLogout} />
         {/* <NavBar user={this.state.user} handleLogout={this.handleLogout}/> */}
         <Route
           exact
           path="/"
           render={() => (
-            <Landing user = {authService.getUser()} handleSignupOrLogin handleLogout loc = {this.state.loc} lat={this.state.lat}> </Landing>
+            <Landing user={authService.getUser()} handleSignupOrLogin handleLogout loc={this.state.loc} lat={this.state.lat}> </Landing>
           )}
         />
         <Route
-        exact path="/Main"
-        render={({ history }) => (
-          <Main history={history}/>
-
-
-
-
-        )}
-        
-        >
-
-
-
-        </Route>
+          exact path="/Main"
+          render={({ history }) => (
+            <Main history={history} />
+          )}
+        />
+        <Route
+          exact
+          path="/date"
+          render={({ history }) => (
+            <DatePicker history={history} />
+          )}
+        />
         <Route
           exact
           path="/signup"
@@ -112,32 +112,32 @@ class App extends Component {
             />
           )}
         />
-        <Route 
+        <Route
           exact
           path="/users"
-          render={({ history}) =>
+          render={({ history }) =>
             user ? <Users /> : <Redirect to="/login" />
           }
         />
 
         {/* ! create event route stubbed up based on BINGE app...this may need to be updated */}
-        <Route exact path='/events/add' render={() => 
+        <Route exact path='/events/add' render={() =>
           authService.getUser() ?
-            <CreateEvent 
-              handleAddEvent = {this.handleAddEvent}
-              user = {this.state.user}
+            <CreateEvent
+              handleAddEvent={this.handleAddEvent}
+              user={this.state.user}
             />
-          :
+            :
             <Redirect to='/login' />
-        }/>
+        } />
 
         <Route exact path='/events' render={() =>
-          <EventList 
+          <EventList
             events={this.state.events}
             user={this.state.user}
             handleDeleteEvent={this.handleDeleteEvent}
           />
-        }/>
+        } />
       </>
     );
   }

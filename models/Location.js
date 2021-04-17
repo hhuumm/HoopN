@@ -10,13 +10,11 @@ const reviewSchema = new Schema({
 });
 
 const locationSchema = new Schema({
-    name: { 
-        type: String, required: true
-    },
+    name: {type: String, required: true},
     lat: {type: Number, required: true},
     lng: {type: Number, required: true},
     court: {type: String, required: true}, 
     reviews: [reviewSchema]
 })
 
-module.exports = mongoose.model('Loaction', locationSchema);
+module.exports = mongoose.model('Location', locationSchema);

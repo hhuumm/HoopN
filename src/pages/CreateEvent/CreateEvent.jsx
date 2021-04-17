@@ -8,11 +8,12 @@ class CreateEvent extends Component {
         invalidForm: true,
         formData: {
             title: '',
-            location: '', //? This will be selected by the user from the search screen and then that data will be passed in here - - the user will not be able to change the location at this point
+            // location: '', //? This will be selected by the user from the search screen and then that data will be passed in here - - the user will not be able to change the location at this point
             court: '', //? Add the name of the court here, if it is a new court name for the location, add the new court name to the database
             createdBy: '', //? We want to capture this based on the user id, but this may be a hidden field in the form
             participant: [], //? This will initially be just the user who created the event, other users will be added to this array when they sign-up to participate in an event
             date: '', //? Need to use date/time picker, probably from a React library
+            time: '',
         }
     }
 
@@ -30,9 +31,10 @@ class CreateEvent extends Component {
             invalidForm: !this.formRef.current.checkValidity()
         });
     }
-    dateTime = () => {
+    DateTimePicker = () => {
         const [startDate, setStartDate] = this.useState(new Date());
     }
+
 
     render() { // NEED TO REDO THIS WITH BOOTSTRAP - CURRENTLY INCLUDES A LOT OF MATERIALIZE MARKUPS
         return (
@@ -56,7 +58,7 @@ class CreateEvent extends Component {
                             />
                         </div>
                     </div>
-                    <div className="row">
+                    {/* <div className="row">
                         <div className="input-field col s12">
                             <input
                                 name="location"
@@ -68,7 +70,7 @@ class CreateEvent extends Component {
                                 onChange={this.handleChange}
                             />
                         </div>
-                    </div>
+                    </div> */}
                     <div className="row">
                         <div className="input-field col s12">
                             <input
@@ -82,71 +84,36 @@ class CreateEvent extends Component {
                             />
                         </div>
                     </div>
-
-                    <DatePicker
-                        name={this.handleDateSelect}
-                        selected={this.date}
-                        onSelect={this.handleDateSelect} //when day is clicked
-                        onChange={this.handleChange} //only when value has changed
-                        showTimeSelect
-                        dateFormat="yyyy/MM/dd"
-                        type="text"
-                        value={this.state.formData.date}
-                    />
-
-                    {/* <DatePicker
-                        selected={this.selectedDate}
-                        onChange={date => this.setSelectedDate(date)}
-                        showTimeSelect
-                        dateFormat="yyyy/MM/dd"
-                        minDate={new Date()}
-                        value={this.state.formData.date}
-                    /> */}
-
-                    {/* // Need to import this from the user data - - this may be a hidden field that we pass through the form OR this might be captured via the controller */}
-                    {/* <div className="row">
-						<div className="input-field col s12">
-							<input 
-								name="createdBy"
-                                placeholder="Create"
-								id="createdBy"
-								type="text"
-								className="active"
-								value={this.state.formData.createdBy} 
-								onChange={this.handleChange}
-							/>
-							<label htmlFor="createdBy">Created By:</label>
-						</div>
-					</div> */}
-                    {/* This will initially be just the user who created the event, other users will be added to this array when they sign-up to participate in an event - - this might be captured in the controller */}
-                    {/* <div className="row">
-						<div className="input-field col s12">
-							<input
-								name="participant"
-								id="participant"
-								type="text"
-								className="active"
-								value={this.state.formData.participant} 
-								onChange={this.handleChange}
-							/>
-							<label htmlFor="participant">Participants:</label>
-						</div>
-					</div> */}
-                    {/* We will need to use a date/time picker, probably from a React library */}
-                    {/* <div className="row">
+                    <div className="row">
                         <div className="input-field col s12">
                             <input
                                 name="date"
+                                // placeholder="Court Name"
                                 id="date"
-                                type="text" 
+                                max="2031-04-17"
+                                type="date"
                                 className="active"
-                                value={this.state.formData.date}
+                                value={this.state.formData.court.name} //? Add the name of the court here, if it is a new court name for the location, add the new court name to the database
                                 onChange={this.handleChange}
-                            />
-                            <label htmlFor="date">Date/Time:</label>
+                            >
+                            </input>
                         </div>
-                    </div> */}
-
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s12">
+                            <input
+                                name="time"
+                                // placeholder="Court Name"
+                                id="time"
+                                step="900"
+                                type="time"
+                                className="active"
+                                value={this.state.formData.court.name} //? Add the name of the court here, if it is a new court name for the location, add the new court name to the database
+                                onChange={this.handleChange}
+                            >
+                            </input>
+                        </div>
+                    </div>
 
                     <button
                         type="submit"
@@ -154,8 +121,7 @@ class CreateEvent extends Component {
                         disabled={this.state.invalidForm}
                     >
                         <i className="material-icons left">Add Event</i>
-						
-					</button>
+                    </button>
                 </form>
             </div>
         );
