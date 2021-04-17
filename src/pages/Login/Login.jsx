@@ -23,7 +23,7 @@ class LoginPage extends Component {
     try {
       await authService.login(this.state);
       handleSignupOrLogin()
-      history.push("/");
+      history.push("/Main");
     } catch (err) {
       alert("Invalid Credentials!")
     }

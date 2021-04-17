@@ -5,11 +5,13 @@ import NewNavBar from "../../components/NewNavBar/NewNavBar";
 import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
 import Users from "../Users/Users"
+import Main from "../Main/Main"
 import authService from "../../services/authService"
 import "./App.css";
 import Landing from '../Landing/Landing'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import * as eventAPI from '../../services/events-api'
+import * as apiService from '../../services/apiService'
 import CreateEvent from '../CreateEvent/CreateEvent'
 import EventList from '../EventList/EventList'
 
@@ -42,7 +44,7 @@ class App extends Component {
     this.setState({ user: authService.getUser() })
   }
 
-  //! handleAddEvent stubbed up based on BINGE app...this will need to be updated
+  // handleAddEvent stubbed up based on BINGE app ... this will need to be updated
   handleAddEvent = async newEventData => {
     const newEvent = await eventAPI.create(newEventData);
     newEvent.addedBy = { name: this.state.user.name, _id: this.state.user._id }
@@ -75,6 +77,21 @@ class App extends Component {
             <Landing user = {authService.getUser()} handleSignupOrLogin handleLogout loc = {this.state.loc} lat={this.state.lat}> </Landing>
           )}
         />
+        <Route
+        exact path="/Main"
+        render={({ history }) => (
+          <Main history={history}/>
+
+
+
+
+        )}
+        
+        >
+
+
+
+        </Route>
         <Route
           exact
           path="/signup"
@@ -115,11 +132,14 @@ class App extends Component {
         }/>
 
         <Route exact path='/events' render={() =>
-          <EventList 
-            events={this.state.events}
-            user={this.state.user}
-            handleDeleteEvent={this.handleDeleteEvent}
-          />
+          authService.getUser() ?
+            <EventList 
+              events={this.state.events}
+              user={this.state.user}
+              handleDeleteEvent={this.handleDeleteEvent}
+            />
+          :
+            <Redirect to='/login' />
         }/>
       </>
     );

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 function EventDetailsCard({user, event, handleDeleteEvent}) {
     return(
@@ -46,5 +45,6 @@ function EventDetailsCard({user, event, handleDeleteEvent}) {
 		</>
 	)
 } 
+
 
 export default EventDetailsCard;
