@@ -14,7 +14,9 @@ import * as eventAPI from '../../services/events-api'
 import * as apiService from '../../services/apiService'
 import CreateEvent from '../CreateEvent/CreateEvent'
 import EventList from '../EventList/EventList'
+
 import DatePicker from "../DateTimePicker/DateTimePicker"
+
 
 
 class App extends Component {
@@ -66,6 +68,19 @@ class App extends Component {
     }
   }
 
+  handleUpdateEvent = async updatedEventData => {
+    const updatedEvent = await eventAPI.update(updatedEventData);
+    updatedEvent.addedBy = {name: this.state.user.name, _id: this.state.user._id}
+    const newEventsArray = this.state.events.map(e => 
+        e._id === updatedEvent._id ?
+        updatedEvent : e
+    );
+    this.setState(
+      {events: newEventsArray},
+      () => this.props.history.push('/events')
+    );
+  }
+
   render() {
     const { user } = this.state
     return (
@@ -80,6 +95,7 @@ class App extends Component {
           )}
         />
         <Route
+
           exact path="/Main"
           render={({ history }) => (
             <Main history={history} />
@@ -92,6 +108,8 @@ class App extends Component {
             <DatePicker history={history} />
           )}
         />
+
+
         <Route
           exact
           path="/signup"
@@ -132,12 +150,35 @@ class App extends Component {
         } />
 
         <Route exact path='/events' render={() =>
+
           <EventList
             events={this.state.events}
             user={this.state.user}
             handleDeleteEvent={this.handleDeleteEvent}
           />
         } />
+
+          authService.getUser() ?
+            <EventList 
+              events={this.state.events}
+              user={this.state.user}
+              handleDeleteEvent={this.handleDeleteEvent}
+            />
+          :
+            <Redirect to='/login' />
+        }/>
+
+        <Route exact path='/edit' render={({location}) => 
+          authService.getUser() ?
+            <EditEvent 
+              handleUpdateEvent={this.handleUpdateEvent}
+              location={location}
+              user={this.state.user}
+            />
+          :
+            <Redirect to='/login'/>
+        }/>
+
       </>
     );
   }
