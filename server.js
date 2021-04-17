@@ -8,8 +8,12 @@ require('./config/database');
 
 const userRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
+
+const weathRouter=require('./routes/')
+
 const eventRouter = require('./routes/events');
 const reviewRouter = require('./routes/reviews')
+
 
 const cors = require('cors')
 
