@@ -12,3 +12,9 @@ export function create(event) {
     }, {mode: 'cors'})
     .then(res => res.json());
 }
+
+//! This will get all events in the database, based on BINGE app function ...may need to change this to display only certain events, such as events at a certain location, or only events that a user has signed up for
+export function getAll() {
+    return fetch(BASE_URL, {mode: 'cors'})
+    .then(res => res.json())
+}

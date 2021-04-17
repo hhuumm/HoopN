@@ -11,6 +11,7 @@ import Landing from '../Landing/Landing'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import * as eventAPI from '../../services/events-api'
 import CreateEvent from '../CreateEvent/CreateEvent'
+import EventList from '../EventList/EventList'
 
 class App extends Component {
   state = {
@@ -24,6 +25,12 @@ class App extends Component {
         success => this.setState({ latitude: success.coords.latitude, longitude: success.coords.longitude })
     );
 }
+
+//! in BINGE, used componentDidMount as part of the getAll movies function, may need that for our EventList (index/getAll) page - - may need to be combined with the component did mount above.
+// async componentDidMount() {
+//   const events = await eventAPI.getAll();
+//   this.setState({ events })
+// }
 
   handleLogout = () => {
     authService.logout();
@@ -42,6 +49,17 @@ class App extends Component {
     this.setState(state => ({
       events: [...state.events, newEvent]
     }), () => this.props.history.push('/events'));
+  }
+
+  handleDeleteEvent = async id => {
+    if(authService.getUser()){
+      await eventAPI.deleteOne(id);
+      this.setState(state => ({
+        events: state.events.filter(m => m._id !== id)
+      }), () => this.props.history.push('/events'));
+    } else {
+      this.props.history.push('/login')
+    }
   }
 
   render() {
@@ -85,7 +103,7 @@ class App extends Component {
           }
         />
 
-        //! create event route stubbed up based on BINGE app...this may need to be updated
+        {/* ! create event route stubbed up based on BINGE app...this may need to be updated */}
         <Route exact path='/events/add' render={() => 
           authService.getUser() ?
             <CreateEvent 
@@ -96,8 +114,13 @@ class App extends Component {
             <Redirect to='/login' />
         }/>
 
-        
-
+        <Route exact path='/events' render={() =>
+          <EventList 
+            events={this.state.events}
+            user={this.state.user}
+            handleDeleteEvent={this.handleDeleteEvent}
+          />
+        }/>
       </>
     );
   }
