@@ -1,28 +1,22 @@
 import React, { useState, useEffect } from "react";
-import {router} from "react-router-dom"
+import { router } from "react-router-dom"
 import { NavLink, Link } from "react-router-dom";
 import './Main.css'
 
 
-function Main(props)
-{
-    
-   
+function Main(props) {
 
-    return(
-
+    return (
         <>
-        <Link className="MainLink" to="/">Find Courts Near You</Link>
-        <br></br>
-
-        <Link className="MainLink" to="/" >Upcoming Pickup Games</Link>
-        <br></br>
-        <Link className="MainLink" to="/">Create Pickup game</Link>
-        
+        <div className="main-page" >
+            <Link className="button" to="/">Find Courts Near You</Link>
+            {/* <br></br> */}
+            <Link className="button" to="/" >Upcoming Pickup Games</Link>
+            {/* <br></br> */}
+            <Link className="button" to="/">Create Pickup game</Link>
+        </div>    
         </>
-
     )
 }
-
 
 export default Main;
