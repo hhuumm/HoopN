@@ -1,5 +1,4 @@
 import React, { Component, useState } from 'react';
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './CreateEvent.css'
 
@@ -31,10 +30,6 @@ class CreateEvent extends Component {
             invalidForm: !this.formRef.current.checkValidity()
         });
     }
-    DateTimePicker = () => {
-        const [startDate, setStartDate] = this.useState(new Date());
-    }
-
 
     render() { // NEED TO REDO THIS WITH BOOTSTRAP - CURRENTLY INCLUDES A LOT OF MATERIALIZE MARKUPS
         return (
@@ -103,7 +98,6 @@ class CreateEvent extends Component {
                         <div className="input-field col s12">
                             <input
                                 name="time"
-                                // placeholder="Court Name"
                                 id="time"
                                 step="900"
                                 type="time"

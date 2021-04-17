@@ -71,7 +71,7 @@ const NewNavBar = ({ user, handleLogout }) => {
       {user ?
         <>
           <button onClick={toggleNav} className="Burger">
-            <img src="https://i.ibb.co/ZdyrMTz/menu.png" width="50px" height="auto"></img>
+            <img src="https://i.ibb.co/ZdyrMTz/menu.png" alt="|||" width="50px" height="auto"></img>
           </button>
         </>
         :
