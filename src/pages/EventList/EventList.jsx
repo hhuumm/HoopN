@@ -1,6 +1,6 @@
 import React from 'react';
 import './EventList.css'
-import EventListCard from '../../components/EventListCard/EventListCard'
+// import EventListCard from '../../components/EventListCard/EventListCard'
 
 function EventList(props) {
     return (
