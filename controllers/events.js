@@ -22,7 +22,7 @@ function deleteEvent(req, res) {
 function create(req, res) {
     req.body.createdBy = req.user._id
     req.body.participant = req.user._id
-    req.body.location = req.location._id
+    // req.body.location = req.location._id
     Event.create(req.body)
     .then(event => {res.json(event)})
     .catch(err => {res.json(err)})

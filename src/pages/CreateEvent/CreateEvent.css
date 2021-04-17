@@ -14,3 +14,7 @@
   border-radius: 8px;
   margin-top: 10px;
 }
+.CreateEvent button {
+  display: flex;
+  margin: 0 auto;
+}
