@@ -5,11 +5,13 @@ import NewNavBar from "../../components/NewNavBar/NewNavBar";
 import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
 import Users from "../Users/Users"
+import Main from "../Main/Main"
 import authService from "../../services/authService"
 import "./App.css";
 import Landing from '../Landing/Landing'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import * as eventAPI from '../../services/events-api'
+import * as apiService from '../../services/apiService'
 import CreateEvent from '../CreateEvent/CreateEvent'
 import EventList from '../EventList/EventList'
 
@@ -75,6 +77,21 @@ class App extends Component {
             <Landing user = {authService.getUser()} handleSignupOrLogin handleLogout loc = {this.state.loc} lat={this.state.lat}> </Landing>
           )}
         />
+        <Route
+        exact path="/Main"
+        render={({ history }) => (
+          <Main history={history}/>
+
+
+
+
+        )}
+        
+        >
+
+
+
+        </Route>
         <Route
           exact
           path="/signup"
