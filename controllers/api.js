@@ -30,7 +30,9 @@ async function getPlaces(req,res)
     //              -Will check for lat/lng within params and render accordingly 
     if(req.params.lat)
     {
-     await axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?key=${process.env.GOOGLE_KEY}&radius=3000&type=park`)
+        let lat = req.params.lat;
+        let lng = req.params.lng;
+     await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${process.env.GOOGLE_KEY}&location=${lat},${lng}&radius=3000&type=park`)
         .then(result=>{
             
             //Result.geometry.location= {lat,lng}
@@ -42,7 +44,8 @@ async function getPlaces(req,res)
     }
     else if(req.params.zip){
 
-        await axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?key=${process.env.GOOGLE_KEY}&radius=3000&type=park`)
+        let zip = req.params.zip;
+        await axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?key=${process.env.GOOGLE_KEY}&query=${zip}&radius=3000&type=park`)
         .then(result=>{
             
             //Result.geometry.location= {lat,lng}

@@ -2,7 +2,7 @@ import tokenService from '../services/tokenService';
 const BASE_URL = '/api/events/';
 
 export function create(event) {
-    return fetch(BASE_URL, {
+    return fetch(`${BASE_URL}`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
