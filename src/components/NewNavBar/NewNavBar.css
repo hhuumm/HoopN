@@ -76,14 +76,14 @@ a.button {
 }
 
 .main-login-btn{
-  margin: 0 auto;
-  display: table;
-  position: absolute;
-  bottom: 40px;
-  left: 35%;
-  padding-left: 30px;
-  padding-right: 30px;
-  text-decoration: none;
+  /* margin: 0 auto; */
+  /* display: table; */
+  /* position: absolute; */
+  /* bottom: 40px; */
+  /* left: 35%; */
+  /* padding-left: 30px; */
+  /* padding-right: 30px; */
+  /* text-decoration: none; */
 }
 
 .button:active {
@@ -129,14 +129,14 @@ a.button {
     border-bottom-right-radius: 10px;
   }
   .main-login-btn{
-    margin: 0 auto;
-    display: table;
-    position: absolute;
-    bottom: 40px;
-    left: 35%;
-    padding-left: 30px;
-    padding-right: 30px;
-    text-decoration: none;
+    /* margin: 0 auto; */
+    /* display: table; */
+    /* position: absolute; */
+    /* bottom: 40px; */
+    /* left: 35%; */
+    /* padding-left: 30px; */
+    /* padding-right: 30px; */
+    /* text-decoration: none; */
   }
   .login-btn {
     visibility: hidden;
