@@ -9,6 +9,8 @@ import authService from "../../services/authService"
 import "./App.css";
 import Landing from '../Landing/Landing'
 // import 'bootstrap/dist/css/bootstrap.min.css';
+import * as eventAPI from '../../services/events-api'
+import CreateEvent from '../CreateEvent/CreateEvent'
 
 class App extends Component {
   state = {
@@ -33,7 +35,14 @@ class App extends Component {
     this.setState({ user: authService.getUser() })
   }
 
-  //! add handleAddEvent async function here
+  //! handleAddEvent stubbed up based on BINGE app...this will need to be updated
+  handleAddEvent = async newEventData => {
+    const newEvent = await eventAPI.create(newEventData);
+    newEvent.addedBy = { name: this.state.user.name, _id: this.state.user._id }
+    this.setState(state => ({
+      events: [...state.events, newEvent]
+    }), () => this.props.history.push('/events'));
+  }
 
   render() {
     const {user} = this.state
@@ -75,7 +84,16 @@ class App extends Component {
             user ? <Users /> : <Redirect to="/login" />
           }
         />
-        //! add Route to /events/add with handleAddEvent function here
+        //! create event route stubbed up based on BINGE app...this may need to be updated
+        <Route exact path='/events/add' render={() => 
+          authService.getUser() ?
+            <CreateEvent 
+              handleAddEvent = {this.handleAddEvent}
+              user = {this.state.user}
+            />
+          :
+            <Redirect to='/login' />
+        }/>
       </>
     );
   }
