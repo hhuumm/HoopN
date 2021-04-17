@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import "./SignupForm.css";
 import authService from "../../services/authService";
 
 class SignupForm extends Component {
@@ -37,57 +38,51 @@ class SignupForm extends Component {
   render() {
     const { name, email, password, passwordConf } = this.state;
     return (
-      <div>
-        <h3>Sign Up</h3>
-        <label htmlFor="name">Name</label>
-        <br></br>
+      <div className="Signup">
+        <h2>Sign Up</h2>
         <form autoComplete="off" onSubmit={this.handleSubmit}>
           <input
             type="text"
-            autoComplete="off"
+            autoComplete="on"
+            placeholder="name"
             id="name"
             value={name}
             name="name"
             onChange={this.handleChange}
           />
-            <br></br>
-           <label htmlFor="email">Email</label>
-           <br></br>
+          <br></br>
           <input
             type="text"
-            autoComplete="off"
+            autoComplete="on"
+            placeholder="email"
             id="email"
             value={email}
             name="email"
             onChange={this.handleChange}
           />
-           <br></br>
-          <label htmlFor="password">Password</label>
           <br></br>
           <input
             type="password"
             autoComplete="off"
+            placeholder="password"
             id="password"
             value={password}
             name="password"
             onChange={this.handleChange}
           />
-           <br></br>
-         <label htmlFor="confirm">Confirm Password</label>
          <br></br>
           <input
             type="password"
             autoComplete="off"
+            placeholder="confirm password"
             id="confirm"
             value={passwordConf}
             name="passwordConf"
             onChange={this.handleChange}
           />
            <br></br>
-          <button disabled={this.isFormInvalid()}>Sign Up</button>
-          &nbsp;&nbsp;
-          <br></br>
-          <Link to="/">Cancel</Link>
+          <button className="button" disabled={this.isFormInvalid()}>Sign Up</button>
+          
         </form>
       </div>
     );

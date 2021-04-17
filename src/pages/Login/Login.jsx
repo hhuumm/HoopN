@@ -1,4 +1,5 @@
 import React, { Component} from "react";
+import Button from 'react-bootstrap/Button';
 import Text from "react"
 import { Link } from "react-router-dom";
 import authService from "../../services/authService"
@@ -32,37 +33,38 @@ class LoginPage extends Component {
     const {email, pw} = this.state
     return (
       <main className="Login">
-        <h3>Log In</h3>
+        <h2>Log In</h2>
         <form autoComplete="off" onSubmit={this.handleSubmit}>
-        <label htmlFor="email">Email</label>
         <br></br>
           <input
             type="text"
-            autoComplete="off"
+            autoComplete="on"
+            placeholder="email"
             id="email"
             value={email}
             name="email"
             onChange={this.handleChange}
           />
-          <br></br>
-        
-          <label htmlFor="password">Password {"\t"}</label>
-          <t></t>
+          
           <br></br>
           <input
             type="password"
             autoComplete="off"
+            placeholder="password"
             id="password"
             value={pw}
             name="pw"
             onChange={this.handleChange}
           />
           <br></br>
-          <button className="btn green">Log In</button>
-          <br></br>
-          <Link className="btn red" to="/">
-            Cancel
+          <span>No account yet? </span>
+          <Link className="sign-up-link" to="/signup">
+            Sign Up
           </Link>
+          <br></br>
+          <button className="button">Log In</button>
+          {/* <Button variant="success">Log In</Button> */}
+          <br></br>
         </form>
       </main>
     );

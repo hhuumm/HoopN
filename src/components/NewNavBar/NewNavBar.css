@@ -9,6 +9,7 @@
   /* Cosmetics */
   background-color: #d9d9da;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
 }
 
 .nav-logo {
@@ -51,17 +52,21 @@
   transform: scale(1.1);
 }
 .button {
-  padding: 10px;
+  padding: 5px;
   outline: none;
-  border: none;
+  border: 1px double #88615a;
   font-size: 20px;
   color: #fff;
   font-weight: 600;
   background-color: #F24726;
-  box-shadow: 0px 5px 0px 0px rgba(255, 0, 0, 0.25);
+  box-shadow: 1px 1px 2px 2px #ffc4b8;
   border-radius: 10px;
   cursor: pointer;
   transition: 70ms;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 10px;
+  margin: 15px;
 }
 a.button {
   color: #fff;
@@ -71,14 +76,14 @@ a.button {
 }
 
 .main-login-btn{
-  margin: 0 auto;
-  display: table;
-  position: absolute;
-  bottom: 40px;
-  left: 35%;
-  padding-left: 30px;
-  padding-right: 30px;
-  text-decoration: none;
+  /* margin: 0 auto; */
+  /* display: table; */
+  /* position: absolute; */
+  /* bottom: 40px; */
+  /* left: 35%; */
+  /* padding-left: 30px; */
+  /* padding-right: 30px; */
+  /* text-decoration: none; */
 }
 
 .button:active {
@@ -124,14 +129,14 @@ a.button {
     border-bottom-right-radius: 10px;
   }
   .main-login-btn{
-    margin: 0 auto;
-    display: table;
-    position: absolute;
-    bottom: 40px;
-    left: 35%;
-    padding-left: 30px;
-    padding-right: 30px;
-    text-decoration: none;
+    /* margin: 0 auto; */
+    /* display: table; */
+    /* position: absolute; */
+    /* bottom: 40px; */
+    /* left: 35%; */
+    /* padding-left: 30px; */
+    /* padding-right: 30px; */
+    /* text-decoration: none; */
   }
   .login-btn {
     visibility: hidden;
