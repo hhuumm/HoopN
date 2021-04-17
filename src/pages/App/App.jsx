@@ -13,14 +13,24 @@ import * as eventAPI from '../../services/events-api'
 import * as apiService from '../../services/apiService'
 import CreateEvent from '../CreateEvent/CreateEvent'
 import EventList from '../EventList/EventList'
+import DatePicker from "../DateTimePicker/DateTimePicker"
+
+
 class App extends Component {
   state = {
-    user: authService.getUser(), latitude: null, longitude: null
+    user: authService.getUser(), latitude: null, longitude: null,weather:null
   };
   componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
-      success => this.setState({ latitude: success.coords.latitude, longitude: success.coords.longitude })
-    );
+      success => 
+      {
+        
+       const wthr=apiService.default.getWeatherL(success.coords.latitude,success.coords.longitude)
+       console.log(wthr,"\n^^This is supposed to be the weather")
+       this.setState({ latitude: success.coords.latitude, longitude: success.coords.longitude,weather:wthr })
+
+      }
+      );
   }
   // in BINGE, used componentDidMount as part of the getAll movies function, may need that for our EventList (index/getAll) page - - may need to be combined with the component did mount above.
   // async componentDidMount() {
