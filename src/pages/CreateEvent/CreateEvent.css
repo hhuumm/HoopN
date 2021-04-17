@@ -1,0 +1,16 @@
+.CreateEvent {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
+.CreateEvent input {
+  margin-bottom:30px;
+  width: 300px;
+  font-size: 1em;
+  padding: 8px;
+  border-radius: 8px;
+  margin-top: 10px;
+}

@@ -42,7 +42,7 @@ class App extends Component {
     this.setState({ user: authService.getUser() })
   }
 
-  //! handleAddEvent stubbed up based on BINGE app...this will need to be updated
+  // handleAddEvent stubbed up based on BINGE app ... this will need to be updated
   handleAddEvent = async newEventData => {
     const newEvent = await eventAPI.create(newEventData);
     newEvent.addedBy = { name: this.state.user.name, _id: this.state.user._id }
