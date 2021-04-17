@@ -5,7 +5,7 @@ class CreateEvent extends Component {
     state = {  }
     render() { 
         return ( 
-            //! Insert CreateEventForm
+            <h3>Create Event Page</h3>
          );
     }
 }
