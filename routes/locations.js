@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const reviewsCtrl = require('../controllers/reviews');
+const locationsCtrl = require('../controllers/locations');
 
 // Public Routes
-router.get('/', reviewsCtrl.index)
+// router.get('/', locationsCtrl.index)
 // Protected Routes
 router.use(require('../config/auth'));
-router.post('/', checkAuth, reviewsCtrl.create);
-router.delete('/:id', checkAuth, reviewsCtrl.delete)
+// router.post('/', checkAuth, locationsCtrl.create);
+router.delete('/:id&:rid', checkAuth, locationsCtrl.delete)
 
 
 function checkAuth(req, res, next) {

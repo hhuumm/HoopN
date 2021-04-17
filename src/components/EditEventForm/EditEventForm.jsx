@@ -5,7 +5,10 @@ import authService from '../../services/authService';
 class EditEventForm extends Component {
     state = {  }
     render() { 
-        return (  );
+        return ( 
+            <>
+            </>
+         );
     }
 }
  
