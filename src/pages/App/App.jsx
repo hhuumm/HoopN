@@ -14,6 +14,7 @@ import * as eventAPI from '../../services/events-api'
 import * as apiService from '../../services/apiService'
 import CreateEvent from '../CreateEvent/CreateEvent'
 import EventList from '../EventList/EventList'
+import EditEvent from '../EditEvent/EditEvent'
 
 class App extends Component {
   state = {
@@ -153,6 +154,17 @@ class App extends Component {
             />
           :
             <Redirect to='/login' />
+        }/>
+
+        <Route exact path='/edit' render={({location}) => 
+          authService.getUser() ?
+            <EditEvent 
+              handleUpdateEvent={this.handleUpdateEvent}
+              location={location}
+              user={this.state.user}
+            />
+          :
+            <Redirect to='/login'/>
         }/>
       </>
     );
