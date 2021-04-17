@@ -80,7 +80,7 @@ class App extends Component {
         <Route
         exact path="/Main"
         render={({ history }) => (
-          <Main history={history}/>
+          <Main />
 
 
 

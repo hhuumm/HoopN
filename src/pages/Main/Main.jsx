@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
+import {router} from "react-router-dom"
 import { NavLink, Link } from "react-router-dom";
 import './Main.css'
 
 
 function Main(props)
 {
+    
+   
 
     return(
 
         <>
-        <Link>Find Courts Near You</Link>
+        <Link className="MainLink" to="/">Find Courts Near You</Link>
         <br></br>
 
-        <Link>Upcoming Pickup Games</Link>
+        <Link className="MainLink" to="/" >Upcoming Pickup Games</Link>
         <br></br>
-        <Link>Create Pickup game</Link>
+        <Link className="MainLink" to="/">Create Pickup game</Link>
         
         </>
 
