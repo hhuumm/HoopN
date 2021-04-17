@@ -132,11 +132,14 @@ class App extends Component {
         }/>
 
         <Route exact path='/events' render={() =>
-          <EventList 
-            events={this.state.events}
-            user={this.state.user}
-            handleDeleteEvent={this.handleDeleteEvent}
-          />
+          authService.getUser() ?
+            <EventList 
+              events={this.state.events}
+              user={this.state.user}
+              handleDeleteEvent={this.handleDeleteEvent}
+            />
+          :
+            <Redirect to='/login' />
         }/>
       </>
     );
