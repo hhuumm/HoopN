@@ -8,9 +8,7 @@ require('./config/database');
 
 const userRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
-
-const weathRouter=require('./routes/')
-
+const apiRouter=require('./routes/api')
 const eventRouter = require('./routes/events');
 const reviewRouter = require('./routes/reviews')
 
@@ -28,6 +26,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
 app.use('/api/events', eventRouter);
 app.use('/api/reviews', reviewRouter);
+app.use('/api/api', apiRouter);
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
