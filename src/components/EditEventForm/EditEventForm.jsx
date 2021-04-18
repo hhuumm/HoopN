@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './EditEvent.css';
 
 class EditEventForm extends Component {
     state = { 

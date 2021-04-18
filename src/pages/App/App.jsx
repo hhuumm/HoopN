@@ -13,7 +13,6 @@ import * as eventAPI from '../../services/events-api'
 import * as apiService from '../../services/apiService'
 import CreateEvent from '../CreateEvent/CreateEvent'
 import EventList from '../EventList/EventList'
-import DatePicker from "../DateTimePicker/DateTimePicker"
 
 
 class App extends Component {
