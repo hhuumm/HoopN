@@ -1,16 +1,17 @@
 import React from 'react';
-import './EventList.css'
-import EventListCard from '../../components/EventListCard/EventListCard'
 
-function EventList(props) {
+import EventDetailsCard from '../../components/EventDetailsCard/EventDetailsCard'
+
+function EventList(props, events, user, handleDeleteEvent) {
     return (
         <>
             <div className='EventList-grid'>
                 {props.events.map(event =>
-                    <EventListCard 
+                    <EventDetailsCard 
                         key={event._id}
                         event={event}
                         user={props.user}
+                        handleDeleteEvent={props.handleDeleteEvent}
                     />
                 )}
             </div>

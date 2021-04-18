@@ -14,10 +14,10 @@ function EventDetailsCard({user, event, court, handleDeleteEvent}) {
 						{event.title}<i className="material-icons right">close</i>
 					</span>
 					<h6>Created By:  {event.createdBy.name}</h6>
-					<h6>Location: {event.location.name}</h6>
-					<div>Participants:  {event.participant}</div>
-					<div>Court:  {court.name}</div>
-                    <div>Reviews:  {event.location.reviews}</div>
+					{/* <h6>Location: {event.location.name}</h6> */}
+					<div>Participants:  [event.participant]</div>
+					{/* <div>Court:  {court.name}</div> */}
+                    <div>Reviews:  {event.reviews}</div>
 					
 					{user && (user._id === event.createdBy._id) &&
 						<>
