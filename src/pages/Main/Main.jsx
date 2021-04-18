@@ -11,9 +11,9 @@ function Main(props) {
         <div className="main-page" >
             <Link className="button" to="/">Find Courts Near You</Link>
             {/* <br></br> */}
-            <Link className="button" to="/" >Upcoming Pickup Games</Link>
+            <Link className="button" to="/events" >Upcoming Pickup Games</Link>
             {/* <br></br> */}
-            <Link className="button" to="/">Create Pickup game</Link>
+            <Link className="button" to="/events/add">Create Pickup game</Link>
         </div>    
         </>
     )
