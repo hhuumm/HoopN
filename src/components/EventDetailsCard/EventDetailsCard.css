@@ -25,3 +25,20 @@
     justify-items: center;
     }
   }
+.up-del {
+  margin: 0 auto;
+  display: flex;
+  grid-gap: 20px;
+}
+
+.card{
+  margin-top: 30px;
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 0.5rem;
+}

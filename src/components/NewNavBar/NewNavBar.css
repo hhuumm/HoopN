@@ -46,7 +46,7 @@
 .Nav {
   display: grid;
   grid-area: nav;
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: repeat(5, auto);
   align-items: center;
   justify-items: center;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Button from "react-bootstrap/Button"
 import './EditEvent.css';
 
 class EditEventForm extends Component {
@@ -24,7 +25,7 @@ class EditEventForm extends Component {
 	};
     render() { 
         return ( 
-            <div className="EditEvent">
+            <div className="Edit-Event">
 				<form 
 					className="col s12" 
 					ref={this.formRef} 
@@ -109,14 +110,11 @@ class EditEventForm extends Component {
 							<label htmlFor="date">Date/Time:</label>
 						</div>
 					</div>
-					<button
+					<Button
+							
 							type="submit"
-							className="btn red"
 							disabled={this.state.invalidForm}
-					>
-						<i className="material-icons left">edit</i>
-						Edit Event
-					</button>  
+					>Save</Button>  
                     <Link 
 							className="btn red"
 							to={{

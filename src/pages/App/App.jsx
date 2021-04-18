@@ -88,12 +88,11 @@ class App extends Component {
     return (
       <>
         <NewNavBar user={this.state.user} handleLogout={this.handleLogout} />
-        {/* <NavBar user={this.state.user} handleLogout={this.handleLogout}/> */}
         <Route
           exact
           path="/"
           render={() => (
-            <Landing user={authService.getUser()} handleSignupOrLogin handleLogout loc={this.state.loc} lat={this.state.lat}> </Landing>
+            <Landing user={authService.getUser()} handleSignupOrLogin handleLogout loc={this.state.loc} lat={this.state.lat}></Landing>
           )}
         />
         <Route

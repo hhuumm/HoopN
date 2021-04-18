@@ -1,7 +1,11 @@
 .EditEvent {
-    display: flex;
+    display: grid;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
     margin-bottom: 50px;
+    margin-top: 50px;
+  }
+  .col {
+    display: grid;
   }
