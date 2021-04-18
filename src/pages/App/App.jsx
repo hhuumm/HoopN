@@ -13,6 +13,7 @@ import * as eventAPI from '../../services/events-api'
 import * as apiService from '../../services/apiService'
 import CreateEvent from '../CreateEvent/CreateEvent'
 import EventList from '../EventList/EventList'
+import EditEvent from '../EditEvent/EditEvent'
 
 
 class App extends Component {
@@ -66,6 +67,17 @@ class App extends Component {
     } else {
       this.props.history.push('/login')
     }
+  }
+  handleUpdateEvent = async updatedEventData => {
+    const updatedEvent = await eventAPI.update(updatedEventData);
+    updatedEvent.createdBy = {name: this.state.user.name, _id: this.state.user._id}
+    const newEventsArray = this.state.events.map(e => 
+      e._id === updatedEvent._id ? updatedEvent : e
+    );
+    this.setState(
+      {events: newEventsArray},
+      () => this.props.history.push('/events')
+    );
   }
 
   // async componentDidMount() {
@@ -136,6 +148,16 @@ class App extends Component {
             handleDeleteEvent={this.handleDeleteEvent}
           />
         } />
+        <Route exact path='/edit' render={({location}) => 
+          authService.getUser() ?
+            <EditEvent
+              handleUpdateEvent={this.handleUpdateEvent}
+              location={location}
+              user={this.state.user}
+            />
+            :
+            <Redirect to='/login'/>
+        }/>
       </>
     );
   }
