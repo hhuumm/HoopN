@@ -11,15 +11,20 @@ module.exports=
 
 async function getWeather(req,res)
 {
+    // console.log("Hello?")
     if(req.params.lat)
     {
+        let lat = req.params.lat;
+        let lng= req.params.lng;
         //use params to set lat/lng
-       await axios.get (`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.OPENWEATHER_KEY}`,{mode:'cors'})
-        .then(result=>{res.json(result)})
+       await axios.get (`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.OPENWEATHER_KEY}`)
+        .then((result)=>{console.log(result.data);return result.data}).catch(err=>{console.log(err)})
+
     }
     else if(req.params.zip){
+        
         await axios.get(`api.openweathermap.org/data/2.5/weather?zip=${req.params.zip},us&appid=${process.env.OPENWEATHER_KEY}`,{mode:'cors'})
-        .then(result=>{res.json(result)})
+        .then((result)=>res.json(result.data))
     }
 }
 

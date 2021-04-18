@@ -13,8 +13,12 @@ import * as eventAPI from '../../services/events-api'
 import * as apiService from '../../services/apiService'
 import CreateEvent from '../CreateEvent/CreateEvent'
 import EventList from '../EventList/EventList'
+import DatePicker from "../DateTimePicker/DateTimePicker"
+
+
 class App extends Component {
   state = {
+
     user: authService.getUser(), latitude: null, longitude: null,
     events: []
   };
@@ -24,6 +28,8 @@ class App extends Component {
     // window.navigator.geolocation.getCurrentPosition(
     //   success => this.setState({ latitude: success.coords.latitude, longitude: success.coords.longitude })
     // );
+
+
   }
   // in BINGE, used componentDidMount as part of the getAll movies function, may need that for our EventList (index/getAll) page - - may need to be combined with the component did mount above.
   // async componentDidMount() {
