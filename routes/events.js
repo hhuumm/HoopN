@@ -6,6 +6,7 @@ const eventsCtrl = require('../controllers/events');
 // Protected Routes
 router.use(require('../config/auth'));
 router.get('/', eventsCtrl.index)
+router.get('/:id',eventsCtrl.myGames)
 router.post('/', checkAuth, eventsCtrl.create)
 router.delete('/:id', checkAuth, eventsCtrl.delete);
 router.put('/:id', checkAuth, eventsCtrl.update)

@@ -20,6 +20,14 @@ export function getAll() {
     .catch(err => console.error(err, 'err??') )
 }
 
+export function myGames(id)
+{
+    return fetch(`${BASE_URL}${id}`, {
+        method: 'GET',
+        headers: {'Authorization': 'Bearer ' + tokenService.getToken()}
+  }, {mode: "cors"})
+  .then(res => res.json());
+}
 
 export function deleteOne(id) {
     return fetch(`${BASE_URL}${id}`, {
