@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import authService from '../../services/authService';
+import '.CreateEvent.css'
 
 class CreateEventForm extends Component {
     state = { 
@@ -123,7 +124,7 @@ handleChange = e => {
 							disabled={this.state.invalidForm}
 					>
 						<i className="material-icons left">add</i>
-						Add Movie
+						Add Event
 					</button>                           
 				</form>
 			</div>
