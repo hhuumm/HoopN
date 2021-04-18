@@ -1,5 +1,4 @@
 import React from 'react';
-import EventDetailsCard from '../EventDetailsCard/EventDetailsCard'
 
 function EventListCard({ user, event, handleDeleteMovie }) {
   return (

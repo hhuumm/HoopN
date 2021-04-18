@@ -1,17 +1,18 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import './EventDetailsCard.css'
 function EventDetailsCard({user, event, court, handleDeleteEvent}) {
     return(
         <>
         <div className="card-content">
 					<span className="card-title activator grey-text text-darken-4">
-						{event.title}<i className="material-icons right">more_vert</i>
+						{event.title}<i className="material-icons right"></i>
 					</span>
 					<p>{event.createdBy.name}</p>
 				</div>
                 <div className="card-reveal">
 					<span className="card-title grey-text text-darken-4">
-						{event.title}<i className="material-icons right">close</i>
+						{event.title}<i className="material-icons right"></i>
 					</span>
 					<h6>Created By:  {event.createdBy.name}</h6>
 					{/* <h6>Location: {event.location.name}</h6> */}
@@ -26,7 +27,7 @@ function EventDetailsCard({user, event, court, handleDeleteEvent}) {
 								className="btn red"
 								onClick={() => handleDeleteEvent(event._id)}
 							>
-								<i className="material-icons left">delete</i>    
+								<i className="material-icons left"></i>    
 								Delete Event
 							</button>
 							<Link 
@@ -36,7 +37,7 @@ function EventDetailsCard({user, event, court, handleDeleteEvent}) {
 									state: {event}
 								}}
 							>
-								<i className="material-icons left">build</i>
+								<i className="material-icons left"></i>
 								Edit Event
 							</Link>
 						</>
