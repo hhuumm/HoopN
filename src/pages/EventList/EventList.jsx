@@ -12,6 +12,7 @@ function EventList(props, events, user, handleDeleteEvent) {
                         event={event}
                         user={props.user}
                         handleDeleteEvent={props.handleDeleteEvent}
+                        handleUpdateEvent={props.handleUpdateEvent}
                     />
                 )}
             </div>

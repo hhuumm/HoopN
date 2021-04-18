@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './EditEvent.css';
-
 class EditEvent extends Component {
     state = { 
         invalidForm: false,
 		formData: this.props.location.state.event,
-		Name: "Edit Event"
+		Name: "Edit Event",
      };
      formRef = React.createRef();
-
      handleSubmit = e => {
 		e.preventDefault();
 		this.props.handleUpdateEvent(this.state.formData);
 		};
-
 	handleChange = e => {
 		const formData = {...this.state.formData, [e.target.name]: e.target.value};
 		this.setState({
@@ -64,7 +61,7 @@ class EditEvent extends Component {
 								id="court"
 								type="text"
 								className="active"
-								value={this.state.formData.court.name} //? Add the name of the court here, if it is a new court name for the location, add the new court name to the database
+								// value={this.state.formData.location.name} //? Add the name of the court here, if it is a new court name for the location, add the new court name to the database
 								onChange={this.handleChange}
 							/>
 							<label htmlFor="court">Court Name:</label>
@@ -77,7 +74,7 @@ class EditEvent extends Component {
 								id="createdBy"
 								type="text"
 								className="active"
-								value={this.state.formData.createdBy} //? Need to import this from the user data - - this may be a hidden field that we pass through the form OR this might be captured via the controller
+								value={this.state.formData.createdBy.name} //? Need to import this from the user data - - this may be a hidden field that we pass through the form OR this might be captured via the controller
 								onChange={this.handleChange}
 							/>
 							<label htmlFor="createdBy">Created By:</label>
@@ -90,7 +87,7 @@ class EditEvent extends Component {
 								id="participant"
 								type="text"
 								className="active"
-								value={this.state.formData.participant} //? This will initially be just the user who created the event, other users will be added to this array when they sign-up to participate in an event - - this might be captured in the controller
+								value={this.state.formData.participant.name} //? This will initially be just the user who created the event, other users will be added to this array when they sign-up to participate in an event - - this might be captured in the controller
 								onChange={this.handleChange}
 							/>
 							<label htmlFor="participant">Participants:</label>
@@ -131,5 +128,4 @@ class EditEvent extends Component {
          );
     }
 }
- 
 export default EditEvent;
