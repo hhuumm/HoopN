@@ -154,11 +154,23 @@ class App extends Component {
             />
           )}
         />
+
+        
         <Route exact path='/events' render={() =>
           <EventList
             events={this.state.events}
             user={this.state.user}
             handleDeleteEvent={this.handleDeleteEvent}
+          />
+        } />
+
+
+        <Route exact path='/myEvents' render={() =>
+          <EventList
+            events={this.state.events}
+            user={this.state.user}
+            handleDeleteEvent={this.handleDeleteEvent}
+            myEvent={true}
           />
         } />
         <Route exact path='/edit' render={({location}) => 
