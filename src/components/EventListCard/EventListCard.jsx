@@ -16,10 +16,7 @@ function EventListCard({ user, event, handleDeleteMovie }) {
           <Card.Title>{event.title}</Card.Title>
           <span>{event.date}</span><br />
           <span>{event.time}</span><br />
-          <span>{event.date}</span><br />
-          <span>{event.time}</span><br />
-          {/* <span>{event.createdBy.name}</span><br /> */}
-          {/* <button href="/event/details" className="button" >View Details</button> */}
+          <span>{event.createdBy.name}</span><br />
           <NavLink className="test" to="/events/details"><button href="/event/details" className="button" >View Details</button></NavLink>
         </Card.Body>
       </Card>
