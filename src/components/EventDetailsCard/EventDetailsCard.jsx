@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import './EventDetailsCard.css'
 function EventDetailsCard({user, event, court, handleDeleteEvent}) {
+    console.log(event)
+    console.log(event[event.length-1])
     return(
         <>
         <div className="card-content">
