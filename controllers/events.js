@@ -5,7 +5,18 @@ module.exports = {
   index,
   delete: deleteEvent,
   update,
+  myGames
 }
+function myGames(req, res) {
+  Event.find({participant: req.user.id})
+  .then((events) => {
+    res.json(events)
+  })
+  participant.push(req.user._id)
+  .then(events => {res.json(events)})
+  .catch(err => {res.json(err)})
+  }
+
 function update(req, res) {
     Event.findByIdAndUpdate(req.params.id, req.body, {new: true})
     .then(event => {res.json(event)})
@@ -21,8 +32,10 @@ function deleteEvent(req, res) {
 
 function create(req, res) {
     req.body.createdBy = req.user._id
-    req.body.participant = req.user._id
-    req.body.location = req.location._id
+
+    req.body.participant = [req.user._id]
+    // req.body.location = req.location._id
+
     Event.create(req.body)
     .then(event => {res.json(event)})
     .catch(err => {res.json(err)})
