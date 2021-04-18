@@ -18,7 +18,7 @@ async function getWeather(req,res)
         let lng= req.params.lng;
         //use params to set lat/lng
        await axios.get (`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.OPENWEATHER_KEY}`)
-        .then((result)=>{console.log(result.data);return result.data}).catch(err=>{console.log(err)})
+        .then((result)=>{console.log(result.data.main);return result.data}).catch(err=>{console.log(err)})
 
     }
     else if(req.params.zip){
@@ -41,7 +41,7 @@ async function getPlaces(req,res)
         .then(result=>{
             
             //Result.geometry.location= {lat,lng}
-            
+            console.log(result.data)
           res.json(result.data.results)
         
             // return result.json()}
