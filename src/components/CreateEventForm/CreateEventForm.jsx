@@ -123,7 +123,7 @@ handleChange = e => {
 							disabled={this.state.invalidForm}
 					>
 						<i className="material-icons left">add</i>
-						Add Movie
+						Add Event
 					</button>                           
 				</form>
 			</div>
