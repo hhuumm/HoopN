@@ -21,6 +21,15 @@
   align-items: center;
   justify-items: center;
 }
+.nav-logo a {
+  color: #F24726;
+  text-decoration: none;
+}
+.nav-logo a:hover {
+  color: #F24726;
+  text-decoration: none;
+}
+
 .Logo {
   width: auto;
   height: 90px;
@@ -48,6 +57,7 @@
   transition: 0.5s;
   text-decoration: none;
 }
+
 .Nav a:hover {
   transform: scale(1.1);
 }
