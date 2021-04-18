@@ -13,6 +13,8 @@ function EventListCard({ user, event, handleDeleteMovie }) {
           <Card.Title>{event.title}</Card.Title>
           <span>{event.date}</span><br />
           <span>{event.time}</span><br />
+          <span>{event.date}</span><br />
+          <span>{event.time}</span><br />
           {/* <span>{event.createdBy.name}</span><br /> */}
           <button className="button" >View Details</button>
         </Card.Body>

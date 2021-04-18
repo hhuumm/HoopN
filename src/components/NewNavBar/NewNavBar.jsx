@@ -34,18 +34,21 @@ const NewNavBar = ({ user, handleLogout }) => {
   function logOutCloseNav() {
     toggleNav();
     handleLogout();
-}
+  }
 
   return (
     <header className="Header">
       <div className="nav-logo">
-        <img
-          src='../../../images/logo-img.png'
-          // style={{ width: "85px", height: "85px" }}
-          className="Logo"
-          alt="hoop'n"
-        />
-        <h1 className="logo-text" fontSize="80px" font-size="80px">hoop'n</h1>
+        <a href="/main">
+          <img
+            src='../../../images/logo-img.png'
+            href="/main"
+            className="Logo"
+            alt="hoop'n"
+          />
+        </a>
+        <a href="/main"><h1 className="logo-text" fontSize="80px" >hoop'n</h1></a>
+
       </div>
       <CSSTransition
         in={!isSmallScreen || isNavVisible}
@@ -56,9 +59,9 @@ const NewNavBar = ({ user, handleLogout }) => {
         <nav className="Nav">
           {user ?
             <>
-              <a href="/">Home</a>
-              <a href="/">Articles</a>
-              <a href="/">About</a>
+              <a href="/main">Home</a>
+              <a href="/events/add">New Game</a>
+              <a href="/events">Games</a>
               <NavLink onClick={logOutCloseNav} className="button" to="/">Logout</NavLink>
             </>
             :
