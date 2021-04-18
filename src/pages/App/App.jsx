@@ -16,6 +16,7 @@ import EventList from '../EventList/EventList'
 import EditEvent from '../EditEvent/EditEvent'
 
 
+
 class App extends Component {
   state = {
 
@@ -79,11 +80,6 @@ class App extends Component {
       () => this.props.history.push('/events')
     );
   }
-
-  // async componentDidMount() {
-  //   const events = await eventAPI.getAll();
-  //   this.setState({ events })
-  // }
 
   render() {
     const { user } = this.state
