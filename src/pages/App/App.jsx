@@ -18,19 +18,18 @@ import DatePicker from "../DateTimePicker/DateTimePicker"
 
 class App extends Component {
   state = {
-    user: authService.getUser(), latitude: null, longitude: null,weather:null
-  };
-  componentDidMount() {
-    window.navigator.geolocation.getCurrentPosition(
-      success => 
-      {
-        
-       const wthr=apiService.default.getWeatherL(success.coords.latitude,success.coords.longitude)
-       console.log(wthr,"\n^^This is supposed to be the weather")
-       this.setState({ latitude: success.coords.latitude, longitude: success.coords.longitude,weather:wthr })
 
-      }
-      );
+    user: authService.getUser(), latitude: null, longitude: null,
+    events: []
+  };
+  async componentDidMount() {
+    const events = await eventAPI.getAll();
+    this.setState({ events })
+    // window.navigator.geolocation.getCurrentPosition(
+    //   success => this.setState({ latitude: success.coords.latitude, longitude: success.coords.longitude })
+    // );
+
+
   }
   // in BINGE, used componentDidMount as part of the getAll movies function, may need that for our EventList (index/getAll) page - - may need to be combined with the component did mount above.
   // async componentDidMount() {
@@ -41,7 +40,6 @@ class App extends Component {
     authService.logout();
     this.setState({ user: null });
     this.props.history.push("/");
-    // this.props.onClick={toggleNav} 
   };
   handleSignupOrLogin = () => {
     this.setState({ user: authService.getUser() })
@@ -65,6 +63,12 @@ class App extends Component {
       this.props.history.push('/login')
     }
   }
+
+  // async componentDidMount() {
+  //   const events = await eventAPI.getAll();
+  //   this.setState({ events })
+  // }
+
   render() {
     const { user } = this.state
     return (

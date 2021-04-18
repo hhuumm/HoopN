@@ -1,5 +1,4 @@
 import React, { Component, useState } from 'react';
-import "react-datepicker/dist/react-datepicker.css";
 import './CreateEvent.css'
 
 class CreateEvent extends Component {
