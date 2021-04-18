@@ -7,7 +7,9 @@ function EventList(props, events, user, handleDeleteEvent) {
         <>
             <div className='EventList-grid'>
                 {props.events.map(event =>
+
                     <EventDetailsCard 
+
                         key={event._id}
                         event={event}
                         user={props.user}
@@ -16,7 +18,6 @@ function EventList(props, events, user, handleDeleteEvent) {
                     />
                 )}
             </div>
-            <h3>Event List Page</h3>
         </>
     )
 }
