@@ -7,14 +7,13 @@ function EventList(props) {
         <>
             <div className='EventList-grid'>
                 {props.events.map(event =>
-                    <EventListCard 
+                    <EventListCard
                         key={event._id}
                         event={event}
                         user={props.user}
                     />
                 )}
             </div>
-            <h3>Event List Page</h3>
         </>
     )
 }
