@@ -13,21 +13,25 @@ import * as eventAPI from '../../services/events-api'
 import * as apiService from '../../services/apiService'
 import CreateEvent from '../CreateEvent/CreateEvent'
 import EventList from '../EventList/EventList'
-import DatePicker from "../DateTimePicker/DateTimePicker"
 
 
 class App extends Component {
   state = {
 
     user: authService.getUser(), latitude: null, longitude: null,
-    events: []
+    events: [],
+    weather:null
   };
   async componentDidMount() {
     const events = await eventAPI.getAll();
-    this.setState({ events })
-    // window.navigator.geolocation.getCurrentPosition(
-    //   success => this.setState({ latitude: success.coords.latitude, longitude: success.coords.longitude })
-    // );
+    
+    // this.setState({ events })
+    window.navigator.geolocation.getCurrentPosition(
+      success => {
+        let wthr = apiService.default.getWeatherL(success.coords.latitude,success.coords.longitude)
+        this.setState({ events,latitude: success.coords.latitude, longitude: success.coords.longitude ,weather:wthr})
+      }
+        );
 
 
   }

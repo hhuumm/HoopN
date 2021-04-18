@@ -10,7 +10,7 @@ function getWeatherZ(zip)
 function getWeatherL(lat,lng)
 {
    fetch (BASE_URL+"weather/loc/"+lat+"&"+lng)
-   .then(res=>{console.log(res);return res.json()})
+   .then(res=>{res.json()})
    .catch(err => console.log(err));
 
 }
