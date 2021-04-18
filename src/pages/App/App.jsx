@@ -54,11 +54,11 @@ class App extends Component {
   // handleAddEvent stubbed up based on BINGE app ... this will need to be updated
   handleAddEvent = async newEventData => {
     const newEvent = await eventAPI.create(newEventData);
-    console.log(newEvent)
+    newEvent.createdBy = { name: this.state.user.name, _id: this.state.user._id } 
     this.setState(state => ({
       // console.log(state)
       selectedEvent:newEvent,
-      events: [state.events, newEvent]
+      events: [...state.events, newEvent]
     }), () => this.props.history.push('/events/details'));
   }
   handleDeleteEvent = async id => {
@@ -154,11 +154,23 @@ class App extends Component {
             />
           )}
         />
+
+        
         <Route exact path='/events' render={() =>
           <EventList
             events={this.state.events}
             user={this.state.user}
             handleDeleteEvent={this.handleDeleteEvent}
+          />
+        } />
+
+
+        <Route exact path='/myEvents' render={() =>
+          <EventList
+            events={this.state.events}
+            user={this.state.user}
+            handleDeleteEvent={this.handleDeleteEvent}
+            myEvent={true}
           />
         } />
         <Route exact path='/edit' render={({location}) => 
