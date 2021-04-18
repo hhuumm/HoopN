@@ -17,7 +17,7 @@ function EventDetailsCard(props) {
 					<span className="card-title grey-text text-darken-4">
 						{event.title}<i className="material-icons right"></i>
 					</span>
-					<h6>Created By:  {event.createdBy.name}</h6>
+					<h6>Created By:  {event.createdBy}</h6>
 					{/* <h6>Location: {event.location.name}</h6> */}
 					<div>Participants:  [event.participant]</div>
 					{/* <div>Court:  {court.name}</div> */}
