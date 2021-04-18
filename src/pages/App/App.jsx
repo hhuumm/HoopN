@@ -15,12 +15,15 @@ import CreateEvent from '../CreateEvent/CreateEvent'
 import EventList from '../EventList/EventList'
 class App extends Component {
   state = {
-    user: authService.getUser(), latitude: null, longitude: null
+    user: authService.getUser(), latitude: null, longitude: null,
+    events: []
   };
-  componentDidMount() {
-    window.navigator.geolocation.getCurrentPosition(
-      success => this.setState({ latitude: success.coords.latitude, longitude: success.coords.longitude })
-    );
+  async componentDidMount() {
+    const events = await eventAPI.getAll();
+    this.setState({ events })
+    // window.navigator.geolocation.getCurrentPosition(
+    //   success => this.setState({ latitude: success.coords.latitude, longitude: success.coords.longitude })
+    // );
   }
   // in BINGE, used componentDidMount as part of the getAll movies function, may need that for our EventList (index/getAll) page - - may need to be combined with the component did mount above.
   // async componentDidMount() {
@@ -31,7 +34,6 @@ class App extends Component {
     authService.logout();
     this.setState({ user: null });
     this.props.history.push("/");
-    // this.props.onClick={toggleNav} 
   };
   handleSignupOrLogin = () => {
     this.setState({ user: authService.getUser() })
@@ -55,6 +57,12 @@ class App extends Component {
       this.props.history.push('/login')
     }
   }
+
+  // async componentDidMount() {
+  //   const events = await eventAPI.getAll();
+  //   this.setState({ events })
+  // }
+
   render() {
     const { user } = this.state
     return (

@@ -1,11 +1,11 @@
 import React from 'react';
 import './EventList.css'
-// import EventListCard from '../../components/EventListCard/EventListCard'
+import EventListCard from '../../components/EventListCard/EventListCard'
 
 function EventList(props) {
     return (
         <>
-            {/* <div className='EventList-grid'>
+            <div className='EventList-grid'>
                 {props.events.map(event =>
                     <EventListCard 
                         key={event._id}
@@ -13,7 +13,7 @@ function EventList(props) {
                         user={props.user}
                     />
                 )}
-            </div> */}
+            </div>
             <h3>Event List Page</h3>
         </>
     )

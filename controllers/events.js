@@ -1,4 +1,5 @@
 const Event = require('../models/Event')
+// const { default: EventList } = require('../src/pages/EventList/EventList')
 
 module.exports = {
   create,
@@ -29,10 +30,10 @@ function create(req, res) {
   }
 
 function index(req, res) {
-    Event.find({})
-    .populate('createdBy')
-    .populate('location')
-    .populate('participant')
-    .then(events => {res.json(events)})
-    .catch(err => {res.json(err)})
+  Event.find({})
+  .populate('createdBy')
+  .populate('location')
+  .populate('participant')
+  .then(events => {res.json(events)})
+  .catch(err => {res.json(err)})
   }
