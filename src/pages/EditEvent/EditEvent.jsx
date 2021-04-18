@@ -1,35 +1,41 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Button from "react-bootstrap/Button"
 import './EditEvent.css';
+
 class EditEvent extends Component {
-    state = { 
-        invalidForm: false,
+
+	state = {
+		invalidForm: false,
 		formData: this.props.location.state.event,
 		Name: "Edit Event",
-     };
-     formRef = React.createRef();
-     handleSubmit = e => {
+	};
+
+	formRef = React.createRef();
+	handleSubmit = e => {
 		e.preventDefault();
 		this.props.handleUpdateEvent(this.state.formData);
-		};
+	};
+
 	handleChange = e => {
-		const formData = {...this.state.formData, [e.target.name]: e.target.value};
+		const formData = { ...this.state.formData, [e.target.name]: e.target.value };
 		this.setState({
-		formData,
-		invalidForm: !this.formRef.current.checkValidity()
+			formData,
+			invalidForm: !this.formRef.current.checkValidity()
 		});
 	};
-    render() { 
-        return ( 
-            <div className="EditEvent">
-				<form 
-					className="col s12" 
-					ref={this.formRef} 
+
+	render() {
+		return (
+			<div className="EditEvent">
+				<form
+					className="col s12"
+					ref={this.formRef}
 					onSubmit={this.handleSubmit}
 				>
 					<div className="row">
 						<div className="input-field col s12">
-							<input 
+							<input
 								name="title"
 								id="event_title"
 								type="text"
@@ -43,7 +49,7 @@ class EditEvent extends Component {
 					</div>
 					<div className="row">
 						<div className="input-field col s12">
-							<input 
+							<input
 								name="location"
 								id="location"
 								type="text"
@@ -54,9 +60,9 @@ class EditEvent extends Component {
 							<label htmlFor="location">Location:</label>
 						</div>
 					</div>
-                    <div className="row">
+					<div className="row">
 						<div className="input-field col s12">
-							<input 
+							<input
 								name="court"
 								id="court"
 								type="text"
@@ -69,7 +75,7 @@ class EditEvent extends Component {
 					</div>
 					<div className="row">
 						<div className="input-field col s12">
-							<input 
+							<input
 								name="createdBy"
 								id="createdBy"
 								type="text"
@@ -95,7 +101,7 @@ class EditEvent extends Component {
 					</div>
 					<div className="row">
 						<div className="input-field col s12">
-							<input 
+							<input
 								name="date"
 								id="date"
 								type="text" //? We will need to use a date/time picker, probably from a React library
@@ -106,26 +112,38 @@ class EditEvent extends Component {
 							<label htmlFor="date">Date/Time:</label>
 						</div>
 					</div>
-					<button
+					<div className="row">
+						<div className="input-field col s12">
+							<input
+								name="time"
+								id="time"
+								type="text"
+								className="active"
+								value={this.state.formData.time}
+								onChange={this.handleChange}
+							/>
+							<label htmlFor="time">Time:</label>
+						</div>
+					</div>
+
+					<div className="up-del">
+						<Button
+							variant="success"
 							type="submit"
-							className="btn red"
 							disabled={this.state.invalidForm}
-					>
-						<i className="material-icons left">edit</i>
-						Edit Event
-					</button>  
-                    <Link 
-							className="btn red"
+						>Save</Button>
+						<Link
 							to={{
 								pathname: '/events'
 							}}
-						>
-							<i className="material-icons left">undo</i>
-							Cancel
-						</Link>                                                
+						><Button
+							variant="warning"
+						>Cancel</Button></Link>
+					</div>
 				</form>
 			</div>
-         );
-    }
+		);
+	}
 }
+
 export default EditEvent;
