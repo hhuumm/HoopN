@@ -1,11 +1,19 @@
 import React from 'react';
 import './EventDetails.css'
+
 import EventDetailsCard from '../../components/EventDetailsCard/EventDetailsCard'
+
 
 function EventDetails(props) {
     return (
         <>
-            <h1>Event details</h1> page
+
+        <EventDetailsCard  event={props.current}
+              history={props.history}
+              update={props.update}
+              user={props.user}
+              delete={props.delete}>Event Details Page</EventDetailsCard> 
+
         </>
     )
 }

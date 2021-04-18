@@ -14,6 +14,7 @@ import * as apiService from '../../services/apiService'
 import CreateEvent from '../CreateEvent/CreateEvent'
 import EventList from '../EventList/EventList'
 import EditEvent from '../EditEvent/EditEvent'
+import EventDetails from "../EventDetails/EventDetails";
 
 
 
@@ -56,8 +57,9 @@ class App extends Component {
     newEvent.addedBy = { name: this.state.user.name, _id: this.state.user._id }
     this.setState(state => ({
       // console.log(state)
+      selectedEvent:newEvent,
       events: [state.events, newEvent]
-    }), () => this.props.history.push('/events'));
+    }), () => this.props.history.push('/events/details'));
   }
   handleDeleteEvent = async id => {
     if (authService.getUser()) {
@@ -137,6 +139,21 @@ class App extends Component {
             :
             <Redirect to='/login' />
         } />
+
+
+        <Route
+          exact
+          path="/events/details"
+          render={({ history }) => (
+            <EventDetails
+            current={this.state.selectedEvent}
+              history={history}
+              update={this.handleUpdateEvent}
+              user={this.state.user}
+              delete={this.handleDeleteEvent}
+            />
+          )}
+        />
         <Route exact path='/events' render={() =>
           <EventList
             events={this.state.events}
