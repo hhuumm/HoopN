@@ -9,13 +9,11 @@ const eventSchema = new Schema ({
     createdBy: { type: Schema.Types.ObjectId, ref: 'User'},
     participant: [{ type: Schema.Types.ObjectId, ref: 'User'}],
     date: {type: String, format: Date, required: true},
-    time: {
-        "type": "string",
-        "format": "time"
-        }
+    time: {type: String, format: Date, required: true},
 
 }, { timestamps: true })
 
 module.exports =mongoose.model('Event', eventSchema)
 
+// time: {"type": "string", "format": "time"}
 // location: { type: Schema.Types.ObjectId, ref: 'Location'},
