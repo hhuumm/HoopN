@@ -21,7 +21,8 @@ class App extends Component {
   state = {
     user: authService.getUser(), latitude: null, longitude: null,
     events: [],
-    weather: null
+    weather: null,
+    places:null
   };
   async componentDidMount() {
     const events = await eventAPI.getAll();
@@ -46,9 +47,10 @@ async componentDidUpdate(previousProps,previousState){
   if(previousState.latitude !== this.state.latitude)
   {
     let weather= await apiService.default.getWeatherL(this.state.latitude,this.state.longitude)
+    let places = await apiService.default.getPlacesL(this.state.latitude,this.state.longitude)
     
     console.log(weather)
-    this.setState({weather})
+    this.setState({weather,places})
   }
 
 }
@@ -174,6 +176,7 @@ async componentDidUpdate(previousProps,previousState){
             handleDeleteEvent={this.handleDeleteEvent}
             history={history}
             handleShow={this.handleShow}
+            places ={this.state.places}
           />
         } />
         <Route exact path='/myEvents' render={() =>
