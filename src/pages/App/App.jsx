@@ -103,7 +103,7 @@ async componentDidUpdate(previousProps,previousState){
   }
 
   render() {
-    const { user, events } = this.state
+    const { user, events,weather } = this.state
     const {history}=this.props
     return (
       <>
@@ -118,7 +118,7 @@ async componentDidUpdate(previousProps,previousState){
         <Route
           exact path="/Main"
           render={({ history }) => (
-            <Main history={history} />
+            <Main history={history} weather={weather} />
           )}
         />
         <Route
@@ -162,6 +162,7 @@ async componentDidUpdate(previousProps,previousState){
           path="/events/details"
           render={({ history }) => (
             <EventDetails
+            event
               history={history}
               update={this.handleUpdateEvent}
               user={this.state.user}
