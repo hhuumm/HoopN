@@ -26,14 +26,40 @@ class App extends Component {
   async componentDidMount() {
     const events = await eventAPI.getAll();
 
+    // let wthr=apiService.default.getWeatherL(success.coords.latitude,success.coords.longitude)
     // this.setState({ events })
     window.navigator.geolocation.getCurrentPosition(
       success => {
-        let wthr = apiService.default.getWeatherL(success.coords.latitude, success.coords.longitude)
-        this.setState({ events, latitude: success.coords.latitude, longitude: success.coords.longitude, weather: wthr })
+        // console.log(success)
+       
+        this.setState({ events,latitude: success.coords.latitude, longitude: success.coords.longitude })
+    
       }
-    );
+    )
+   
   }
+
+async componentDidUpdate(previousProps,previousState){
+  console.log(this.state.latitude,this.state.latitude,"\n^^ Lat n Lng")
+  console.log(previousState,"\n^^Previous State")
+
+  if(previousState.latitude !== this.state.latitude)
+  {
+    let weather= await apiService.default.getWeatherL(this.state.latitude,this.state.longitude)
+    
+    console.log(weather)
+    this.setState({weather})
+  }
+
+}
+
+  // in BINGE, used componentDidMount as part of the getAll movies function, may need that for our EventList (index/getAll) page - - may need to be combined with the component did mount above.
+  // async componentDidMount() {
+  //   const events = await eventAPI.getAll();
+  //   this.setState({ events })
+  // }
+  handleShow=()=>{console.log("Show has been clicked")}
+  
 
   handleLogout = (props) => {
     authService.logout();
@@ -75,7 +101,8 @@ class App extends Component {
   }
 
   render() {
-    const { user } = this.state
+    const { user, events } = this.state
+    const {history}=this.props
     return (
       <>
         <NewNavBar user={this.state.user} handleLogout={this.handleLogout} />
@@ -133,7 +160,6 @@ class App extends Component {
           path="/events/details"
           render={({ history }) => (
             <EventDetails
-              current={this.state.selectedEvent}
               history={history}
               update={this.handleUpdateEvent}
               user={this.state.user}
@@ -146,6 +172,8 @@ class App extends Component {
             events={this.state.events}
             user={this.state.user}
             handleDeleteEvent={this.handleDeleteEvent}
+            history={history}
+            handleShow={this.handleShow}
           />
         } />
         <Route exact path='/myEvents' render={() =>

@@ -7,11 +7,19 @@ function getWeatherZ(zip)
     .catch(err => console.log(err));
 }
 
-function getWeatherL(lat,lng)
+async function getWeatherL(lat,lng)
 {
-   fetch (BASE_URL+"weather/loc/"+lat+"&"+lng)
-   .then(res=>{res.json()})
-   .catch(err => console.log(err));
+    return await fetch (BASE_URL+"weather/loc/"+lat+"&"+lng)
+    .then((response)=>{
+        return response.json()
+
+    }) 
+    .then((data)=>{
+        console.log(data)
+       return data
+        
+    })
+    .catch(err=>{console.log(err)})
 
 }
 
@@ -19,6 +27,8 @@ function getPlacesZ(zip)
 {
     return fetch (BASE_URL+"nps/zip/"+zip)
 }
+
+
 function getPlacesL(lat,lng)
 {
     return fetch (BASE_URL+"nps/loc/"+lat+"&"+lng)

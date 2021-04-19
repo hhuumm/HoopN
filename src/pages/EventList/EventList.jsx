@@ -2,7 +2,7 @@ import React from 'react';
 import EventListCard from '../../components/EventListCard/EventListCard'
 
 function EventList(props) {
-    const { user, events } = props
+    const { user, events,handleShow,history } = props
     const myGames = []
 
     if (props.myEvent) {
@@ -16,7 +16,6 @@ function EventList(props) {
 
             })
         })
-        console.log(myGames, "\n^^These are all the players games")
 
         return (
             <>
@@ -24,9 +23,10 @@ function EventList(props) {
                     <div className='EventList-grid'>
                         {myGames.map(event =>
                             <EventListCard
-                                key={event._id}
                                 event={event}
-                                user={props.user}
+                                user={user}
+                                handleShow={handleShow}
+                                history={history}
                             />
                         )
                         }
@@ -50,6 +50,8 @@ function EventList(props) {
                                 key={event._id}
                                 event={event}
                                 user={props.user}
+                                handleShow={handleShow}
+                                history={history}
                             />
                         )}
                     </div>
