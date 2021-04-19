@@ -35,7 +35,7 @@ class App extends Component {
        
         this.setState({ events,latitude: success.coords.latitude, longitude: success.coords.longitude })
     
-      }
+      },err=>{this.setState({events})}
     )
    
   }
