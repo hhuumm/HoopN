@@ -5,7 +5,7 @@ const locationsCtrl = require('../controllers/locations');
 // router.get('/', locationsCtrl.index)
 // Protected Routes
 router.use(require('../config/auth'));
-// router.post('/', checkAuth, locationsCtrl.create);
+router.post('/location', checkAuth, locationsCtrl.index);
 router.delete('/:id&:rid', checkAuth, locationsCtrl.delete)
 
 

@@ -10,6 +10,7 @@ function Main(props) {
 
     return (
         <>
+
             <div className="main-page">
                 <Link className="button" to="/">Find Courts Near You</Link>
                 {/* <br></br> */}
@@ -32,6 +33,7 @@ function Main(props) {
                     <img src="https://media.giphy.com/media/vZROLXfaqhbhHO8qwr/giphy.gif"></img>
                 </div>
             }
+
         </>
     )
 }
