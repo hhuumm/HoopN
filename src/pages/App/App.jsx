@@ -15,6 +15,7 @@ import CreateEvent from '../CreateEvent/CreateEvent'
 import EventList from '../EventList/EventList'
 import EditEvent from '../EditEvent/EditEvent'
 import EventDetails from "../EventDetails/EventDetails";
+import LocationReview from "../LocationReview/LocationReview"
 
 
 class App extends Component {
@@ -196,6 +197,12 @@ async componentDidUpdate(previousProps,previousState){
             />
             :
             <Redirect to='/login' />
+        } />
+
+        <Route exact path='/locations/review' render={({location}) => 
+          authService.getUser() ?
+          handleUpdateEvent=
+        
         } />
       </>
     );
