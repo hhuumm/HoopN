@@ -15,7 +15,7 @@ Future enhancements are planned...
 ### Getting Started:
 The app can be launched [here]() and was deployed using Heroku.
 
-We used [Trello]() to...
+We used Trello to oranize our project throughout development. Our Trello board can be found [here](https://trello.com/b/Ob8kwzWp/unit-3-full-stack-mern-app-hoopn#).
 
 
 ### Screenshots:
