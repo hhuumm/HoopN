@@ -103,6 +103,15 @@ async componentDidUpdate(previousProps,previousState){
     );
   }
 
+  handleAddReview = async newReviewData => {
+    const newReview = await locationAPI.createReview(newReviewData);
+    newReview.reviewer = { name: this.state.user.name, _id: this.state.user._id }
+    this.setState(state => ({
+      // Need Help with this function
+    }))
+  }
+
+
   render() {
     const { user, events,weather } = this.state
     const {history}=this.props
@@ -200,9 +209,12 @@ async componentDidUpdate(previousProps,previousState){
         } />
 
         <Route exact path='/locations/review' render={({location}) => 
-          authService.getUser() ?
-          handleUpdateEvent=
-        
+            authService.getUser() ?
+              <LocationReview
+                handleAddReview={this.handleAddReview}
+                location={location}
+                user={this.state.user}
+              />
         } />
       </>
     );
