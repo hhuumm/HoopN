@@ -15,8 +15,10 @@ import CreateEvent from '../CreateEvent/CreateEvent'
 import EventList from '../EventList/EventList'
 import EditEvent from '../EditEvent/EditEvent'
 import EventDetails from "../EventDetails/EventDetails";
+import LocationReview from "../LocationReview/LocationReview"
 import SearchLocations from '../SearchLocations/SearchLocations'
 import LocationDetails from '../../components/LocationDetails/LocationDetails'
+
 
 class App extends Component {
   state = {
@@ -104,6 +106,15 @@ async componentDidUpdate(previousProps,previousState){
     );
   }
  
+
+  // handleAddReview = async newReviewData => {
+  //   const newReview = await locationAPI.createReview(newReviewData);
+  //   newReview.reviewer = { name: this.state.user.name, _id: this.state.user._id }
+  //   this.setState(state => ({
+  //     // Need Help with this function
+  //   }))
+  // }
+
 
   render() {
     const { user, events,weather } = this.state
@@ -200,6 +211,19 @@ async componentDidUpdate(previousProps,previousState){
             :
             <Redirect to='/login' />
         } />
+
+
+        <Route exact path='/locations/review' render={({location}) => 
+            authService.getUser() ?
+              <LocationReview
+                handleAddReview={this.handleAddReview}
+                location={location}
+                user={this.state.user}
+              />
+            :
+            <Redirect to='/login' />
+        } />
+
         <Route
           exact
           path="/locations"
@@ -227,6 +251,7 @@ async componentDidUpdate(previousProps,previousState){
             />
           )}
         />
+
       </>
     );
   }
