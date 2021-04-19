@@ -214,15 +214,15 @@ async componentDidUpdate(previousProps,previousState){
         />
         <Route
           exact
-          path="/locations/details"
-          render={() => (
+          path="/location/details"
+          render={({location}) => (
             <LocationDetails
               user={this.state.user}
               events={this.state.events}
               places={this.state.places}
               weather={this.state.weather}
               history={history}
-
+              location={location}
             />
           )}
         />
