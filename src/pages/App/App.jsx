@@ -162,7 +162,6 @@ async componentDidUpdate(previousProps,previousState){
           path="/events/details"
           render={({ history }) => (
             <EventDetails
-            event
               history={history}
               update={this.handleUpdateEvent}
               user={this.state.user}
