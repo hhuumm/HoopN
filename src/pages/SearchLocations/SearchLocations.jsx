@@ -1,14 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './SearchLocations.css'
 
-class SearchLocations extends Component {
-    state = {  }
-    render() { 
-        return ( 
+function SearchLocations(props) {
+   const {event,user,places} = props;
+
+        return (
             <>
+            <h1>This is locations</h1>
+            <span>{user.name}</span>
+            
+                
+    
             </>
-        );
+        )
     }
-}
- 
+
+
 export default SearchLocations;

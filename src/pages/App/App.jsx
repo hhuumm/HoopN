@@ -15,6 +15,7 @@ import CreateEvent from '../CreateEvent/CreateEvent'
 import EventList from '../EventList/EventList'
 import EditEvent from '../EditEvent/EditEvent'
 import EventDetails from "../EventDetails/EventDetails";
+import SearchLocations from '../SearchLocations/SearchLocations'
 
 
 class App extends Component {
@@ -101,6 +102,7 @@ async componentDidUpdate(previousProps,previousState){
       () => this.props.history.push('/events')
     );
   }
+ 
 
   render() {
     const { user, events } = this.state
@@ -197,6 +199,20 @@ async componentDidUpdate(previousProps,previousState){
             :
             <Redirect to='/login' />
         } />
+        <Route
+          exact
+          path="/locations"
+          render={() => (
+            <SearchLocations
+              user={this.state.user}
+              events={this.state.events}
+              places={this.state.places}
+              weather={this.state.weather}
+              
+
+            />
+          )}
+        />
       </>
     );
   }
