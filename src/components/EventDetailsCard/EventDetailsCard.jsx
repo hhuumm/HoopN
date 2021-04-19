@@ -8,6 +8,7 @@ import EventDetails from '../../pages/EventDetails/EventDetails' //??????
 function EventDetailsCard(props) {
 	//{user, event, court, handleDeleteEvent}
 	const { user, event, deleteEvent, court} = props
+	console.log(props,"\n^^^Props Event Details Card")
 	return (
 		<>
 			<div className='EventList-grid'>

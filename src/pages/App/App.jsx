@@ -36,7 +36,7 @@ class App extends Component {
        
         this.setState({ events,latitude: success.coords.latitude, longitude: success.coords.longitude })
     
-      }
+      },err=>{this.setState({events})}
     )
    
   }
@@ -105,7 +105,7 @@ async componentDidUpdate(previousProps,previousState){
  
 
   render() {
-    const { user, events } = this.state
+    const { user, events,weather } = this.state
     const {history}=this.props
     return (
       <>
@@ -120,7 +120,7 @@ async componentDidUpdate(previousProps,previousState){
         <Route
           exact path="/Main"
           render={({ history }) => (
-            <Main history={history} />
+            <Main history={history} weather={weather} />
           )}
         />
         <Route

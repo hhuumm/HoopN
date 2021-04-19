@@ -9,7 +9,7 @@ import EventDetailsCard from '../EventDetailsCard/EventDetailsCard'
 
 function EventListCard(props) {
   const {event,handleShow,user,history}=props;
- const handler=()=>{console.log(props);history.push()}
+ const handler=()=>{console.log(props);history.push({ pathname: '/events/details',props:{event}})}
   return (
     
     <>
