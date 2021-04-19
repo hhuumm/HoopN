@@ -17,32 +17,24 @@ import EditEvent from '../EditEvent/EditEvent'
 import EventDetails from "../EventDetails/EventDetails";
 
 
-
 class App extends Component {
   state = {
-
     user: authService.getUser(), latitude: null, longitude: null,
     events: [],
-    weather:null
+    weather: null
   };
   async componentDidMount() {
     const events = await eventAPI.getAll();
-    
+
     // this.setState({ events })
     window.navigator.geolocation.getCurrentPosition(
       success => {
-        let wthr = apiService.default.getWeatherL(success.coords.latitude,success.coords.longitude)
-        this.setState({ events,latitude: success.coords.latitude, longitude: success.coords.longitude ,weather:wthr})
+        let wthr = apiService.default.getWeatherL(success.coords.latitude, success.coords.longitude)
+        this.setState({ events, latitude: success.coords.latitude, longitude: success.coords.longitude, weather: wthr })
       }
-        );
-
-
+    );
   }
-  // in BINGE, used componentDidMount as part of the getAll movies function, may need that for our EventList (index/getAll) page - - may need to be combined with the component did mount above.
-  // async componentDidMount() {
-  //   const events = await eventAPI.getAll();
-  //   this.setState({ events })
-  // }
+
   handleLogout = (props) => {
     authService.logout();
     this.setState({ user: null });
@@ -51,13 +43,12 @@ class App extends Component {
   handleSignupOrLogin = () => {
     this.setState({ user: authService.getUser() })
   }
-  // handleAddEvent stubbed up based on BINGE app ... this will need to be updated
   handleAddEvent = async newEventData => {
     const newEvent = await eventAPI.create(newEventData);
-    newEvent.createdBy = { name: this.state.user.name, _id: this.state.user._id } 
+    newEvent.createdBy = { name: this.state.user.name, _id: this.state.user._id }
     this.setState(state => ({
       // console.log(state)
-      selectedEvent:newEvent,
+      selectedEvent: newEvent,
       events: [...state.events, newEvent]
     }), () => this.props.history.push('/events/details'));
   }
@@ -73,12 +64,12 @@ class App extends Component {
   }
   handleUpdateEvent = async updatedEventData => {
     const updatedEvent = await eventAPI.update(updatedEventData);
-    updatedEvent.createdBy = {name: this.state.user.name, _id: this.state.user._id}
-    const newEventsArray = this.state.events.map(e => 
+    updatedEvent.createdBy = { name: this.state.user.name, _id: this.state.user._id }
+    const newEventsArray = this.state.events.map(e =>
       e._id === updatedEvent._id ? updatedEvent : e
     );
     this.setState(
-      {events: newEventsArray},
+      { events: newEventsArray },
       () => this.props.history.push('/events')
     );
   }
@@ -128,7 +119,6 @@ class App extends Component {
             user ? <Users /> : <Redirect to="/login" />
           }
         />
-        {/* ! create event route stubbed up based on BINGE app...this may need to be updated */}
         <Route exact path='/events/add' render={() =>
           authService.getUser() ?
             <CreateEvent
@@ -138,14 +128,12 @@ class App extends Component {
             :
             <Redirect to='/login' />
         } />
-
-
         <Route
           exact
           path="/events/details"
           render={({ history }) => (
             <EventDetails
-            current={this.state.selectedEvent}
+              current={this.state.selectedEvent}
               history={history}
               update={this.handleUpdateEvent}
               user={this.state.user}
@@ -153,8 +141,6 @@ class App extends Component {
             />
           )}
         />
-
-        
         <Route exact path='/events' render={() =>
           <EventList
             events={this.state.events}
@@ -162,8 +148,6 @@ class App extends Component {
             handleDeleteEvent={this.handleDeleteEvent}
           />
         } />
-
-
         <Route exact path='/myEvents' render={() =>
           <EventList
             events={this.state.events}
@@ -172,7 +156,7 @@ class App extends Component {
             myEvent={true}
           />
         } />
-        <Route exact path='/edit' render={({location}) => 
+        <Route exact path='/edit' render={({ location }) =>
           authService.getUser() ?
             <EditEvent
               handleUpdateEvent={this.handleUpdateEvent}
@@ -180,10 +164,11 @@ class App extends Component {
               user={this.state.user}
             />
             :
-            <Redirect to='/login'/>
-        }/>
+            <Redirect to='/login' />
+        } />
       </>
     );
   }
 }
+
 export default App;
