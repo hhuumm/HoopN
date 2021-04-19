@@ -9,15 +9,17 @@ function getWeatherZ(zip)
 
 async function getWeatherL(lat,lng)
 {
-    let data =  await fetch (BASE_URL+"weather/loc/"+lat+"&"+lng)
-    console.log(data,"\n^^The data")   
-//    .then(res=>{
-//         console.log(res)   
-//         res.json()
+    return await fetch (BASE_URL+"weather/loc/"+lat+"&"+lng)
+    .then((response)=>{
+        return response.json()
+
+    }) 
+    .then((data)=>{
+        console.log(data)
+       return data
         
-//     })
-//    .catch(err => console.log(err));
-   
+    })
+    .catch(err=>{console.log(err)})
 
 }
 
@@ -25,6 +27,8 @@ function getPlacesZ(zip)
 {
     return fetch (BASE_URL+"nps/zip/"+zip)
 }
+
+
 function getPlacesL(lat,lng)
 {
     return fetch (BASE_URL+"nps/loc/"+lat+"&"+lng)

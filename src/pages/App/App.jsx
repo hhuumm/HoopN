@@ -27,17 +27,33 @@ class App extends Component {
   };
   async componentDidMount() {
     const events = await eventAPI.getAll();
-    
+    // let wthr=apiService.default.getWeatherL(success.coords.latitude,success.coords.longitude)
     // this.setState({ events })
     window.navigator.geolocation.getCurrentPosition(
       success => {
-        let wthr = apiService.default.getWeatherL(success.coords.latitude,success.coords.longitude)
-        this.setState({ events,latitude: success.coords.latitude, longitude: success.coords.longitude ,weather:wthr})
+        // console.log(success)
+       
+        this.setState({ events,latitude: success.coords.latitude, longitude: success.coords.longitude })
+    
       }
-        );
-
-
+    )
+   
   }
+
+async componentDidUpdate(previousProps,previousState){
+  console.log(this.state.latitude,this.state.latitude,"\n^^ Lat n Lng")
+  console.log(previousState,"\n^^Previous State")
+
+  if(previousState.latitude !== this.state.latitude)
+  {
+    let weather= await apiService.default.getWeatherL(this.state.latitude,this.state.longitude)
+    
+    console.log(weather)
+    this.setState({weather})
+  }
+
+}
+
   // in BINGE, used componentDidMount as part of the getAll movies function, may need that for our EventList (index/getAll) page - - may need to be combined with the component did mount above.
   // async componentDidMount() {
   //   const events = await eventAPI.getAll();
