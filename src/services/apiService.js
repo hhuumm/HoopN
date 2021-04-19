@@ -31,7 +31,17 @@ function getPlacesZ(zip)
 
 function getPlacesL(lat,lng)
 {
-    return fetch (BASE_URL+"nps/loc/"+lat+"&"+lng)
+   return fetch (BASE_URL+"nps/loc/"+lat+"&"+lng)
+    .then((response)=>{
+        return response.json()
+
+    }) 
+    .then((data)=>{
+       
+       return data
+        
+    })
+    .catch(err=>{console.log(err)})
 }
 
 // eslint-disable-next-line
