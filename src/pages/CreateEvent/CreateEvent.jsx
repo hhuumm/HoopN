@@ -98,7 +98,7 @@ class CreateEvent extends Component {
                             <input
                                 name="time"
                                 id="time"
-                                step="900"
+                                // step="900"
                                 type="time"
                                 className="active"
                                 value={this.state.formData.court.time} //? Add the name of the court here, if it is a new court name for the location, add the new court name to the database
