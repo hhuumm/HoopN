@@ -7,7 +7,7 @@ import EventDetailsCard from '../../components/EventDetailsCard/EventDetailsCard
 function EventDetails(props) {
     return (
         <>
-            <EventDetailsCard event={props.current}
+            <EventDetailsCard event={props.event}
                 history={props.history}
                 update={props.update}
                 user={props.user}
