@@ -22,6 +22,12 @@ class CreateEvent extends Component {
         this.props.handleAddEvent(this.state.formData);
     }
 
+    todaysDate() {
+        let today = new Date()
+        return today
+    }
+    
+
     handleChange = e => {
         const formData = { ...this.state.formData, [e.target.name]: e.target.value };
         this.setState({
@@ -42,7 +48,7 @@ class CreateEvent extends Component {
                         <div className="in">
                             <input
                                 name="title"
-                                placeholder="Event Title"
+                                placeholder={this.todaysDate()}
                                 id="event_title"
                                 type="text"
                                 className="active"
