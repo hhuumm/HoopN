@@ -5,9 +5,9 @@ import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
 import EventDetails from '../../pages/EventDetails/EventDetails' //??????
 
-function EventDetailsCard(props, handleDeleteEvent) {
+function EventDetailsCard(props) {
 	//{user, event, court, handleDeleteEvent}
-	const { user, event, court} = props
+	const { user, event, deleteEvent, court} = props
 	return (
 		<>
 			<div className='EventList-grid'>
@@ -26,7 +26,7 @@ function EventDetailsCard(props, handleDeleteEvent) {
 								<Button
 									variant="primary"
 									type="submit"
-									onClick={() => handleDeleteEvent(event._id)}
+									onClick={() => deleteEvent(event._id)}
 								>Delete</Button>
 
 								<Link
