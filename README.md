@@ -38,13 +38,17 @@ We used [Trello]() to...
 
 
 ### Additional Tools and Resources:
-* Font Awesome
-* Visual Studio Code (VS Code)
-* Trello (Planning and Organization Tool)
-* Whimsical (Entity Relationship Diagram)
-* Canva (Graphic Design Tool)
-* PxHere (Free Creative Commons Images)
+* [Open Weather Map-API](https://openweathermap.org/api) (Free Weather API)
+* [Google Maps-Places API](https://developers.google.com/maps/documentation/places/web-service/overview)
+* [Visual Studio Code](https://code.visualstudio.com/) (VS Code)
+* [Trello](https://trello.com/en-US) (Project Planning, Organization, and Collaboration Tool)
+* [Whimsical](https://whimsical.com/) (Flowchart/Diagram/Wireframing Tool Used for ERD)
+* [Miro](https://miro.com) (Whiteboarding/Wireframing Tool)
 * Slack (Collaboration and Communication)
+
+### Special Thanks:
+* Thank you to our instructors from General Assembly (Ben Manley, David Stinson, Shahzad Khan) for assistance in troubleshooting our APIs!
+* Our NavBar component was created with the help of [this](https://medium.com/@sidbentifraouine) resource, created by Sid Bentifraouine, contributor on Medium.
 
 
 ### Next Steps (Icebox Features):
