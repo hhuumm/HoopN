@@ -213,7 +213,7 @@ async componentDidUpdate(previousProps,previousState){
         } />
 
 
-        <Route exact path='/locations/review' render={({location}) => 
+        <Route exact path='/locations/review' render={({ location }) => 
             authService.getUser() ?
               <LocationReview
                 handleAddReview={this.handleAddReview}

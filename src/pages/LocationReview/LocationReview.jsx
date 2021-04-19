@@ -32,12 +32,8 @@ class LocationReview extends Component {
         
         return (
             <div className="LocationReview">
-
-                <h1>Location Name</h1>
-                <h2>Location Address</h2>
                 <h2>Review Form:</h2> 
-                
-                {/* <form
+                <form
                     className="col-s12"
                     ref={this.formRef}
                     onSubmit={this.handleSubmit}
@@ -76,7 +72,7 @@ class LocationReview extends Component {
                     >
                         <i className="material-icons left">Add Review</i>
                     </button>
-                </form> */}
+                </form>
             </div>
         );
     }
