@@ -4,6 +4,7 @@ module.exports = {
     // create: createReview,
     // reviewsIndex,
     delete: deleteReview,
+    index
   
 }
 
@@ -28,3 +29,11 @@ function deleteReview(req, res) {
 //     .then(reviews => {res.json(reviews)})
 //     .catch(err => {res.json(err)})
 // }
+function index(req, res) {
+  Location.find({})
+  console.log(locations)
+  .then(locations => {res.json(locations)}) 
+  .catch(err => {res.json(err)})
+
+  
+}
