@@ -23,10 +23,8 @@ class CreateEvent extends Component {
     }
 
     todaysDate() {
-        let today = new Date()
-        return today
+        return new Date().toJSON().split('T')[0]
     }
-    
 
     handleChange = e => {
         const formData = { ...this.state.formData, [e.target.name]: e.target.value };
@@ -48,7 +46,7 @@ class CreateEvent extends Component {
                         <div className="in">
                             <input
                                 name="title"
-                                placeholder={this.todaysDate()}
+                                placeholder="Event Name"
                                 id="event_title"
                                 type="text"
                                 className="active"
@@ -88,9 +86,8 @@ class CreateEvent extends Component {
                         <div className="input-field col s12">
                             <input
                                 name="date"
-                                // placeholder="Court Name"
                                 id="date"
-                                max="2031-04-17"
+                                min={this.todaysDate()}
                                 type="date"
                                 className="active"
                                 value={this.state.formData.court.name} //? Add the name of the court here, if it is a new court name for the location, add the new court name to the database
@@ -129,3 +126,4 @@ class CreateEvent extends Component {
 
 
 export default CreateEvent;
+
