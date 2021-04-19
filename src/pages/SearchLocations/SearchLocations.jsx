@@ -9,7 +9,7 @@ function SearchLocations(props) {
     <>
       {places ? (
         <div>
-          <span>Places??</span>
+          <span>Near by Parks</span><br />
           {places.map((park) => (
             <span>
               <Link to={{pathname: '/location/details', state: {park}}}>
