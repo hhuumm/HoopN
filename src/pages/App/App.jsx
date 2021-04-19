@@ -43,6 +43,8 @@ class App extends Component {
   //   const events = await eventAPI.getAll();
   //   this.setState({ events })
   // }
+  handleShow=()=>{console.log("Show has been clicked")}
+  
   handleLogout = (props) => {
     authService.logout();
     this.setState({ user: null });
@@ -84,7 +86,8 @@ class App extends Component {
   }
 
   render() {
-    const { user } = this.state
+    const { user, events } = this.state
+    const {history}=this.props
     return (
       <>
         <NewNavBar user={this.state.user} handleLogout={this.handleLogout} />
@@ -145,7 +148,6 @@ class App extends Component {
           path="/events/details"
           render={({ history }) => (
             <EventDetails
-            current={this.state.selectedEvent}
               history={history}
               update={this.handleUpdateEvent}
               user={this.state.user}
@@ -160,6 +162,8 @@ class App extends Component {
             events={this.state.events}
             user={this.state.user}
             handleDeleteEvent={this.handleDeleteEvent}
+            history={history}
+            handleShow={this.handleShow}
           />
         } />
 

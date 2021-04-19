@@ -7,11 +7,17 @@ function getWeatherZ(zip)
     .catch(err => console.log(err));
 }
 
-function getWeatherL(lat,lng)
+async function getWeatherL(lat,lng)
 {
-   fetch (BASE_URL+"weather/loc/"+lat+"&"+lng)
-   .then(res=>{res.json()})
-   .catch(err => console.log(err));
+    let data =  await fetch (BASE_URL+"weather/loc/"+lat+"&"+lng)
+    console.log(data,"\n^^The data")   
+//    .then(res=>{
+//         console.log(res)   
+//         res.json()
+        
+//     })
+//    .catch(err => console.log(err));
+   
 
 }
 
