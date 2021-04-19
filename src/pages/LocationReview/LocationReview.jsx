@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import user from '../../../models/user';
 import './LocationReview.css'
 
 class LocationReview extends Component {

@@ -103,13 +103,13 @@ async componentDidUpdate(previousProps,previousState){
     );
   }
 
-  handleAddReview = async newReviewData => {
-    const newReview = await locationAPI.createReview(newReviewData);
-    newReview.reviewer = { name: this.state.user.name, _id: this.state.user._id }
-    this.setState(state => ({
-      // Need Help with this function
-    }))
-  }
+  // handleAddReview = async newReviewData => {
+  //   const newReview = await locationAPI.createReview(newReviewData);
+  //   newReview.reviewer = { name: this.state.user.name, _id: this.state.user._id }
+  //   this.setState(state => ({
+  //     // Need Help with this function
+  //   }))
+  // }
 
 
   render() {
@@ -215,6 +215,8 @@ async componentDidUpdate(previousProps,previousState){
                 location={location}
                 user={this.state.user}
               />
+            :
+            <Redirect to='/login' />
         } />
       </>
     );
