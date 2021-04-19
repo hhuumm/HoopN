@@ -16,7 +16,7 @@ import EventList from '../EventList/EventList'
 import EditEvent from '../EditEvent/EditEvent'
 import EventDetails from "../EventDetails/EventDetails";
 import SearchLocations from '../SearchLocations/SearchLocations'
-
+import LocationDetails from '../../components/LocationDetails/LocationDetails'
 
 class App extends Component {
   state = {
@@ -208,7 +208,20 @@ async componentDidUpdate(previousProps,previousState){
               events={this.state.events}
               places={this.state.places}
               weather={this.state.weather}
-              
+              history={history}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/locations/details"
+          render={() => (
+            <LocationDetails
+              user={this.state.user}
+              events={this.state.events}
+              places={this.state.places}
+              weather={this.state.weather}
+              history={history}
 
             />
           )}

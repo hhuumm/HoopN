@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 
-function LocationCard(props) {
+function LocationDetails(props) {
     const {event,user,places,weather} = props;
 
     return (
@@ -12,6 +12,8 @@ function LocationCard(props) {
             <Card.Body>
               <Card.Title>{event.title}</Card.Title>
               <span>{places.name}</span><br />
+              <span>{places.photos}</span><br />
+              <span>{places.icon}</span><br />
               <span>{weather.main}</span><br />
             </Card.Body>
           </Card>
@@ -19,4 +21,4 @@ function LocationCard(props) {
       )
     }
     
-    export default LocationCard;
+    export default LocationDetails;
