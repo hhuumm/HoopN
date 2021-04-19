@@ -17,16 +17,15 @@ import EditEvent from '../EditEvent/EditEvent'
 import EventDetails from "../EventDetails/EventDetails";
 
 
-
 class App extends Component {
   state = {
-
     user: authService.getUser(), latitude: null, longitude: null,
     events: [],
-    weather:null
+    weather: null
   };
   async componentDidMount() {
     const events = await eventAPI.getAll();
+
     // let wthr=apiService.default.getWeatherL(success.coords.latitude,success.coords.longitude)
     // this.setState({ events })
     window.navigator.geolocation.getCurrentPosition(
@@ -61,6 +60,7 @@ async componentDidUpdate(previousProps,previousState){
   // }
   handleShow=()=>{console.log("Show has been clicked")}
   
+
   handleLogout = (props) => {
     authService.logout();
     this.setState({ user: null });
@@ -69,13 +69,12 @@ async componentDidUpdate(previousProps,previousState){
   handleSignupOrLogin = () => {
     this.setState({ user: authService.getUser() })
   }
-  // handleAddEvent stubbed up based on BINGE app ... this will need to be updated
   handleAddEvent = async newEventData => {
     const newEvent = await eventAPI.create(newEventData);
-    newEvent.createdBy = { name: this.state.user.name, _id: this.state.user._id } 
+    newEvent.createdBy = { name: this.state.user.name, _id: this.state.user._id }
     this.setState(state => ({
       // console.log(state)
-      selectedEvent:newEvent,
+      selectedEvent: newEvent,
       events: [...state.events, newEvent]
     }), () => this.props.history.push('/events/details'));
   }
@@ -91,12 +90,12 @@ async componentDidUpdate(previousProps,previousState){
   }
   handleUpdateEvent = async updatedEventData => {
     const updatedEvent = await eventAPI.update(updatedEventData);
-    updatedEvent.createdBy = {name: this.state.user.name, _id: this.state.user._id}
-    const newEventsArray = this.state.events.map(e => 
+    updatedEvent.createdBy = { name: this.state.user.name, _id: this.state.user._id }
+    const newEventsArray = this.state.events.map(e =>
       e._id === updatedEvent._id ? updatedEvent : e
     );
     this.setState(
-      {events: newEventsArray},
+      { events: newEventsArray },
       () => this.props.history.push('/events')
     );
   }
@@ -147,7 +146,6 @@ async componentDidUpdate(previousProps,previousState){
             user ? <Users /> : <Redirect to="/login" />
           }
         />
-        {/* ! create event route stubbed up based on BINGE app...this may need to be updated */}
         <Route exact path='/events/add' render={() =>
           authService.getUser() ?
             <CreateEvent
@@ -157,8 +155,6 @@ async componentDidUpdate(previousProps,previousState){
             :
             <Redirect to='/login' />
         } />
-
-
         <Route
           exact
           path="/events/details"
@@ -171,8 +167,6 @@ async componentDidUpdate(previousProps,previousState){
             />
           )}
         />
-
-        
         <Route exact path='/events' render={() =>
           <EventList
             events={this.state.events}
@@ -182,8 +176,6 @@ async componentDidUpdate(previousProps,previousState){
             handleShow={this.handleShow}
           />
         } />
-
-
         <Route exact path='/myEvents' render={() =>
           <EventList
             events={this.state.events}
@@ -192,7 +184,7 @@ async componentDidUpdate(previousProps,previousState){
             myEvent={true}
           />
         } />
-        <Route exact path='/edit' render={({location}) => 
+        <Route exact path='/edit' render={({ location }) =>
           authService.getUser() ?
             <EditEvent
               handleUpdateEvent={this.handleUpdateEvent}
@@ -200,10 +192,11 @@ async componentDidUpdate(previousProps,previousState){
               user={this.state.user}
             />
             :
-            <Redirect to='/login'/>
-        }/>
+            <Redirect to='/login' />
+        } />
       </>
     );
   }
 }
+
 export default App;
