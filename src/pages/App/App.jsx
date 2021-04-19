@@ -20,7 +20,7 @@ import LocationDetails from '../../components/LocationDetails/LocationDetails'
 
 class App extends Component {
   state = {
-    user: authService.getUser(), latitude: null, longitude: null,
+    user: authService.getUser(), latitude:'', longitude: '',
     events: [],
     weather: null,
     places:null
@@ -32,7 +32,7 @@ class App extends Component {
     // this.setState({ events })
     window.navigator.geolocation.getCurrentPosition(
       success => {
-        // console.log(success)
+        console.log(success)
        
         this.setState({ events,latitude: success.coords.latitude, longitude: success.coords.longitude })
     
@@ -42,11 +42,12 @@ class App extends Component {
   }
 
 async componentDidUpdate(previousProps,previousState){
-  console.log(this.state.latitude,this.state.latitude,"\n^^ Lat n Lng")
+  console.log(this.state.latitude,this.state.longitude,"\n^^ Lat n Lng")
   console.log(previousState,"\n^^Previous State")
 
   if(previousState.latitude !== this.state.latitude)
   {
+    console.log('here')
     let weather= await apiService.default.getWeatherL(this.state.latitude,this.state.longitude)
     let places = await apiService.default.getPlacesL(this.state.latitude,this.state.longitude)
     

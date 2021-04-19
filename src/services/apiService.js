@@ -15,7 +15,7 @@ async function getWeatherL(lat,lng)
 
     }) 
     .then((data)=>{
-        console.log(data)
+        console.log(data, 'weather')
        return data
         
     })
@@ -38,6 +38,7 @@ function getPlacesL(lat,lng)
     }) 
     .then((data)=>{
        
+        console.log(data, 'places')
        return data
         
     })

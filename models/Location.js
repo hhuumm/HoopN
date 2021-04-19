@@ -14,8 +14,7 @@ const courtSchema = new Schema({
 
 const locationSchema = new Schema({
     name: {type: String, required: true},
-    lat: {type: Number, required: true},
-    lng: {type: Number, required: true},
+    placeId: {type: String, required: true},
     courts: [courtSchema], 
     reviews: [reviewSchema]
 }, {timestamps: true})
