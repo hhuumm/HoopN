@@ -15,6 +15,8 @@ class CreateEvent extends Component {
         }
     }
 
+   
+
     formRef = React.createRef();
 
     handleSubmit = e => {
@@ -35,6 +37,10 @@ class CreateEvent extends Component {
     }
 
     render() { // NEED TO REDO THIS WITH BOOTSTRAP - CURRENTLY INCLUDES A LOT OF MATERIALIZE MARKUPS
+        
+       const {park}= this.props.location.props.location.state
+       console.log(park,"\n^^This is the park")
+        
         return (
             <div className="CreateEvent">
                 <form
