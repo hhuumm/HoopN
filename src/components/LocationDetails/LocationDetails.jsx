@@ -1,8 +1,14 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import {Link} from 'react-router-dom'
+
 function LocationDetails(props) {
-    const {event,user,location,weather} = props;
-    // const {state} = props.location
+    const {event, history, user, location,weather} = props;
+    
+    const reviewHandler=()=>{console.log(props);history.push({ pathname: '/locations/review', props:{props}})}
+
+    const gameHandler=()=>{console.log(props);history.push({ pathname: '/events/add', props})}
+
     return (
         <>
           <Card style={{ width: '18rem' }}>
@@ -14,8 +20,11 @@ function LocationDetails(props) {
             className="park"
             alt="hoop'n"
           /><br />
-              <span>Rating: {props.location.state.park.rating}</span><br /> 
+              <span>Google Rating: {props.location.state.park.rating}</span><br /> 
                 {/* <span>{props.weather.[{}]}</span><br />  */}
+                <button onClick={gameHandler}>Add New Game</button><br></br>
+                <button onClick={reviewHandler}>Add Review</button><br></br>
+                <h6>Display Reviews Here</h6>
             </Card.Body>
           </Card>
         </>
