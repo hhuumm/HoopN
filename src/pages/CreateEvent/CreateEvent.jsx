@@ -50,6 +50,24 @@ class CreateEvent extends Component {
                 >
                     <div className="rowrow">
                         <div className="in">
+                            {park.photos[0].html_attributions[0]}
+                        </div>
+                    </div>
+                    <div className="rowrow">
+                        <div className="in">
+                            <input
+                                name="location_name"
+                                placeholder={park.name}
+                                id="event_title"
+                                type="text"
+                                className="inactive"
+                                value={park.name}
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div className="rowrow">
+                        <div className="in">
                             <input
                                 name="title"
                                 placeholder="Event Name"
