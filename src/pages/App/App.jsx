@@ -18,6 +18,7 @@ import EventDetails from "../EventDetails/EventDetails";
 import LocationReview from "../LocationReview/LocationReview"
 import SearchLocations from '../SearchLocations/SearchLocations'
 import LocationDetails from '../../components/LocationDetails/LocationDetails'
+import { getTimeFromTimestamp, getWindDirection } from '../../services/utils';
 
 
 class App extends Component {
@@ -25,7 +26,10 @@ class App extends Component {
     user: authService.getUser(), latitude:'', longitude: '',
     events: [],
     weather: null,
-    places:null
+    places: null,
+    windDirection: '',
+    sunrise: '',
+    sunset: ''
   };
   async componentDidMount() {
     const events = await eventAPI.getAll();
@@ -51,10 +55,13 @@ async componentDidUpdate(previousProps,previousState){
   {
     console.log('here')
     let weather= await apiService.default.getWeatherL(this.state.latitude,this.state.longitude)
+    let windDirection= await getWindDirection(weather.wind.deg)
+    let sunrise = await getTimeFromTimestamp(weather.sys.sunrise);
+    let sunset = await getTimeFromTimestamp(weather.sys.sunset);
     let places = await apiService.default.getPlacesL(this.state.latitude,this.state.longitude)
     
     console.log(weather)
-    this.setState({weather,places})
+    this.setState({weather, windDirection, places, sunset, sunrise})
   }
 
 }
@@ -134,7 +141,14 @@ async componentDidUpdate(previousProps,previousState){
         <Route
           exact path="/Main"
           render={({ history }) => (
-            <Main history={history} weather={weather} />
+            <Main
+              history={history}
+              weather={weather}
+              windDirection={this.state.windDirection}
+              sunrise={this.state.sunrise}
+              sunset={this.state.sunset}
+            />
+            
           )}
         />
 
