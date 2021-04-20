@@ -5,10 +5,24 @@ module.exports=
     getWeather,
     getPlaces,
     getPlaceById,
+    getPhoto
 
 
 }
 
+async function getPhoto(req,res)
+{
+    let photoRef=req.params.ref;
+
+    await axios.get(`https://maps.googleapis.com/maps/api/place/photo?key=${process.env.GOOGLE_KEY}&photoreference=${photoRef}`, {mode: 'cors'})
+        .then((response) => {
+            console.log(response.data)
+            return(response.data)
+        })
+        .then((data)=>{res.json(data)})
+        .catch(err=>{console.log(err)})
+
+}
 async function getPlaceById(req, res) {
     let placeId = req.params.id
 
