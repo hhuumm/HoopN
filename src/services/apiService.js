@@ -29,7 +29,7 @@ function getPlacesZ(zip)
 }
 function getPhoto(ref)
 {
-    return fetch (BASE_URL+"/photos/"+ref)
+    return fetch (BASE_URL+"photos/"+ref)
     .then((response)=>{
         return response.json()
 
