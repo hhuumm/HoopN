@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import {Link} from 'react-router-dom'
-
+// Route to the park------>props.history.location.props.location.props.location.state.park
 function LocationDetails(props) {
     const {event, history, user, location,weather} = props;
     
