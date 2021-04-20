@@ -27,7 +27,22 @@ function getPlacesZ(zip)
 {
     return fetch (BASE_URL+"nps/zip/"+zip)
 }
+function getPhoto(ref)
+{
+    return fetch (BASE_URL+"/photos/"+ref)
+    .then((response)=>{
+        return response.json()
 
+    }) 
+    .then((data)=>{
+       
+        console.log(data, 'places')
+       return data
+        
+    })
+    .catch(err=>{console.log(err)})
+
+}
 
 function getPlacesL(lat,lng)
 {
@@ -68,5 +83,6 @@ getWeatherZ,
 getWeatherL,
 getPlacesZ,
 getPlacesL,
-getPlaceById
+getPlaceById,
+getPhoto
 }
