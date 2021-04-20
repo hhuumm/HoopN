@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './LocationReview.css'
 
-class LocationReview extends Component {
+
+class EventReviews extends Component {
     state = {
         invalidForm: true,
         formData: {
@@ -31,7 +31,7 @@ class LocationReview extends Component {
         // if(!location.reviews.some(u => {return u.reviewer === user._id}))
         
         return (
-            <div className="LocationReview">
+            <div className="EventReviews">
                 <h2>Review Form:</h2> 
                 <form
                     className="col-s12"
@@ -79,4 +79,4 @@ class LocationReview extends Component {
 }
 
 
-export default LocationReview;
+export default EventReviews;
