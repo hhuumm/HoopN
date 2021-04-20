@@ -31,13 +31,13 @@ function Main(props) {
                             <span className="weather2">{weather.main}</span>
                         )}
 
-                        <span className="weather4">Min<br />{weather.main.temp_min}°F</span>
-                        <span className="weather5">Max<br />{weather.main.temp_max}°F</span>
-                        <span className="weather6">{weather.main.temp_max}°F</span>
+                        <span className="weather4">Min<br />{(weather.main.temp_min).toString().split('.').slice(0,1)}°F</span>
+                        <span className="weather5">Max<br />{(weather.main.temp_max).toString().split('.').slice(0,1)}°F</span>
+                        <span className="weather6">{(weather.main.temp).toString().split('.').slice(0,1)}°F</span>
                         {/* <span className="weather-7">{windDirection}<br /><span className="weather-arrow">{(weather.wind.speed).toFixed(0)} mph</span></span> */}
                         <span className="weather7">{(weather.wind.speed).toFixed(0)} mph<br /><span className="weather-arrow">{windDirection}</span></span>
                         <div className="weather8div">
-                            <span className="weather8">{(sunrise).split(':').pop()}<br /><img className="weather8img" src="https://i.ibb.co/M8RQLTq/sunrise.png" alt="sunrise" width="60px" border="0"></img></span><br />
+                            <span className="weather8">{(sunrise)}<br /><img className="weather8img" src="https://i.ibb.co/M8RQLTq/sunrise.png" alt="sunrise" width="60px" border="0"></img></span><br />
                             <span className="weather9">{sunset}<br /><img className="weather9img" src="https://i.ibb.co/k3MtTHc/sunset.png" alt="sunset" width="50px" border="0"></img></span>
                         </div>
                     </div>
