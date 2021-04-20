@@ -1,6 +1,13 @@
 import tokenService from '../services/tokenService';
 const BASE_URL = '/api/events/';
 
+export function getLocationEvents(locationID)
+{
+    return fetch(BASE_URL+"location/"+locationID, {mode: "cors"})
+    .then(res => res.json())
+    .catch(err => console.error(err, 'err??') )
+
+}
 export function create(event) {
     return fetch(`${BASE_URL}`, {
         method: 'POST',
