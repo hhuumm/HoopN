@@ -12,7 +12,7 @@ function Main(props) {
         <>
 
             <div className="main-page">
-                <Link className="button" to="/">Find Courts Near You</Link>
+                <Link className="button" to="/locations">Find Courts Near You</Link>
                 {/* <br></br> */}
                 <Link className="button" to="/events" >Upcoming Pickup Games</Link>
                 {/* <br></br> */}
