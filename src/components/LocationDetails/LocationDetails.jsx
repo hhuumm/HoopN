@@ -1,7 +1,10 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+
 function LocationDetails(props) {
-    const {event,user,location,weather} = props;
+    const {event, history, user, location,weather} = props;
+    
+    const handler=()=>{console.log(props);history.push({ pathname: '/locations/review', props:{event}})}
     // const {state} = props.location
     return (
         <>
@@ -14,8 +17,10 @@ function LocationDetails(props) {
             className="park"
             alt="hoop'n"
           /><br />
-              <span>Rating: {props.location.state.park.rating}</span><br /> 
+              <span>Google Rating: {props.location.state.park.rating}</span><br /> 
                 {/* <span>{props.weather.[{}]}</span><br />  */}
+                <button onClick={handler}>Add Review</button><br></br>
+                <h6>Display Reviews Here</h6>
             </Card.Body>
           </Card>
         </>
