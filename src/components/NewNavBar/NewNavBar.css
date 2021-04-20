@@ -30,6 +30,11 @@
   text-decoration: none;
 }
 
+h1.logo-text:hover {
+  transform: none;
+  transition: none;
+}
+
 .Logo {
   width: auto;
   height: 90px;
@@ -56,13 +61,17 @@
   font-weight: 500;
   transition: 0.5s;
   text-decoration: none;
+  color: #F24726;
 }
 
 .Nav a:hover {
-  transform: scale(1.1);
+  /* transform: scale(0.9); */
+  text-decoration: none;
+  color: #812614;
+  transform: scale(0.9);
 }
 .button {
-  padding: 5px;
+  padding: 3px;
   outline: none;
   border: 1px double #88615a;
   font-size: 20px;
@@ -73,27 +82,26 @@
   border-radius: 10px;
   cursor: pointer;
   transition: 70ms;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-bottom: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 8px;
   margin: 15px;
 }
+
+
 a.button {
   color: #fff;
 }
-.login-btn {
-  grid-column: none;
+
+a:hover {
+  text-decoration: none;
+  text-transform: none;
+  color: #ccc;
+  
 }
 
-.main-login-btn{
-  /* margin: 0 auto; */
-  /* display: table; */
-  /* position: absolute; */
-  /* bottom: 40px; */
-  /* left: 35%; */
-  /* padding-left: 30px; */
-  /* padding-right: 30px; */
-  /* text-decoration: none; */
+.login-btn {
+  grid-column: none;
 }
 
 .button:active {
@@ -107,7 +115,6 @@ a.button {
   margin: 0 20px 0 0;
   padding: 0;
   justify-self: end;
-  /* font-size: 40px; */
   border: none;
   background: none;
   outline: none;
@@ -138,16 +145,7 @@ a.button {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
   }
-  .main-login-btn{
-    /* margin: 0 auto; */
-    /* display: table; */
-    /* position: absolute; */
-    /* bottom: 40px; */
-    /* left: 35%; */
-    /* padding-left: 30px; */
-    /* padding-right: 30px; */
-    /* text-decoration: none; */
-  }
+  
   .login-btn {
     visibility: hidden;
   }
