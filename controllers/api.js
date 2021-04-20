@@ -3,25 +3,35 @@ const axios = require("axios")
 module.exports=
 {
     getWeather,
-    getPlaces
+    getPlaces,
+    getPlaceById,
 
 
+}
+
+async function getPlaceById(req, res) {
+    let placeId = req.params.id
+
+    await axios.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=${process.env.GOOGLE_KEY}`, {mode: 'cors'})
+        .then((response) => {
+            console.log(response.data)
+            return(response.data)
+        })
+        .then((data)=>{res.json(data)})
+        .catch(err=>{console.log(err)})
 }
 
 
 function getWeather(req,res)
 {
-    // console.log("Hello?")
     if(req.params.lat)
     {
         let lat = req.params.lat;
         let lng= req.params.lng;
-        // let unit = imperial
-        //use params to set lat/lng
+        
         axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.OPENWEATHER_KEY}&units=imperial`,{mode:'cors'})
             .then((response)=>
             {
-                console.log(response.data.main)
                 return(response.data)
             })
             .then((data)=>{res.json(data)})
@@ -50,11 +60,8 @@ async function getPlaces(req,res)
      await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${process.env.GOOGLE_KEY}&location=${lat},${lng}&radius=8000&type=park`)
         .then(result=>{
             
-            //Result.geometry.location= {lat,lng}
-            console.log(result.data)
           res.json(result.data.results)
         
-            // return result.json()}
         })  
     }
     else if(req.params.zip){
@@ -63,11 +70,8 @@ async function getPlaces(req,res)
         await axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?key=${process.env.GOOGLE_KEY}&query=${zip}&radius=8000&type=park`)
         .then(result=>{
             
-            //Result.geometry.location= {lat,lng}
-            
           res.json(result.data.results)
         
-            // return result.json()}
         })  
 
     }
