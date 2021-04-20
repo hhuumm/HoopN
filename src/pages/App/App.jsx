@@ -182,12 +182,14 @@ async componentDidUpdate(previousProps,previousState){
           }
         />
 
-        <Route exact path='/events/add' render={({ history }) =>
+        <Route exact path='/events/add' render={({ history, location }) =>
           authService.getUser() ?
             <CreateEvent
               handleAddEvent={this.handleAddEvent}
               user={this.state.user}
               history={history}
+              location={location}
+
             />
             :
             <Redirect to='/login' />

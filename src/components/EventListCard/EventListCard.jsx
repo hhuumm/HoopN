@@ -1,7 +1,8 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { NavLink } from "react-router-dom";
-import Link from 'react';
+
+import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import './EventListCard.css';
 import EventDetailsCard from '../EventDetailsCard/EventDetailsCard'
@@ -9,7 +10,7 @@ import EventDetailsCard from '../EventDetailsCard/EventDetailsCard'
 
 function EventListCard(props) {
   const {event,handleShow,user,history}=props;
- const handler=()=>{console.log(props);history.push({ pathname: '/events/details',props:{event}})}
+//  const handler=()=>{console.log(props);history.push({ pathname: '/events/details',props:{event}})}
   return (
     
     <>
@@ -20,7 +21,15 @@ function EventListCard(props) {
           <span>{event.date}</span><br />
           <span>{event.time}</span><br />
           <span>{event.createdBy.name}</span><br />
-          <button onClick={handler}>Details</button>
+          {/* <button onClick={handler}>Details</button> */}
+          
+          <Link className="button"
+            to={{
+              pathname: '/events/details',
+              props:{event}
+            }}
+          >Details</Link><br></br>
+
         </Card.Body>
       </Card>
     </>
