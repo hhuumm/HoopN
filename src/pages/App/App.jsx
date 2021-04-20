@@ -117,11 +117,12 @@ async componentDidUpdate(previousProps,previousState){
 
 
   render() {
-    const { user, events,weather } = this.state
+    const { user, events, weather } = this.state
     const {history}=this.props
     return (
       <>
         <NewNavBar user={this.state.user} handleLogout={this.handleLogout} />
+
         <Route
           exact
           path="/"
@@ -129,12 +130,14 @@ async componentDidUpdate(previousProps,previousState){
             <Landing user={authService.getUser()} handleSignupOrLogin handleLogout loc={this.state.loc} lat={this.state.lat}></Landing>
           )}
         />
+
         <Route
           exact path="/Main"
           render={({ history }) => (
             <Main history={history} weather={weather} />
           )}
         />
+
         <Route
           exact
           path="/signup"
@@ -145,6 +148,7 @@ async componentDidUpdate(previousProps,previousState){
             />
           )}
         />
+
         <Route
           exact
           path="/login"
@@ -155,6 +159,7 @@ async componentDidUpdate(previousProps,previousState){
             />
           )}
         />
+
         <Route
           exact
           path="/users"
@@ -162,6 +167,7 @@ async componentDidUpdate(previousProps,previousState){
             user ? <Users /> : <Redirect to="/login" />
           }
         />
+
         <Route exact path='/events/add' render={() =>
           authService.getUser() ?
             <CreateEvent
@@ -171,6 +177,7 @@ async componentDidUpdate(previousProps,previousState){
             :
             <Redirect to='/login' />
         } />
+
         <Route
           exact
           path="/events/details"
@@ -183,6 +190,7 @@ async componentDidUpdate(previousProps,previousState){
             />
           )}
         />
+
         <Route exact path='/events' render={() =>
           <EventList
             events={this.state.events}
@@ -212,11 +220,11 @@ async componentDidUpdate(previousProps,previousState){
             <Redirect to='/login' />
         } />
 
-
-        <Route exact path='/locations/review' render={({location}) => 
+        <Route exact path='/locations/review' render={({ location, history }) => 
             authService.getUser() ?
               <LocationReview
                 handleAddReview={this.handleAddReview}
+                history={history}
                 location={location}
                 user={this.state.user}
               />
@@ -237,6 +245,7 @@ async componentDidUpdate(previousProps,previousState){
             />
           )}
         />
+
         <Route
           exact
           path="/location/details"
