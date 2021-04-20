@@ -5,7 +5,7 @@ import './Main.css'
 
 
 function Main(props) {
-    const { weather, history } = props;
+    const { weather, history, sunrise, sunset, windDirection } = props;
     const icons = null
 
     return (
@@ -19,14 +19,27 @@ function Main(props) {
                 <Link className="button" to="/events/add">Create Pickup game</Link>
             </div>
             {weather ?
-                <div className="main-page">
-                    <span>{weather.name}</span><br />
-                    {weather.weather.map(weather =>
-                    <span>
-                        {weather.main}<br />
-                        <img src={"http://openweathermap.org/img/w/" + weather.icon + ".png"}></img>
-                    </span>
-                    )}
+                <div className="weather-container">
+                    <div className="main-page weather-div">
+                        <span className="weather3">{weather.name}</span>
+
+                        {weather.weather.map(weather =>
+                            <img className="weather1" src={"https://s3.gifyu.com/images/" + weather.icon + ".png"}></img>
+                        )}
+
+                        {weather.weather.map(weather =>
+                            <span className="weather2">{weather.main}</span>
+                        )}
+
+                        <span className="weather4">Min<br />{weather.main.temp_min}°F</span>
+                        <span className="weather5">Max<br />{weather.main.temp_max}°F</span>
+                        <span className="weather6">{weather.main.temp_max}°F</span>
+                        <span className="weather7"><span className="weather-arrow">{windDirection}<br /></span>Wind</span>
+                        <div className="weather8div">
+                            <span className="weather8">{sunrise}<br /><img className="weather8img" src="https://i.ibb.co/M8RQLTq/sunrise.png" alt="sunrise" width="60px" border="0"></img></span><br />
+                            <span className="weather9">{sunset}<br /><img className="weather9img" src="https://i.ibb.co/k3MtTHc/sunset.png" alt="sunset" width="50px" border="0"></img></span>
+                        </div>
+                    </div>
                 </div>
                 :
                 <div>
