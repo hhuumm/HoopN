@@ -15,7 +15,6 @@ class CreateEvent extends Component {
         }
     }
 
-   
 
     formRef = React.createRef();
 
@@ -38,10 +37,13 @@ class CreateEvent extends Component {
 
     
 
-    render() { // NEED TO REDO THIS WITH BOOTSTRAP - CURRENTLY INCLUDES A LOT OF MATERIALIZE MARKUPS
+    render() {
         
        const {park}= this.props.location.props.location.state
        console.log(park,"\n^^This is the park")
+
+    //    const photoUrl = (park.photos[0].html_attributions[0]).replace('</a>', '').replace('<a href="', '').replace('"', '').split('>').slice(0,1)
+    //     console.log('photoURL: ', photoUrl)
         
         return (
             <div className="CreateEvent">
@@ -50,9 +52,23 @@ class CreateEvent extends Component {
                     ref={this.formRef}
                     onSubmit={this.handleSubmit}
                 >
+                    {/* <div className="rowrow">
+                        <div className="in">
+                            <img src={(park.photos[0].html_attributions[0]).replace('</a>', '').replace('<a href="', '').replace('"', '').split('>').slice(0,1)}></img>
+                        </div>
+                    </div> */}
                     <div className="rowrow">
                         <div className="in">
-                            {park.photos[0].html_attributions[0]}
+                            <input
+                                name="placeId"
+                                placeholder={park.place_id}
+                                id="location_placeId"
+                                type="text"
+                                className="inactive"
+                                value={park.place_id}
+                                hidden
+                                required
+                            />
                         </div>
                     </div>
                     <div className="rowrow">
@@ -60,10 +76,23 @@ class CreateEvent extends Component {
                             <input
                                 name="location_name"
                                 placeholder={park.name}
-                                id="event_title"
+                                id="location_name"
                                 type="text"
                                 className="inactive"
                                 value={park.name}
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div className="rowrow">
+                        <div className="in">
+                            <input
+                                name="location_vicinity"
+                                placeholder={park.vicinity}
+                                id="location_vicinity"
+                                type="text"
+                                className="inactive"
+                                value={park.vicinity}
                                 required
                             />
                         </div>
