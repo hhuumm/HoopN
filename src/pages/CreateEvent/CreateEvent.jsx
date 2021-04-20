@@ -6,12 +6,11 @@ class CreateEvent extends Component {
         invalidForm: true,
         formData: {
             title: '',
-            placeId: '',
-            // location: '', //? This will be selected by the user from the search screen and then that data will be passed in here - - the user will not be able to change the location at this point
-            court: '', //? Add the name of the court here, if it is a new court name for the location, add the new court name to the database
-            createdBy: '', //? We want to capture this based on the user id, but this may be a hidden field in the form
-            participant: [], //? This will initially be just the user who created the event, other users will be added to this array when they sign-up to participate in an event
-            date: '', //? Need to use date/time picker, probably from a React library
+            placeId: this.props.location.props.location.state.park.place_id,
+            court: '', 
+            createdBy: this.props.user._id,
+            participant: [this.props.user._id],
+            date: '',
             time: '',
         }
     }
@@ -21,6 +20,7 @@ class CreateEvent extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
+        console.log(this.state.formData, "\n^^ this is formData")
         this.props.handleAddEvent(this.state.formData);
     }
 
@@ -120,7 +120,7 @@ class CreateEvent extends Component {
                                 id="location"
                                 type="text"
                                 className="active"
-                                value={this.state.formData.location} //? Do we need to save the location(park) that the user selected in state and then pass that to this form? we may want to save the park/location ID, the name of the park, and the address, city, state, zip
+                                value={this.state.formData.location}
                                 onChange={this.handleChange}
                             />
                         </div>
@@ -133,7 +133,7 @@ class CreateEvent extends Component {
                                 id="court"
                                 type="text"
                                 className="active"
-                                value={this.state.formData.court.name} //? Add the name of the court here, if it is a new court name for the location, add the new court name to the database
+                                value={this.state.formData.court.name}
                                 onChange={this.handleChange}
                             />
                         </div>
@@ -146,7 +146,7 @@ class CreateEvent extends Component {
                                 min={this.todaysDate()}
                                 type="date"
                                 className="active"
-                                value={this.state.formData.court.name} //? Add the name of the court here, if it is a new court name for the location, add the new court name to the database
+                                value={this.state.formData.court.name}
                                 onChange={this.handleChange}
                             >
                             </input>
@@ -160,7 +160,7 @@ class CreateEvent extends Component {
                                 // step="900"
                                 type="time"
                                 className="active"
-                                value={this.state.formData.court.time} //? Add the name of the court here, if it is a new court name for the location, add the new court name to the database
+                                value={this.state.formData.court.time}
                                 onChange={this.handleChange}
                             >
                             </input>

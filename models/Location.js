@@ -13,7 +13,6 @@ const courtSchema = new Schema({
 }, {timestamps: true});
 
 const locationSchema = new Schema({
-    name: {type: String, required: true},
     placeId: {type: String, required: true},
     courts: [courtSchema], 
     reviews: [reviewSchema]

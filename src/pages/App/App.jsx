@@ -84,7 +84,6 @@ async componentDidUpdate(previousProps,previousState){
   }
   handleAddEvent = async newEventData => {
     const newEvent = await eventAPI.create(newEventData);
-    newEvent.createdBy = { name: this.state.user.name, _id: this.state.user._id }
     this.setState(state => ({
       // console.log(state)
       selectedEvent: newEvent,
