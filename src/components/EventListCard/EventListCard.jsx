@@ -23,7 +23,7 @@ function EventListCard(props) {
           <span>{event.createdBy.name}</span><br />
           {/* <button onClick={handler}>Details</button> */}
           
-          <Link className="button"
+          <Link className="button evt-btn"
             to={{
               pathname: '/events/details',
               props:{event}

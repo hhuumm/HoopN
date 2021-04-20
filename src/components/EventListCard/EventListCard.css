@@ -46,6 +46,7 @@
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 4px;
+  transition: 0.5s;
 }
 
 .card{
@@ -58,3 +59,25 @@
   min-height: 1px;
   padding: 0.5rem;
 }
+
+a.button.evt-btn {
+  transition: 0.5s;
+  color: black;
+  margin-top: 30px;
+}
+
+a.button.evt-btn:hover {
+  text-decoration: none;
+  color: red;
+  transform: scale(0.5);
+}
+
+/* a.button {
+  transition: 0.5s;
+}
+
+a.button:hover {
+  text-decoration: none;
+  color: #ccc;
+  transform: scale(0.9);
+} */
