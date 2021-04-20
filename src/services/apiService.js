@@ -45,12 +45,28 @@ function getPlacesL(lat,lng)
     .catch(err=>{console.log(err)})
 }
 
+function getPlaceById(placeId) {
+    return fetch (BASE_URL+`place/${placeId}`)
+    .then((response)=>{
+        return response.json()
+
+    }) 
+    .then((data)=>{
+       
+        console.log(data, 'places')
+       return data
+        
+    })
+    .catch(err=>{console.log(err)})
+}
+
+
 // eslint-disable-next-line
 export default
 {
 getWeatherZ,
 getWeatherL,
 getPlacesZ,
-getPlacesL
-
+getPlacesL,
+getPlaceById
 }
