@@ -4,7 +4,7 @@ import LocationDetails from "../../components/LocationDetails/LocationDetails";
 import {Link} from 'react-router-dom'
 function SearchLocations(props) {
   const { event, user, places, weather,history } = props;
-  const handler=(e)=>{console.log(e.id, '\n this is e');history.push({ pathname: '/location/details',props:{event}})}
+  // const handler=(e)=>{console.log(e.id, '\n this is e');history.push({ pathname: '/location/details', props: {event}})}
   return (
     <>
       {places ? (
