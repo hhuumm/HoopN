@@ -6,6 +6,7 @@ class CreateEvent extends Component {
         invalidForm: true,
         formData: {
             title: '',
+            placeId: '',
             // location: '', //? This will be selected by the user from the search screen and then that data will be passed in here - - the user will not be able to change the location at this point
             court: '', //? Add the name of the court here, if it is a new court name for the location, add the new court name to the database
             createdBy: '', //? We want to capture this based on the user id, but this may be a hidden field in the form
@@ -62,7 +63,7 @@ class CreateEvent extends Component {
                             <input
                                 name="placeId"
                                 placeholder={park.place_id}
-                                id="location_placeId"
+                                id="placeId"
                                 type="text"
                                 className="inactive"
                                 value={park.place_id}

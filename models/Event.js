@@ -5,7 +5,7 @@ const eventSchema = new Schema ({
     title: {
         type: String, required: true
     },
-    placeId: { type: String, required: true}
+    placeId: { type: String, required: true},
     // location is disabled for now and moved to line 18!
     createdBy: { type: Schema.Types.ObjectId, ref: 'User'},
     participant: [{ type: Schema.Types.ObjectId, ref: 'User'}],
