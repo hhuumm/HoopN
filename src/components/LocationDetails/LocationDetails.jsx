@@ -1,12 +1,13 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import {Link} from 'react-router-dom'
 
 function LocationDetails(props) {
     const {event, history, user, location,weather} = props;
     
     const reviewHandler=()=>{console.log(props);history.push({ pathname: '/locations/review', props:{props}})}
 
-    const gameHandler=()=>{console.log(props);history.push({ pathname: '/events/add', props:{history}})}
+    const gameHandler=()=>{console.log(props);history.push({ pathname: '/events/add', props})}
 
     return (
         <>
