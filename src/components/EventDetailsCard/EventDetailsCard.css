@@ -1,4 +1,4 @@
-.Card-content {
+.EventList-detail {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -7,7 +7,7 @@
   }
   
   @media (max-width: 1500px) {
-  .Card-content {
+  .EventList-detail {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -17,7 +17,7 @@
   }
   
   @media (max-width: 1000px) {
-  .Card-content {
+  .EventList-detail {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -25,16 +25,18 @@
     justify-items: center;
     }
   }
+
 .up-del {
   margin: 0 auto;
   display: flex;
   grid-gap: 20px;
+  margin-bottom: 15px;
 }
 
 .card{
-  margin-top: 30px;
+  /* margin-top: 30px; */
   text-align: center;
-  padding-bottom: 15px;
+  /* padding-bottom: 15px; */
 }
 
 .card-body {
@@ -42,3 +44,5 @@
   min-height: 1px;
   padding: 0.5rem;
 }
+
+/* EventList-detail */

@@ -1,44 +1,95 @@
-.Card-content {
+/* .EventList-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  justify-items: center;
+  margin-top: 30px;
+}
+
+@media (max-width: 1500px) {
+.EventList-grid {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
   justify-items: center;
+  margin-top: 30px;
+  }
 }
 
-@media (max-width: 1500px) {
-.Card-content {
+@media (max-width: 1000px) {
+.EventList-grid {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
   justify-items: center;
+  margin-top: 30px;
   }
 }
 
-@media (max-width: 1000px) {
-.Card-content {
+@media (max-width: 620px) {
+  .EventList-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    margin-top: 20px;
+    }
+  }
+
+.card{
+  margin-top: 10px;
+  text-align: center;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 0.5rem;
+}
+
+a.button.evt-btn {
+  transition: 0.5s;
+  margin-top: 15px;
+  display: inline-block;
+}
+
+a.button.evt-btn:hover {
+  text-decoration: none;
+  transform: scale(0.9);
+} 
+
+a.button {
+  transition: 0.5s;
+}
+
+a.button:hover {
+  text-decoration: none;
+  color: #ccc;
+  transform: scale(0.9);
+}
+
+.locations-list {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+a.locations-list {
+  color: #F24726;
+} */
+
+.Locations-grid {
+  margin-top: 35px;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 10px;
   justify-items: center;
-  }
-}
-.up-del {
-margin: 0 auto;
-display: flex;
-grid-gap: 20px;
-}
-
-.card{
-margin-top: 30px;
-text-align: center;
-padding-bottom: 15px;
-}
-
-.card-body {
-flex: 1 1 auto;
-min-height: 1px;
-padding: 0.5rem;
 }
