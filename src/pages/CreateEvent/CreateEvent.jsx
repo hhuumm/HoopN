@@ -36,6 +36,8 @@ class CreateEvent extends Component {
         });
     }
 
+    
+
     render() { // NEED TO REDO THIS WITH BOOTSTRAP - CURRENTLY INCLUDES A LOT OF MATERIALIZE MARKUPS
         
        const {park}= this.props.location.props.location.state
