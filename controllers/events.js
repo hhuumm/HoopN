@@ -5,7 +5,16 @@ module.exports = {
   index,
   delete: deleteEvent,
   update,
-  myGames
+  myGames,
+  locationGames
+}
+function locationGames(req,res)
+{
+  const locationID=req.params.id;
+  Event.find({placeId: locationID})
+  .then((events) => {
+    res.json(events)
+  })
 }
 function myGames(req, res) {
   Event.find({participant: req.user.id})

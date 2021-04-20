@@ -100,6 +100,10 @@ async componentDidUpdate(previousProps,previousState){
       this.props.history.push('/login')
     }
   }
+  handleGetEvents=(eventID)=>{
+    return eventAPI.getLocationEvents(eventID)
+  }
+
   handleUpdateEvent = async updatedEventData => {
     const updatedEvent = await eventAPI.update(updatedEventData);
     updatedEvent.createdBy = { name: this.state.user.name, _id: this.state.user._id }

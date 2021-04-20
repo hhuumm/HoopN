@@ -7,6 +7,7 @@ const eventsCtrl = require('../controllers/events');
 router.use(require('../config/auth'));
 router.get('/', eventsCtrl.index)
 router.get('/:id',eventsCtrl.myGames)
+router.get('/location/:id',eventsCtrl.locationGames)
 router.post('/', checkAuth, eventsCtrl.create)
 router.delete('/:id', checkAuth, eventsCtrl.delete);
 router.put('/:id', checkAuth, eventsCtrl.update)
