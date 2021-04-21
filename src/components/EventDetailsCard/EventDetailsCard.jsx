@@ -8,7 +8,7 @@ import EventDetails from '../../pages/EventDetails/EventDetails' //??????
 function EventDetailsCard(props) {
 
 	
-	const { user, event, deleteEvent, court,places} = props
+	const { user, event, deleteEvent, participant,court,places} = props
 	console.log(props,"\n^^^Props Event Details Card")
 	console.log(places,"\nPlaces at the details card^^")
 	let thisPlace=null;
@@ -25,7 +25,17 @@ function EventDetailsCard(props) {
 		<>
 			<div className='EventList-detail'>
 				<Card style={{ width: '18rem' }}>
-					{user && (user._id === event.createdBy || user._id === event.createdBy._id) &&
+
+					<Card.Img variant="top" src="holder.js/100px180" />
+					<Card.Body>
+						<Card.Title>{event.title}</Card.Title>
+						<span>{event.date}</span><br />
+						<span>{event.time}</span><br />
+						<span>Created By: {event.createdBy.name}</span><br />
+						<span>Participants: {event.participant[0].name}</span><br />
+					</Card.Body>
+					
+					{user && (user._id === event.createdBy || user._id === event.createdBy._id) &&>>>>>>> main
 						<>
 							<div className="up-del" >
 								<Button
