@@ -12,6 +12,7 @@ import * as eventAPI from '../../services/events-api'
 import * as apiService from '../../services/apiService'
 import CreateEvent from '../CreateEvent/CreateEvent'
 import EventList from '../EventList/EventList'
+import MyEventsList from '../MyEventsList/MyEventsList'
 import EditEvent from '../EditEvent/EditEvent'
 import EventDetails from "../EventDetails/EventDetails";
 import EventReviews from "../EventReviews/EventReviews"
@@ -201,7 +202,7 @@ class App extends Component {
         }
         />
         <Route exact path='/myEvents' render={() =>
-          <EventList
+          <MyEventsList
             events={this.state.events}
             user={this.state.user}
             handleDeleteEvent={this.handleDeleteEvent}
