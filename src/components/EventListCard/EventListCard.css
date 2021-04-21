@@ -40,15 +40,6 @@
     }
   }
 
-.EventList-grid button {
-  padding: 5px;
-  font-size: 15px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 4px;
-  transition: 0.5s;
-}
-
 .card{
   margin-top: 10px;
   text-align: center;
@@ -62,17 +53,16 @@
 
 a.button.evt-btn {
   transition: 0.5s;
-  color: black;
-  margin-top: 30px;
+  margin-top: 15px;
+  display: inline-block;
 }
 
 a.button.evt-btn:hover {
   text-decoration: none;
-  color: red;
-  transform: scale(0.5);
+  transform: scale(0.9);
 }
 
-/* a.button {
+a.button {
   transition: 0.5s;
 }
 
@@ -80,4 +70,5 @@ a.button:hover {
   text-decoration: none;
   color: #ccc;
   transform: scale(0.9);
-} */
+}
+
