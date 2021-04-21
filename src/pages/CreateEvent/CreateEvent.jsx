@@ -12,6 +12,7 @@ class CreateEvent extends Component {
             participant: [this.props.user._id],
             date: '',
             time: '',
+            places: this.props.places
         }
     }
 
@@ -21,7 +22,8 @@ class CreateEvent extends Component {
     handleSubmit = e => {
         e.preventDefault();
         console.log(this.state.formData, "\n^^ this is formData")
-        this.props.handleAddEvent(this.state.formData);
+        let newEvent = this.props.handleAddEvent(this.state.formData);
+        console.log(newEvent, '\n^^ this is newEvent from Create Form')
     }
 
     todaysDate() {
@@ -42,6 +44,7 @@ class CreateEvent extends Component {
         
        const {park}= this.props.location.props.location.state
        console.log(park,"\n^^This is the park")
+       console.log(this.props, "\n^^This is props Create Event")
 
     //    const photoUrl = (park.photos[0].html_attributions[0]).replace('</a>', '').replace('<a href="', '').replace('"', '').split('>').slice(0,1)
     //     console.log('photoURL: ', photoUrl)

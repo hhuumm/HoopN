@@ -65,11 +65,13 @@ class App extends Component {
   }
 
   handleAddEvent = async newEventData => {
-    const newEvent = await eventAPI.create(newEventData);
+    const newEvent = await eventAPI.create(newEventData)
+    .then(response => {console.log(response, '\n^^this is RESPONSE from handleAddEvent'); return response})
     this.setState(state => ({
       selectedEvent: newEvent,
       events: [...state.events, newEvent]
-    }), () => this.props.history.push({pathname:'/events/details',event:newEvent}));
+    }));
+    return newEvent
   }
 
   handleDeleteEvent = async id => {
@@ -110,7 +112,7 @@ class App extends Component {
 
   render() {
 
-    const { user, events, weather } = this.state
+    const { user, events, weather, places } = this.state
     const { history } = this.props
 
     return (
@@ -173,6 +175,7 @@ class App extends Component {
               user={this.state.user}
               history={history}
               location={location}
+              places={this.state.places}
             />
             :
             <Redirect to='/login' />
@@ -186,6 +189,7 @@ class App extends Component {
               update={this.handleUpdateEvent}
               user={this.state.user}
               delete={this.handleDeleteEvent}
+              places={this.state.places}
             />
           )}
         />
