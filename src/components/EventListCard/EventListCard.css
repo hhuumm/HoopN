@@ -55,6 +55,7 @@ a.button.evt-btn {
   transition: 0.5s;
   margin-top: 15px;
   display: inline-block;
+  margin-bottom: 7px;
 }
 
 a.button.evt-btn:hover {

@@ -7,17 +7,16 @@ import EventDetails from '../../pages/EventDetails/EventDetails' //??????
 
 function EventDetailsCard(props) {
 
-	
-	const { user, event, deleteEvent, participant,court,places} = props
 
-	console.log(props,"\n^^^Props Event Details Card")
-	console.log(places,"\nPlaces at the details card^^")
-	let thisPlace=null;
-	places.forEach(place=>{
-		if(event.placeId==place.place_id)
-		{
-			thisPlace=place;
-		
+	const { user, event, deleteEvent, participant, court, places } = props
+
+	console.log(props, "\n^^^Props Event Details Card")
+	console.log(places, "\nPlaces at the details card^^")
+	let thisPlace = null;
+	places.forEach(place => {
+		if (event.placeId == place.place_id) {
+			thisPlace = place;
+
 		}
 	})
 
@@ -34,13 +33,13 @@ function EventDetailsCard(props) {
 						<span>{event.time}</span><br />
 						<span>Created By: {event.createdBy.name}</span><br />
 						<div>
-							{event.participant.map(participants => 
-							<span>Participants: {participants.name} </span>
-						
+							{event.participant.map(participants =>
+								<span>Participants: {participants.name} </span>
+
 							)}
 						</div>
 					</Card.Body>
-					
+
 					{user && (user._id === event.createdBy || user._id === event.createdBy._id) &&
 						<>
 							<div className="up-del" >
@@ -62,12 +61,13 @@ function EventDetailsCard(props) {
 						</>
 					}
 					<Link
+						className="button rev-btn"
 						to={{
 							pathname: '/events/review',
 							state: { event },
 							places
 						}}
-					><Button variant="primary">Leave Review</Button></Link>
+					>Review</Link>
 				</Card>
 			</div>
 		</>
