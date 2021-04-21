@@ -10,7 +10,7 @@ function EventDetailsCard(props) {
 	
 	const { user, event, deleteEvent, court,places} = props
 	console.log(props,"\n^^^Props Event Details Card")
-	console.log(places,"\nPlaces^^")
+	console.log(places,"\nPlaces at the details card^^")
 	let thisPlace=null;
 	places.forEach(place=>{
 		if(event.placeId==place.place_id)
@@ -55,7 +55,8 @@ function EventDetailsCard(props) {
 					<Link
 						to={{
 							pathname: '/events/review',
-							state: { event }
+							state: { event },
+							places
 						}}
 					><Button variant="primary">Leave Review</Button></Link>
 				</Card>

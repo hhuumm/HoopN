@@ -10,7 +10,7 @@ function EventDetails(props) {
   //After creating the event---->props.history.location
   //When selecting from list of events--->props.history.location.props.event
   const {event}=props.event?props:props.history.location
-  console.log(event)
+  console.log(places,"\n places at the event details")
 //   if(props.event.event){event = props.event.event;console.log(3)}
 //    if(props.history.location.event){event =props.history.location.event;console.log(1)}
 //   else if(props.history.location.props.event){event = props.history.location.props;console.log(2)}

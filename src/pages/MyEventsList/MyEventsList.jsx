@@ -3,11 +3,11 @@ import './MyEventsList.css'
 import EventListCard from '../../components/EventListCard/EventListCard'
 
 function MyEventsList(props) {
-    const { user, events, handleShow, history } = props
+    const { user, events, handleShow, history ,places} = props
     const myGames = []
 
     console.log("This is my events\n", user._id, "\n^^This is the user id\n", events)
-
+    console.log(places,"\nThis is places for the My Events List page")
     events.forEach(ev => {
         ev.participant.forEach(player => {
             if (player._id === user._id) {
@@ -18,6 +18,7 @@ function MyEventsList(props) {
     })
 
     return (
+
         <>
             {myGames.length ?
                 <div className='EventList-grid'>
@@ -27,6 +28,7 @@ function MyEventsList(props) {
                             user={user}
                             handleShow={handleShow}
                             history={history}
+                            places={places}
                         />
                     )
                     }
