@@ -1,5 +1,3 @@
-
-
 export function getWindDirection(degrees){
   if((degrees >= 348.75 && degrees <= 360) || (degrees >=0 && degrees < 11.25)){return "⇧"}
   if(degrees >= 11.25 && degrees < 33.75){return "⬀"}
