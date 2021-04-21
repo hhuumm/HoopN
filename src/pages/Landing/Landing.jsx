@@ -48,13 +48,3 @@ function Landing(props) {
 }
 
 export default Landing;
-
-// {props.user ?
-//     <>                    
-//         <h3>Welcome, {props.user.name}</h3>
-        
-//     </>
-//     :
-//     <>
-//         <NavLink className="button main-login-btn" to="/login">Log In</NavLink>
-//     </>}

@@ -37,7 +37,7 @@ function SearchLocations(props) {
         </div>
       ) : (
         <div>
-          <img src="https://media.giphy.com/media/vZROLXfaqhbhHO8qwr/giphy.gif"></img>
+          <img className="load-gif" src="https://media.giphy.com/media/vZROLXfaqhbhHO8qwr/giphy.gif"></img>
         </div>
       )}
     </>

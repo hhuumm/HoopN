@@ -33,7 +33,7 @@ function EventList(props) {
                     </div>
                     :
                     <div>
-                        <img src="https://media.giphy.com/media/vZROLXfaqhbhHO8qwr/giphy.gif"></img>
+                        <img className="load-gif" src="https://media.giphy.com/media/vZROLXfaqhbhHO8qwr/giphy.gif"></img>
                     </div>
                 }
             </>
@@ -44,7 +44,7 @@ function EventList(props) {
         return (
             <>
                 <div>
-                    <img src="https://media.giphy.com/media/vZROLXfaqhbhHO8qwr/giphy.gif"></img>
+                    <img className="load-gif" src="https://media.giphy.com/media/vZROLXfaqhbhHO8qwr/giphy.gif"></img>
                 </div>
             </>
         )
