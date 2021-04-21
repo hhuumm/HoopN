@@ -87,7 +87,10 @@ async componentDidUpdate(previousProps,previousState){
       // console.log(state)
       selectedEvent: newEvent,
       events: [...state.events, newEvent]
-    }), () => this.props.history.push('/events/details'));
+    }), () => this.props.history.push({
+        pathname:'/events/details',
+        event:newEvent
+      }));
   }
   handleDeleteEvent = async id => {
     if (authService.getUser()) {
@@ -122,7 +125,7 @@ async componentDidUpdate(previousProps,previousState){
       // console.log(state),
       selectedReview: newReview,
       reviews: [state.events.reviews, newReview]
-    }), () => this.props.history.push('/events/details'));
+    }), () => this.props.history.push({pathname:'/events/details',event:this.state.event}));
   }
 
 
