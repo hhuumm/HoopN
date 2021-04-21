@@ -8,7 +8,7 @@ function Landing(props) {
 
     return (
         <>
-            <Carousel>
+            <Carousel fade>
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
