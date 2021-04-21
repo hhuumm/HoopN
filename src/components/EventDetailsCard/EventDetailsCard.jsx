@@ -11,7 +11,7 @@ function EventDetailsCard(props) {
 	console.log(props,"\n^^^Props Event Details Card")
 	return (
 		<>
-			<div className='EventList-grid'>
+			<div className='EventList-detail'>
 				<Card style={{ width: '18rem' }}>
 					{/* <Card.Img variant="top" src="holder.js/100px180" /> */}
 					<Card.Body>
@@ -25,7 +25,7 @@ function EventDetailsCard(props) {
 						<>
 							<div className="up-del" >
 								<Button
-									variant="primary"
+									variant="danger"
 									type="submit"
 									onClick={() => deleteEvent(event._id)}
 								>Delete</Button>
@@ -35,13 +35,15 @@ function EventDetailsCard(props) {
 										pathname: '/edit',
 										state: { event }
 									}}
-								><Button variant="danger">Edit</Button></Link>
+
+								><Button variant=""primary"">Edit</Button></Link>
 								<Link
 									to={{
 										pathname: '/events/review',
 										state: { event }
 									}}
-								><Button variant="danger">Leave Review</Button></Link>
+								><Button variant="primary">Leave Review</Button></Link>
+
 							</div>
 						</>
 					}

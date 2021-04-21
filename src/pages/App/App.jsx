@@ -63,7 +63,6 @@ async componentDidUpdate(previousProps,previousState){
     console.log(weather)
     this.setState({weather, windDirection, places, sunset, sunrise})
   }
-
 }
 
   // in BINGE, used componentDidMount as part of the getAll movies function, may need that for our EventList (index/getAll) page - - may need to be combined with the component did mount above.

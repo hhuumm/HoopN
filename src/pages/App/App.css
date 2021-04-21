@@ -19,5 +19,6 @@ a.button:hover {
   transform: scale(0.9);
 }
 
-/* transition: 0.5s; */
-/* transform: scale(0.9); */
+.card {
+  border: 1px solid #f248269b !important;
+}
