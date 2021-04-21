@@ -30,3 +30,12 @@
   margin-top: 10px;
   text-align: center;
 } */
+
+.lod-gif {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 10px;
+  justify-items: center;
+  margin: 0 auto;
+}
