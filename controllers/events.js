@@ -14,11 +14,14 @@ module.exports = {
 function indexReviews(req, res) {
   Event.reviews.find({})
   .populate('reviewer')
-  .then(review => {res.json(review)})
+  .then(review => {console.log(review)
+    res.json(review)})
   .catch(err => {res.json(err)})
 }
 
 function createReview(req, res) {
+  console.log(req.body, 
+    '\n^^ req.body')
   req.body.reviewer = req.user._id
   req.body.content 
   Event.createReview(req.body)

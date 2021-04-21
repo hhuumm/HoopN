@@ -5,18 +5,22 @@ class EventReviews extends Component {
     state = {
         invalidForm: true,
         formData: {
-            reivewer: '',
+            reviewer: this.props.user.name,
             rating: '',
             content: ''
-        }
+        },
+        event: this.props.history.location.state.event
     }
 
     formRef = React.createRef();
-
-    handleSubmit = e => {
+ 
+    
+    handleSubmitReview = e => {
         e.preventDefault();
-        this.props.handleAddEvent(this.state.formData);
-    }    
+        console.log(this.state.formData, '\n^^ formDate review')
+        this.props.handleAddReview(this.state.formData);
+        
+    }
 
     handleChange = e => {
         const formData = { ...this.state.formData, [e.target.name]: e.target.value };
@@ -36,7 +40,7 @@ class EventReviews extends Component {
                 <form
                     className="col-s12"
                     ref={this.formRef}
-                    onSubmit={this.handleSubmit}
+                    onSubmit={this.handleSubmitReview}
                 >
                     <div className="rowrow">
                         <div className="in">

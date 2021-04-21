@@ -117,13 +117,14 @@ async componentDidUpdate(previousProps,previousState){
   }
  
 
-  // handleAddReview = async newReviewData => {
-  //   const newReview = await locationAPI.createReview(newReviewData);
-  //   newReview.reviewer = { name: this.state.user.name, _id: this.state.user._id }
-  //   this.setState(state => ({
-  //     // Need Help with this function
-  //   }))
-  // }
+  handleAddReview = async newReviewData => {
+    const newReview = await eventAPI.createReview(newReviewData);
+    this.setState(state => ({
+      // console.log(state),
+      selectedReview: newReview,
+      reviews: [state.events.reviews, newReview]
+    }), () => this.props.history.push('/events/details'));
+  }
 
 
   render() {
