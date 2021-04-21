@@ -69,7 +69,7 @@ class App extends Component {
     this.setState(state => ({
       selectedEvent: newEvent,
       events: [...state.events, newEvent]
-    }), () => this.props.history.push('/events/details'));
+    }), () => this.props.history.push({pathname:'/events/details',event:newEvent}));
   }
 
   handleDeleteEvent = async id => {
