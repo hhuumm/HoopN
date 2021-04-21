@@ -13,12 +13,17 @@ function EventDetailsCard(props) {
 	console.log(props, "\n^^^Props Event Details Card")
 	console.log(places, "\nPlaces at the details card^^")
 	let thisPlace = null;
+	let inGame = false
 	places.forEach(place => {
 		if (event.placeId == place.place_id) {
 			thisPlace = place;
 
 		}
 	})
+
+	event.participant.forEach(p => {
+		if(p._id === user._id)  {inGame = true} }
+	)
 
 
 	return (
@@ -33,10 +38,17 @@ function EventDetailsCard(props) {
 						<span>{event.time}</span><br />
 						<span>Created By: {event.createdBy.name}</span><br />
 						<div>
-							{event.participant.map(participants =>
-								<span>Participants: {participants.name} </span>
-
+						<span>Participants:
+							{
+							  
+							event.participant.map(participants =>
+								 participants.name
+								
 							)}
+							{inGame ? <button>Leave</button> : <button> join </button> 
+							}
+						
+							</span>
 						</div>
 					</Card.Body>
 
