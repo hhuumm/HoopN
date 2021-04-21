@@ -21,7 +21,7 @@ function EventDetailsCard(props) {
 						<span>{event.createdBy.name}</span><br />
 						{/* <NavLink className="test" to="/events/details"><button href="/event/details" className="button" >View Details</button></NavLink> */}
 					</Card.Body>
-					{user && (user._id === event.createdBy._id) &&
+					{user && (user._id === event.createdBy||user._id===event.createdBy._id) &&
 						<>
 							<div className="up-del" >
 								<Button
