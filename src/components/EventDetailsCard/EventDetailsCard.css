@@ -53,4 +53,9 @@
   justify-items: center;
   margin: 0 auto;
 }
+.rev-btn {
+  display: inline-block;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
 
