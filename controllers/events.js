@@ -6,8 +6,26 @@ module.exports = {
   delete: deleteEvent,
   update,
   myGames,
-  locationGames
+  locationGames,
+  createReview,
+  indexReviews
 }
+
+function indexReviews(req, res) {
+  Event.reviews.find({})
+  .populate('reviewer')
+  .then(review => {res.json(review)})
+  .catch(err => {res.json(err)})
+}
+
+function createReview(req, res) {
+  req.body.reviewer = req.user._id
+  req.body.content 
+  Event.createReview(req.body)
+  .then(review => {res.json(review)})
+  .catch(err => {res.json(err)})
+}
+
 function locationGames(req,res)
 {
   const locationID=req.params.id;
