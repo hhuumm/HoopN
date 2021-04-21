@@ -5,17 +5,18 @@ import './LocationDetails.css'
 
 // Route to the park------>props.history.location.props.location.props.location.state.park
 function LocationDetails(props) {
-  const { event, history, user, location, weather, places } = props;
-  // const locationEvents = 
+  const { events, history, user, location, weather, places } = props;
+  const{park}=location.state;
+  let parkEvents=[]
+  events.forEach(event=>{
+    console.log("EventPlaceID::"+event.placeId+"\nParkPlaceID ::"+park.place_id)
+    if(event.placeId==park.place_id){console.log(true);parkEvents.push(event)}
+  
+  })
+  console.log(parkEvents,"\n^^These are the park Events at the Location Details Page")
 
-  // let events = 
-  // const { park } = props.location.props.location.state
-  // console.log(park)
 
-  // const reviewHandler = () => { console.log(props); history.push({ pathname: '/locations/review', state: props }) }
-
-  // const gameHandler = () => { console.log(props); history.push({ pathname: '/events/add', state: places }) }
-
+  
   return (
     <>
       <div className='Locations-grid'>
