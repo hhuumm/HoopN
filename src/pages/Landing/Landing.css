@@ -10,6 +10,13 @@
   text-decoration: none;
 }
 
+.w-100 {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
 .slider-text h3 {
   font-size: 22px;
   text-shadow: 0 0 5px #F24726;
@@ -25,4 +32,8 @@
     -webkit-text-stroke: 0.5px #F24726;
     -webkit-text-fill-color: #fff;
   }
+}
+.carousel-indicators .active {
+  opacity: 1;
+  padding: 1px;
 }
