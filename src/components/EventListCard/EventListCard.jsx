@@ -10,7 +10,7 @@ import EventDetailsCard from '../EventDetailsCard/EventDetailsCard'
 
 function EventListCard(props) {
   console.log(props,"\nThis is the props for the event list card")
-  const { event, handleShow, user, history } = props;
+  const { event, handleShow, user, history,places } = props;
   //  const handler=()=>{console.log(props);history.push({ pathname: '/events/details',props:{event}})}
   return (
 
@@ -28,7 +28,8 @@ function EventListCard(props) {
             <Link className="button evt-btn"
               to={{
                 pathname: '/events/details',
-                event
+                event,
+                places
               }}
             >Details</Link><br></br>
 
