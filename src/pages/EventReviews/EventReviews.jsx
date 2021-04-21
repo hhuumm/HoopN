@@ -3,7 +3,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import './EventReviews.css'
 
-
+// const {places }=
 class EventReviews extends Component {
     state = {
         invalidForm: true,

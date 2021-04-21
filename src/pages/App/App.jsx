@@ -53,7 +53,6 @@ class App extends Component {
     }
   }
 
-  handleShow = () => { console.log("Show has been clicked") }
 
   handleLogout = (props) => {
     authService.logout();
@@ -207,6 +206,7 @@ class App extends Component {
             user={this.state.user}
             handleDeleteEvent={this.handleDeleteEvent}
             myEvent={true}
+            places={this.state.places}
           />
         }
         />
