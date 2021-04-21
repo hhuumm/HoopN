@@ -3,45 +3,70 @@
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  margin-bottom: 50px;
-  margin-top: 50px;
+  margin-bottom: 25px;
+  margin-top: 30px;
 }
 
 .main-page img {
   justify-self: center;
 }
 
+.weather1 {
+  /* display: inline; */
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: -15px;
+}
 .weather1 img{
   grid-area: w-icon;
   padding: 5px;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: -20px;
 }
 .weather2 {
   grid-area: weather;
   padding: 5px;
+}
+span.weather3 {
+  width: min-intrinsic;
+    width: -webkit-min-content;
+    width: -moz-min-content;
+    width: min-content;
+    display: table-caption;
+    display: -ms-grid;
+    -ms-grid-columns: min-content;
 }
 .weather3 {
   grid-area: location;
   padding: 5px;
   font-weight: bold;
   font-size: 20px;
+  justify-self: center;
 }
 .weather4 {
   grid-area: min;
   padding: 5px;
+  font-weight: bold;
 }
 .weather5 {
   grid-area: max;
   padding: 5px;
+  font-weight: bold;
 }
 .weather6 {
   grid-area: now;
   padding: 5px;
+  font-weight: bold;
+  margin-left: -13px;
 }
 .weather7 {
   grid-area: wind;
-  /* grid-area: now; */
-  /* padding: 5px; */
+  padding: 5px;
   font-size: 20px;
+  font-weight: bold;
+  margin-left: -15px;
+  padding-right: 25px;
 }
 .weather-arrow {
   /* padding: 5px; */
@@ -50,6 +75,7 @@
 .weather8div {
   grid-area: rise-set;
   padding: 5px;
+  margin-right: -28px;
 }
 .weather8 {
   grid-area: sunrise;
@@ -68,14 +94,13 @@
   text-align: center;
   margin: 0 auto;
   display: inline-grid;
-  /* overflow: hidden; */
   border-radius: 10px;
   border: 5px double #F24726;
-  grid-template-columns: auto auto auto auto auto;
+  grid-template-columns: auto auto auto auto;
   grid-template-rows: auto;
   grid-template-areas: 
-    "w-icon w-icon now weather wind"
-    "location . min max rise-set";
+    "w-icon w-icon rise-set . wind"
+    "location . now min max";
 }
 .weather-div span {
   color: #F24726;
