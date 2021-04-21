@@ -7,7 +7,7 @@ import EventDetails from '../../pages/EventDetails/EventDetails' //??????
 
 function EventDetailsCard(props) {
 	
-	const { user, event, deleteEvent, court,places} = props
+	const { user, event, deleteEvent, participant,court,places} = props
 	console.log(props,"\n^^^Props Event Details Card")
 	console.log(places,"\nPlaces^^")
 	let thisPlace=null;
@@ -29,7 +29,8 @@ function EventDetailsCard(props) {
 						<Card.Title>{event.title}</Card.Title>
 						<span>{event.date}</span><br />
 						<span>{event.time}</span><br />
-						<span>{event.createdBy.name}</span><br />
+						<span>Created By: {event.createdBy.name}</span><br />
+						<span>Participants: {event.participant[0].name}</span><br />
 					</Card.Body>
 					{user && (user._id === event.createdBy||user._id===event.createdBy._id) &&
 						<>
