@@ -60,7 +60,6 @@ const NewNavBar = ({ user, handleLogout }) => {
           {user ?
             <>
               <a href="/main">Home</a>
-              <a href="/events/add">New Game</a>
               <a href="/events">Games</a>
               <a href="/myEvents">My Games</a>
               <NavLink onClick={logOutCloseNav} className="button" to="/">Logout</NavLink>
