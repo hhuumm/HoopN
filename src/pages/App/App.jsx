@@ -147,6 +147,7 @@ class App extends Component {
               windDirection={this.state.windDirection}
               sunrise={this.state.sunrise}
               sunset={this.state.sunset}
+              user={this.state.user}
             />
           )}
         />
