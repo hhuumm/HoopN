@@ -19,7 +19,6 @@ function EventDetailsCard(props) {
 						<span>{event.date}</span><br />
 						<span>{event.time}</span><br />
 						<span>{event.createdBy.name}</span><br />
-						<Link className="test" to="/events/details"><button href="/event/details" className="button" >View Details</button></Link>
 					</Card.Body>
 					{user && (user._id === event.createdBy||user._id===event.createdBy._id) &&
 						<>
