@@ -7,8 +7,19 @@ import EventDetails from '../../pages/EventDetails/EventDetails' //??????
 
 function EventDetailsCard(props) {
 	
-	const { user, event, deleteEvent, court} = props
+	const { user, event, deleteEvent, court,places} = props
 	console.log(props,"\n^^^Props Event Details Card")
+	console.log(places,"\nPlaces^^")
+	let thisPlace=null;
+	places.forEach(place=>{
+		if(event.placeId==place.place_id)
+		{
+			thisPlace=place;
+		
+		}
+	})
+
+	
 	return (
 		<>
 			<div className='EventList-detail'>

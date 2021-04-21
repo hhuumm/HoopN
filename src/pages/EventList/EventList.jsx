@@ -23,6 +23,7 @@ function EventList(props) {
                     <div className='EventList-grid'>
                         {gamesNearMe.map(event =>
                             <EventListCard
+                                places={places}
                                 key={event._id}
                                 event={event}
                                 user={props.user}
