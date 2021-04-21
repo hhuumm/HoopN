@@ -35,7 +35,7 @@ function EventDetailsCard(props) {
 						<span>Participants: {event.participant[0].name}</span><br />
 					</Card.Body>
 					
-					{user && (user._id === event.createdBy || user._id === event.createdBy._id) &&>>>>>>> main
+					{user && (user._id === event.createdBy || user._id === event.createdBy._id) &&
 						<>
 							<div className="up-del" >
 								<Button
