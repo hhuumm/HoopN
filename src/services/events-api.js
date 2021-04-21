@@ -20,6 +20,19 @@ export function indexReviews(reviews) {
     .then(res => res.json());
 }
 
+export function addParticipant(user)
+{
+    fetch(`${BASE_URL}addP`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': `Bearer ${tokenService.getToken()}`
+        },
+        body: JSON.stringify(user)
+    }, {mode: 'cors'})
+    .then(res => res.json());
+}
+
 export function createReview(review) {
     return fetch(`${BASE_URL}`, {
         method: 'POST',

@@ -8,7 +8,8 @@ module.exports = {
   myGames,
   locationGames,
   createReview,
-  indexReviews
+  indexReviews,
+  addParticipant
 }
 
 function indexReviews(req, res) {
@@ -18,7 +19,11 @@ function indexReviews(req, res) {
     res.json(review)})
   .catch(err => {res.json(err)})
 }
+function addParticipant(req,res)
+{
+console.log(req+"\n^^^Add participant request")
 
+}
 function createReview(req, res) {
   console.log(req.body, 
     '\n^^ req.body')
