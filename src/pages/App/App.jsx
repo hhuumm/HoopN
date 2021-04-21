@@ -15,7 +15,7 @@ import CreateEvent from '../CreateEvent/CreateEvent'
 import EventList from '../EventList/EventList'
 import EditEvent from '../EditEvent/EditEvent'
 import EventDetails from "../EventDetails/EventDetails";
-import LocationReview from "../LocationReview/LocationReview"
+import EventReviews from "../EventReviews/EventReviews"
 import SearchLocations from '../SearchLocations/SearchLocations'
 import LocationDetails from '../../components/LocationDetails/LocationDetails'
 import { getTimeFromTimestamp, getWindDirection } from '../../services/utils';
@@ -116,13 +116,14 @@ async componentDidUpdate(previousProps,previousState){
   }
  
 
-  // handleAddReview = async newReviewData => {
-  //   const newReview = await locationAPI.createReview(newReviewData);
-  //   newReview.reviewer = { name: this.state.user.name, _id: this.state.user._id }
-  //   this.setState(state => ({
-  //     // Need Help with this function
-  //   }))
-  // }
+  handleAddReview = async newReviewData => {
+    const newReview = await eventAPI.createReview(newReviewData);
+    this.setState(state => ({
+      // console.log(state),
+      selectedReview: newReview,
+      reviews: [state.events.reviews, newReview]
+    }), () => this.props.history.push('/events/details'));
+  }
 
 
   render() {
@@ -239,9 +240,9 @@ async componentDidUpdate(previousProps,previousState){
             <Redirect to='/login' />
         } />
 
-        <Route exact path='/locations/review' render={({ location, history }) => 
+        <Route exact path='/events/review' render={({ location, history }) => 
             authService.getUser() ?
-              <LocationReview
+              <EventReviews
                 handleAddReview={this.handleAddReview}
                 history={history}
                 location={location}

@@ -35,7 +35,15 @@ function EventDetailsCard(props) {
 										pathname: '/edit',
 										state: { event }
 									}}
-								><Button variant="primary">Edit</Button></Link>
+
+								><Button variant=""primary"">Edit</Button></Link>
+								<Link
+									to={{
+										pathname: '/events/review',
+										state: { event }
+									}}
+								><Button variant="primary">Leave Review</Button></Link>
+
 							</div>
 						</>
 					}

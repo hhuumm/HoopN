@@ -8,6 +8,29 @@ export function getLocationEvents(locationID)
     .catch(err => console.error(err, 'err??') )
 
 }
+export function indexReviews(reviews) {
+    return fetch(`${BASE_URL}${[reviews]}`, {
+        method: 'GET',
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': `Bearer ${tokenService.getToken()}`
+        },
+        body: JSON.stringify(reviews)
+    }, {mode: 'cors'})
+    .then(res => res.json());
+}
+
+export function createReview(review) {
+    return fetch(`${BASE_URL}`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': `Bearer ${tokenService.getToken()}`
+        },
+        body: JSON.stringify(review)
+    }, {mode: 'cors'})
+    .then(res => res.json());
+}
 export function create(event) {
     return fetch(`${BASE_URL}`, {
         method: 'POST',

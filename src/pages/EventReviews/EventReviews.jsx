@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
-import './LocationReview.css'
 
-class LocationReview extends Component {
+
+class EventReviews extends Component {
     state = {
         invalidForm: true,
         formData: {
-            reivewer: '',
+            reviewer: this.props.user.name,
             rating: '',
             content: ''
-        }
+        },
+        event: this.props.history.location.state.event
     }
 
     formRef = React.createRef();
-
-    handleSubmit = e => {
+ 
+    
+    handleSubmitReview = e => {
         e.preventDefault();
-        this.props.handleAddEvent(this.state.formData);
-    }    
+        console.log(this.state.formData, '\n^^ formDate review')
+        this.props.handleAddReview(this.state.formData);
+        
+    }
 
     handleChange = e => {
         const formData = { ...this.state.formData, [e.target.name]: e.target.value };
@@ -31,12 +35,12 @@ class LocationReview extends Component {
         // if(!location.reviews.some(u => {return u.reviewer === user._id}))
         
         return (
-            <div className="LocationReview">
+            <div className="EventReviews">
                 <h2>Review Form:</h2> 
                 <form
                     className="col-s12"
                     ref={this.formRef}
-                    onSubmit={this.handleSubmit}
+                    onSubmit={this.handleSubmitReview}
                 >
                     <div className="rowrow">
                         <div className="in">
@@ -79,4 +83,4 @@ class LocationReview extends Component {
 }
 
 
-export default LocationReview;
+export default EventReviews;
