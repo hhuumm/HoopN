@@ -22,8 +22,8 @@ class CreateEvent extends Component {
     handleSubmit = e => {
         e.preventDefault();
         console.log(this.state.formData, "\n^^ this is formData")
-        let newEvent = this.props.handleAddEvent(this.state.formData);
-        console.log(newEvent, '\n^^ this is newEvent from Create Form')
+        this.props.handleAddEvent(this.state.formData)
+      
     }
 
     todaysDate() {
