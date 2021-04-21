@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button"
 import EventDetails from '../../pages/EventDetails/EventDetails' //??????
 
 function EventDetailsCard(props) {
+
 	
 	const { user, event, deleteEvent, court,places} = props
 	console.log(props,"\n^^^Props Event Details Card")
@@ -19,19 +20,12 @@ function EventDetailsCard(props) {
 		}
 	})
 
-	
+
 	return (
 		<>
 			<div className='EventList-detail'>
 				<Card style={{ width: '18rem' }}>
-					<Card.Img variant="top" src="holder.js/100px180" />
-					<Card.Body>
-						<Card.Title>{event.title}</Card.Title>
-						<span>{event.date}</span><br />
-						<span>{event.time}</span><br />
-						<span>{event.createdBy.name}</span><br />
-					</Card.Body>
-					{user && (user._id === event.createdBy||user._id===event.createdBy._id) &&
+					{user && (user._id === event.createdBy || user._id === event.createdBy._id) &&
 						<>
 							<div className="up-del" >
 								<Button
@@ -47,16 +41,23 @@ function EventDetailsCard(props) {
 									}}
 
 								><Button variant="primary">Edit</Button></Link>
-								<Link
-									to={{
-										pathname: '/events/review',
-										state: { event }
-									}}
-								><Button variant="primary">Leave Review</Button></Link>
 
 							</div>
 						</>
-					 } 
+					}
+					<Card.Img variant="top" src="holder.js/100px180" />
+					<Card.Body>
+						<Card.Title>{event.title}</Card.Title>
+						<span>{event.date}</span><br />
+						<span>{event.time}</span><br />
+						<span>{event.createdBy.name}</span><br />
+					</Card.Body>
+					<Link
+						to={{
+							pathname: '/events/review',
+							state: { event }
+						}}
+					><Button variant="primary">Leave Review</Button></Link>
 				</Card>
 			</div>
 		</>

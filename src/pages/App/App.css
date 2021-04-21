@@ -22,3 +22,11 @@ a.button:hover {
 .card {
   border: 1px solid #f248269b !important;
 }
+
+.load-gif {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 10px;
+  justify-items: center;
+  margin: 0 auto;
+}
