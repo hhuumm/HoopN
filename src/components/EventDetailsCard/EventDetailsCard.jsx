@@ -4,6 +4,7 @@ import './EventDetailsCard.css'
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
 import EventDetails from '../../pages/EventDetails/EventDetails' //??????
+import axios from 'axios';
 
 
 function EventDetailsCard(props) {
@@ -67,6 +68,17 @@ console.log(events,"\n^^Thisi s the events")
 
 	}
 
+function clicked(e)
+{
+
+
+	console.log(e.target);
+
+}
+//thisPlace = current google place
+//event = current event
+
+ 
 	return (
 		<>
 			<div className='EventList-detail'>
@@ -118,14 +130,41 @@ console.log(events,"\n^^Thisi s the events")
 							</div>
 						</>
 					}
-					<Link
+					<span className="active-span" >Rate(1-5): </span>
+                    <select
+                        name="rating"
+                        placeholder="Rating 1-5"
+                        id="location_review_rating"
+                        type="text"
+                        className="active"
+                        required
+                    >
+                        <option></option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                    <div className="row">
+                        <div className="input-field col s12">
+                            <input
+                                name="content"
+                                placeholder="Write Review Here"
+                                id="location_review_content"
+                                type="text"
+                                className="active"
+                            />
+                        </div>
+                    </div>
+					<button
 						className="button rev-btn"
-						to={{
-							pathname: '/events/review',
-							state: { event },
-							places
-						}}
-					>Review</Link>
+						onClick={clicked}
+					>Review</button>
+						<button
+						className="button rev-btn"
+						onClick={clicked}
+					>Submit</button>
 				</Card>
 			</div>
 		</>
