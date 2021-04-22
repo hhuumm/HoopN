@@ -20,6 +20,8 @@ park.photos.forEach(p=>{getphotos(p.photo_reference)})
 
 photos.forEach(photo=>{console.log("","\n^^This is a photo object")})
 
+
+
   
   return (
     <>

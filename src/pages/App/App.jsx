@@ -67,15 +67,12 @@ class App extends Component {
   handleAddEvent = async newEventData => {
     const newEvent = await eventAPI.create(newEventData)
     .then(response => {console.log(response, '\n^^this is RESPONSE from handleAddEvent'); return response})
+    const events = await eventAPI.getAll();
+    
     this.setState(state => ({
-      selectedEvent: newEvent,
-      events: [...state.events, newEvent]
+      events: [events]
     }));
- this.props.history.push({
-  pathname:"/events/details",
-  event:newEvent,
-  places:this.state.places
- })
+ this.props.history.push(`/events/details/${newEvent._id}`)
     
   }
 
@@ -283,3 +280,4 @@ class App extends Component {
 }
 
 export default App;
+

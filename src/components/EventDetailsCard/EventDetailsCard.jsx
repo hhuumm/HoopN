@@ -16,16 +16,14 @@ function EventDetailsCard(props) {
 	console.log(props, "\n^^^Props Event Details Card")
 	console.log(places, "\nPlaces at the details card^^")
 	let thisPlace = null;
-	let inGame = false
 	places.forEach(place => {
 		if (event.placeId === place.place_id) {
 			thisPlace = place;
 		}
 	})
-
-	event.participant.forEach(p => {
-		if(p._id === user._id)  {inGame = true} }
-	)
+	console.log(event.participant)
+	let inGame =event.participant.filter(person=>person._id.toString()==user._id.toString())
+	console.log(inGame,"\n^^This is inGame")
 	function updateEvent(){
 	
 	
@@ -65,7 +63,7 @@ function EventDetailsCard(props) {
 								
 							)}
 
-							{inGame ? <button onClick={updateEvent}>Leave</button> : <button onClick={updateEvent}> join </button> 
+							{inGame.length>0 ? <button onClick={updateEvent}>Leave</button> : <button onClick={updateEvent}> join </button> 
 
 							}
 						
