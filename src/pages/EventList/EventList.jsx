@@ -31,6 +31,7 @@ function EventList(props) {
                                 user={props.user}
                                 handleShow={handleShow}
                                 history={history}
+                                events={events}
                             />
                         )}
                     </div>

@@ -1,18 +1,37 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link,useParams } from "react-router-dom";
 import './EventDetailsCard.css'
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
 import EventDetails from '../../pages/EventDetails/EventDetails' //??????
 
+
 function EventDetailsCard(props) {
-
-
-
-	const { user, event, deleteEvent, participant, court, places,update ,handleAddPlayer} = props
+	console.log(props,"^^Events details card inside events details")
 	
+	let event;
+	
+	const { id } = useParams()
+	const { user, deleteEvent, participant, court, places,update ,handleAddPlayer,history,events} = props
+	let participating=false;
+	let inGame=[];
 
+	if(event){}
+	else if(id&&events)
+	{	console.log("Looking for event")
+		events.forEach(e=>{
+			if(e._id.toString()==id.toString())
+			{
+				event=e
+			}
 
+		})
+
+	}
+	console.log(event,"Event b4 execution")
+	
+console.log(id, "\n THis is the id^^^^")
+console.log(events,"\n^^Thisi s the events")
 	console.log(props, "\n^^^Props Event Details Card")
 	console.log(places, "\nPlaces at the details card^^")
 	let thisPlace = null;
@@ -22,12 +41,10 @@ function EventDetailsCard(props) {
 		}
 	})
 	console.log(event.participant)
-	let inGame =event.participant.filter(person=>person._id.toString()==user._id.toString())
-	console.log(inGame,"\n^^This is inGame")
-	function updateEvent(){
+	async function updateEvent(){
 	
 	
-		if(inGame)
+		if(participating)
 			{ 	
 				console.log("Leaving Game")
 				let players = event.participant.filter(player=>{return player._id!=user._id})
@@ -37,8 +54,17 @@ function EventDetailsCard(props) {
 				event.participant.push(user)
 				
 			}
-			console.log(event,"\n^^This is the new event")
-			update(event)
+			
+			await update(event)
+		}
+	try{
+	let inGame =event.participant.filter(person=>person._id.toString()==user._id.toString())
+	if(inGame.length>0){participating=true;}
+	
+	}
+	catch(err){
+			if(event.participant.includes(user._id)){participating=true}
+
 	}
 
 	return (
@@ -63,7 +89,7 @@ function EventDetailsCard(props) {
 								
 							)}
 
-							{inGame.length>0 ? <button onClick={updateEvent}>Leave</button> : <button onClick={updateEvent}> join </button> 
+							{participating? <button onClick={updateEvent}>Leave</button> : <button onClick={updateEvent}> join </button> 
 
 							}
 						
