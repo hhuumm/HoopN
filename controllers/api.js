@@ -16,13 +16,20 @@ async function getPhoto(req,res)
 
     await axios.get(`https://maps.googleapis.com/maps/api/place/photo?key=${process.env.GOOGLE_KEY}&photoreference=${photoRef}`, {mode: 'cors'})
         .then((response) => {
-            console.log(response.data)
+            console.log(response.data,"^^This is the response data")
             return(response.data)
         })
-        .then((data)=>{res.json(data)})
         .catch(err=>{console.log(err)})
 
 }
+
+
+
+
+
+
+
+
 async function getPlaceById(req, res) {
     let placeId = req.params.id
 
@@ -71,7 +78,9 @@ async function getPlaces(req,res)
     {
         let lat = req.params.lat;
         let lng = req.params.lng;
+
      await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${process.env.GOOGLE_KEY}&location=${lat},${lng}&radius=16000&type=park`)
+
         .then(result=>{
             
           res.json(result.data.results)

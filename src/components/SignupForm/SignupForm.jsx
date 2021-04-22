@@ -23,7 +23,7 @@ class SignupForm extends Component {
     try {
       await authService.signup(this.state);
       handleSignupOrLogin()
-      history.push("/");
+      history.push("/Main");
     } catch (err) {
       updateMessage(err.message);
     }
@@ -80,7 +80,7 @@ class SignupForm extends Component {
             onChange={this.handleChange}
           />
            <br></br>
-          <button className="button" disabled={this.isFormInvalid()}>Sign Up</button>
+          <button className="button" to="/Main" disabled={this.isFormInvalid()}>Sign Up</button>
           
         </form>
       </div>

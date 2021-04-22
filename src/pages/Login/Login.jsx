@@ -42,8 +42,7 @@ class LoginPage extends Component {
             value={email}
             name="email"
             onChange={this.handleChange}
-          />
-          
+          />          
           <br></br>
           <input
             type="password"

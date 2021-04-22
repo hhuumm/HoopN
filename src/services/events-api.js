@@ -41,6 +41,7 @@ export function createReview(review) {
             'Authorization': `Bearer ${tokenService.getToken()}`
         },
         body: JSON.stringify(review)
+        
     }, {mode: 'cors'})
     .then(res => res.json());
 }

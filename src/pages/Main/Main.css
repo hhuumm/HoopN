@@ -11,6 +11,10 @@
   justify-self: center;
 }
 
+.main-page h3 {
+  color: #F24726;
+}
+
 .weather1 {
   /* display: inline; */
   font-weight: bold;

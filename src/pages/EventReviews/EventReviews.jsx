@@ -12,7 +12,8 @@ class EventReviews extends Component {
             rating: '',
             content: ''
         },
-        event: this.props.history.location.state.event
+        event: this.props.history.location.state.event,
+        places: this.props.history.location.places
     }
 
     formRef = React.createRef();
