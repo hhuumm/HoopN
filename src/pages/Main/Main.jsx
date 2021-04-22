@@ -5,18 +5,19 @@ import './Main.css'
 
 
 function Main(props) {
-    const { weather, history, sunrise, sunset, windDirection } = props;
+    const { weather, history, sunrise, sunset, windDirection, user } = props;
     const icons = null
 
     return (
         <>
 
             <div className="main-page">
-                <Link className="button" to="/locations">Find Courts Near You</Link>
+                <h1>Welcome, {user.name}!</h1><br></br>
+                <Link className="button" to="/locations">Find Parks Near Me</Link>
                 {/* <br></br> */}
-                <Link className="button" to="/events" >Upcoming Pickup Games</Link>
+                <Link className="button" to="/events" >See Local Games</Link>
                 {/* <br></br> */}
-                <Link className="button" to="/events/add">Create Pickup game</Link>
+                <Link className="button" to="/events/add">Create a New Game</Link>
             </div>
             {weather ?
                 <div className="weather-container">

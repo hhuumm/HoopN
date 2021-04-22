@@ -23,7 +23,6 @@ class CreateEvent extends Component {
         e.preventDefault();
         console.log(this.state.formData, "\n^^ this is formData")
         this.props.handleAddEvent(this.state.formData)
-      
     }
 
     todaysDate() {
@@ -42,12 +41,9 @@ class CreateEvent extends Component {
 
     render() {
         
-       const {park}= this.props.location.props.location.state
-       console.log(park,"\n^^This is the park")
-       console.log(this.props, "\n^^This is props Create Event")
-
-    //    const photoUrl = (park.photos[0].html_attributions[0]).replace('</a>', '').replace('<a href="', '').replace('"', '').split('>').slice(0,1)
-    //     console.log('photoURL: ', photoUrl)
+        const {park}= this.props.location.props.location.state
+        console.log(park,"\n^^This is the park")
+        console.log(this.props, "\n^^This is props Create Event")
         
         return (
             <div className="CreateEvent">
@@ -56,11 +52,6 @@ class CreateEvent extends Component {
                     ref={this.formRef}
                     onSubmit={this.handleSubmit}
                 >
-                    {/* <div className="rowrow">
-                        <div className="in">
-                            <img src={(park.photos[0].html_attributions[0]).replace('</a>', '').replace('<a href="', '').replace('"', '').split('>').slice(0,1)}></img>
-                        </div>
-                    </div> */}
                     <div className="rowrow">
                         <div className="in">
                             <input
@@ -105,7 +96,7 @@ class CreateEvent extends Component {
                         <div className="in">
                             <input
                                 name="title"
-                                placeholder="Event Name"
+                                placeholder="Enter Game Title"
                                 id="event_title"
                                 type="text"
                                 className="active"
@@ -115,24 +106,11 @@ class CreateEvent extends Component {
                             />
                         </div>
                     </div>
-                    {/* <div className="row">
-                        <div className="input-field col s12">
-                            <input
-                                name="location"
-                                placeholder="Location"
-                                id="location"
-                                type="text"
-                                className="active"
-                                value={this.state.formData.location}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                    </div> */}
                     <div className="row">
                         <div className="input-field col s12">
                             <input
                                 name="court"
-                                placeholder="Court Name"
+                                placeholder="Enter Court Name"
                                 id="court"
                                 type="text"
                                 className="active"
@@ -169,20 +147,18 @@ class CreateEvent extends Component {
                             </input>
                         </div>
                     </div>
-
                     <button
                         type="submit"
                         className="button"
                         disabled={this.state.invalidForm}
                     >
-                        <i className="material-icons left">Add Event</i>
+                        <i className="material-icons left">Add New Game</i>
                     </button>
                 </form>
             </div>
         );
     }
 }
-
 
 export default CreateEvent;
 
