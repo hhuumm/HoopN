@@ -15,7 +15,7 @@ function Main(props) {
                 <h1>Welcome, {user.name}!</h1><br></br>
                 <Link className="button" to="/locations">Find Parks Near Me</Link>
                 {/* <br></br> */}
-                <Link className="button" to="/events" >See Nearby Games</Link>
+                <Link className="button" to="/events" >See Local Games</Link>
                 {/* <br></br> */}
                 <Link className="button" to="/events/add">Create a New Game</Link>
             </div>
