@@ -2,25 +2,27 @@ import React from 'react';
 import EventListCard from '../../components/EventListCard/EventListCard'
 
 function EventList(props) {
-    const { user, events, handleShow, history, places } = props
+    const { user, events, handleShow, history, places, weather } = props
     const gamesNearMe = []
 
     console.log("This is all events")
-  
-    if(places) {
-        
+
+    if (places) {
+
         events.forEach(ev => {
             places.forEach(place => {
-                if(place.place_id === ev.placeId) {
+                if (place.place_id === ev.placeId) {
                     gamesNearMe.push(ev)
                 }
             })
         })
-        
+
         return (
             <>
-            <h3>Local Games</h3>
-            <h6>within 10 miles</h6>
+                <div className='nearby'>
+                    <h5 className='n1'>Games within 20 miles </h5>
+                    <h5 className='n2'> from {weather.name}</h5>
+                </div>
                 {gamesNearMe.length ?
                     <div className='EventList-grid'>
                         {gamesNearMe.map(event =>

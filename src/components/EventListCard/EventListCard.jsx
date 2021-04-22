@@ -13,10 +13,10 @@ function EventListCard(props) {
         <Card style={{ width: '18rem' }}>
           <Card.Body>
             <Card.Title>{event.title}</Card.Title>
-            <span>Location: {event.locName}</span><br/>
-            <span>Address: {event.address}</span><br/>
-            <span>Date: {event.date}</span><br/>
-            <span>Time: {event.time}</span><br/>
+            <span style={{ fontWeight: '500' }}>{event.locName}</span><br/>
+            <span>{event.address}</span><br/>
+            <span>{event.date} - </span> 
+            <span>{event.time}</span><br/>
             <span>Created By: {event.createdBy.name}</span><br/>
 
             <Link className="button evt-btn"

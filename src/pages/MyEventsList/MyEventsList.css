@@ -1,0 +1,8 @@
+.my-game {
+  margin: 0 auto; 
+  color: #F24726;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 30px;
+}
