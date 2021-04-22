@@ -5,7 +5,7 @@ import './EventListCard.css';
 
 
 function EventListCard(props) {
-  const { event, handleShow, user, history,places } = props;
+  const { event, handleShow, user, history,places ,events} = props;
 
   return (
     <>
@@ -21,9 +21,10 @@ function EventListCard(props) {
 
             <Link className="button evt-btn"
               to={{
-                pathname: '/events/details',
+                pathname: `/events/details/${event._id}`,
                 event,
-                places
+                places,
+                events
               }}
             >Details</Link><br></br>
 

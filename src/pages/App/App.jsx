@@ -93,14 +93,12 @@ class App extends Component {
 
   handleUpdateEvent = async updatedEventData => {
     const updatedEvent = await eventAPI.update(updatedEventData);
-    const newEventsArray = this.state.events.map(e =>
-      e._id === updatedEvent._id ? updatedEvent : e
-    );
+    const newEventsArray = await eventAPI.getAll();
     this.setState(
       { events: newEventsArray }
     );
     // () => this.props.history.push('/events')
-    this.props.history.push({pathname:"/events/details",event:updatedEvent})
+    this.props.history.push(`/events/details/${updatedEvent._id}`)
   }
 
   handleAddReview = async newReviewData => {
@@ -192,10 +190,12 @@ class App extends Component {
             <Redirect to='/login' />
           }
         />
-        <Route
-          exact path="/events/details"
+       
+           <Route
+          exact path="/events/details/:id"
           render={({ history }) => (
             <EventDetails
+              events={this.state.events}
               history={history}
               update={this.handleUpdateEvent}
               user={this.state.user}
@@ -203,7 +203,7 @@ class App extends Component {
               places={this.state.places}
               handleAddPlayer={this.handleAddPlayer}
             />
-          )}
+                      )}
         />
         <Route exact path='/events' render={() =>
           <EventList
@@ -272,6 +272,9 @@ class App extends Component {
               history={history}
               location={location}
             />
+
+
+            
           )}
         />
       </>
