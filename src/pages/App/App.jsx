@@ -109,6 +109,7 @@ class App extends Component {
   handleAddReview = async newReviewData => {
     const newReview = await eventAPI.createReview(newReviewData);
     this.setState(state => ({
+      places: this.state.places,
       selectedReview: newReview,
       reviews: [state.events.reviews, newReview]
     }), () => this.props.history.push('/events/details'));

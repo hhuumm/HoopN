@@ -15,7 +15,7 @@ function EventDetailsCard(props) {
 	let thisPlace = null;
 	let inGame = false
 	places.forEach(place => {
-		if (event.placeId == place.place_id) {
+		if (event.placeId === place.place_id) {
 			thisPlace = place;
 		}
 	})
