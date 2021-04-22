@@ -115,6 +115,14 @@ class App extends Component {
     }), () => this.props.history.push('/events/details'));
   }
 
+  handleAddPlayer = async newPlayerData => {
+    const newPlayer = await eventAPI.addParticipant(newPlayerData);
+    this.setState(state => ({
+      // console.log(state),
+      player: newPlayer,
+      participant: [state.events.participant, newPlayer]
+    }), () => this.props.history.push('/events/details'));
+  }
   render() {
 
     const { user, events, weather, places } = this.state
@@ -196,6 +204,7 @@ class App extends Component {
               user={this.state.user}
               delete={this.handleDeleteEvent}
               places={this.state.places}
+              handleAddPlayer={this.handleAddPlayer}
             />
           )}
         />

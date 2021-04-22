@@ -22,7 +22,8 @@ function EventDetails(props) {
                 history={props.history}
                 update={props.update}
                 user={props.user}
-                deleteEvent={props.delete}>
+                deleteEvent={props.delete}
+                handleAddPlayer={props.handleAddPlayer}>
                 <h1>Event Details Page</h1>
             </EventDetailsCard>
         </>
