@@ -6,6 +6,8 @@
     margin-bottom: 50px;
     margin-top: 50px;
   }
+  
   .col {
     display: grid;
-  }
+    gap: 10px;
+}

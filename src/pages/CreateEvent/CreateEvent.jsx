@@ -76,6 +76,7 @@ class CreateEvent extends Component {
                                 className="inactive"
                                 value={park.name}
                                 required
+                                disabled
                             />
                         </div>
                     </div>
@@ -89,6 +90,7 @@ class CreateEvent extends Component {
                                 className="inactive"
                                 value={park.vicinity}
                                 required
+                                disabled
                             />
                         </div>
                     </div>
@@ -138,7 +140,6 @@ class CreateEvent extends Component {
                             <input
                                 name="time"
                                 id="time"
-                                // step="900"
                                 type="time"
                                 className="active"
                                 value={this.state.formData.court.time}

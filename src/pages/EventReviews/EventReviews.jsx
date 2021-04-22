@@ -45,20 +45,6 @@ class EventReviews extends Component {
                     ref={this.formRef}
                     onSubmit={this.handleSubmitReview}
                 >
-                    {/* <div className="rowrow">
-                        <div className="in">
-                            <input
-                                name="rating"
-                                placeholder="Rating 1-5"
-                                id="location_review_rating"
-                                type="text"
-                                className="active"
-                                value={this.state.formData.rating}
-                                onChange={this.handleChange}
-                                required
-                            />
-                        </div>
-                    </div> */}
                     <span className="active-span" >Rate(1-5): </span>
                     <select
                         name="rating"
@@ -77,24 +63,6 @@ class EventReviews extends Component {
                         <option>4</option>
                         <option>5</option>
                     </select>
-                    {/* ------------- using bootstrap below --------- */}
-                    {/* <DropdownButton
-                        id="dropdown-item-button"
-                        title="Rating 1-5"
-                        name="rating"
-                        // id="location_review_rating"
-                        type="number"
-                        className="active"
-                        value={this.state.formData.rating}
-                        onChange={this.handleChange}
-                        required
-                    >
-                        <Dropdown.Item as="button">1</Dropdown.Item>
-                        <Dropdown.Item as="button">2</Dropdown.Item>
-                        <Dropdown.Item as="button">3</Dropdown.Item>
-                        <Dropdown.Item as="button">4</Dropdown.Item>
-                        <Dropdown.Item as="button">5</Dropdown.Item>
-                    </DropdownButton> */}
                     <div className="row">
                         <div className="input-field col s12">
                             <input
