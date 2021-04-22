@@ -5,6 +5,7 @@ import EventDetailsCard from '../../components/EventDetailsCard/EventDetailsCard
 
 function EventDetails(props) {
     console.log(props,"\n^^This is props for EventDetails")
+    // console.log(props.params.match.id,"\nProps match params id")
     // const{places}=props.history.location
   //Potential routes to event....
   //After creating the event---->props.history.location
@@ -18,7 +19,6 @@ function EventDetails(props) {
         <>
             <EventDetailsCard 
                 places={props.places}
-                
                 history={props.history}
                 update={props.update}
                 user={props.user}
