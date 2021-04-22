@@ -36,3 +36,16 @@ a.button:hover {
   box-shadow: 1px 1px 2px 2px #ffc4b8;
   border-radius: 10px !important;
 }
+
+.h3, .h4, .h5 {
+  color: #F24726 !important;
+}
+
+span {
+  font-size: 17px;
+  line-height: 30px;
+}
+
+.card {
+  border-radius: 0.5rem;
+}

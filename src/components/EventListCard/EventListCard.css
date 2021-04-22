@@ -29,6 +29,21 @@
   }
 }
 
+.nearby {
+  color: #F24726;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 7px;
+  margin-top: 30px;
+}
+.n1 {
+  justify-self: end;
+}
+.n2 {
+  justify-self: start;
+}
+
+
 @media (max-width: 620px) {
   .EventList-grid {
     width: 100%;
@@ -37,6 +52,12 @@
     grid-gap: 10px;
     justify-items: center;
     margin-top: 20px;
+    }
+    .nearby {
+      color: #F24726;
+      display: table;
+      margin: 0 auto;
+      margin-top: 30px;
     }
   }
 

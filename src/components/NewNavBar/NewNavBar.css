@@ -24,6 +24,7 @@
 .nav-logo a {
   color: #F24726;
   text-decoration: none;
+  text-shadow: 0 0 8px #fff;
 }
 .nav-logo a:hover {
   color: #F24726;
@@ -87,7 +88,6 @@ h1.logo-text:hover {
   padding-bottom: 8px;
   margin: 15px;
 }
-
 
 a.button {
   color: #fff;

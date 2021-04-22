@@ -51,13 +51,13 @@ function EventDetailsCard(props) {
 					<Card.Img variant="top" src="holder.js/100px180" />
 					<Card.Body>
 						<Card.Title>{event.title}</Card.Title>
-						<span>Location: {event.locName}</span><br/>
-						<span>Address: {event.address}</span><br/>
-						<span>{event.date}</span><br/>
-						<span>{event.time}</span><br/>
+						<span style={{ fontWeight: '500'}}>{event.locName}</span><br/>
+						<span>{event.address}</span><br/>
+						<span>{event.date} - </span> 
+            <span>{event.time}</span><br/>
 						<span>Created By: {event.createdBy.name}</span><br/>
 						<div>
-						<span>Participants:
+						<span>Participants: <br/>
 							{
 							  
 							event.participant.map(participants =>

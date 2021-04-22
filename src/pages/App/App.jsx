@@ -216,6 +216,7 @@ class App extends Component {
             history={history}
             handleShow={this.handleShow}
             places={this.state.places}
+            weather={weather}
           />
         }
         />

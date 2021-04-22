@@ -62,7 +62,7 @@ const NewNavBar = ({ user, handleLogout }) => {
               <a href="/main">Home</a>
               <a href="/events">Local Games</a>
               <a href="/myEvents">My Games</a>
-              <NavLink onClick={logOutCloseNav} className="button" to="/">Logout</NavLink>
+              <NavLink onClick={logOutCloseNav} className="button login-btn" to="/">Logout</NavLink>
             </>
             :
             <>

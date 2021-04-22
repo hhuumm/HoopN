@@ -23,13 +23,6 @@ async function getPhoto(req,res)
 
 }
 
-
-
-
-
-
-
-
 async function getPlaceById(req, res) {
     let placeId = req.params.id
 
@@ -41,7 +34,6 @@ async function getPlaceById(req, res) {
         .then((data)=>{res.json(data)})
         .catch(err=>{console.log(err)})
 }
-
 
 function getWeather(req,res)
 {
@@ -79,7 +71,7 @@ async function getPlaces(req,res)
         let lat = req.params.lat;
         let lng = req.params.lng;
 
-     await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${process.env.GOOGLE_KEY}&location=${lat},${lng}&radius=18000&type=park&name=basketball`)
+     await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${process.env.GOOGLE_KEY}&location=${lat},${lng}&radius=32000&type=park&name=basketball`)
 
         .then(result=>{
             
@@ -90,7 +82,7 @@ async function getPlaces(req,res)
     else if(req.params.zip){
 
         let zip = req.params.zip;
-        await axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?key=${process.env.GOOGLE_KEY}&query=${zip}&radius=8000&type=park`)
+        await axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?key=${process.env.GOOGLE_KEY}&query=${zip}&radius=32000&type=park`)
         .then(result=>{
             
           res.json(result.data.results)
