@@ -39,7 +39,7 @@ function LocationDetails(props) {
                 props: { location }
               }}
             >
-              Create Event
+              Create New Game
             </Link><br></br>
           </Card.Body>
         </Card>
