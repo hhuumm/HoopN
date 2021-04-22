@@ -16,7 +16,6 @@ function EventDetailsCard(props) {
 	places.forEach(place => {
 		if (event.placeId == place.place_id) {
 			thisPlace = place;
-
 		}
 	})
 
@@ -52,7 +51,8 @@ function EventDetailsCard(props) {
 								<Link
 									to={{
 										pathname: '/edit',
-										state: { event }
+										state: { event },
+										thisPlace
 									}}
 
 								><Button variant="primary">Edit</Button></Link>

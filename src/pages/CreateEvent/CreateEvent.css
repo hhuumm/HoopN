@@ -3,11 +3,11 @@
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  margin-bottom: 50px;
-  margin-top: 50px;
+  margin-bottom: 30px;
+  margin-top: 25px;
 }
 .CreateEvent input {
-  margin-bottom:30px;
+  margin-bottom:15px;
   width: 300px;
   font-size: 1em;
   padding: 8px;
@@ -17,5 +17,6 @@
 .CreateEvent button {
   display: flex;
   margin: 0 auto;
-  font-size: 15px;
+  font-size: 18px;
+  margin-top: 10px;
 }

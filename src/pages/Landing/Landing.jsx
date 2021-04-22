@@ -27,7 +27,7 @@ function Landing(props) {
                     />
 
                     <Carousel.Caption>
-                        <div className="slider-text"><h3> Find courts near you</h3></div>
+                        <div className="slider-text"><h3>Find courts near you</h3></div>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
