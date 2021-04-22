@@ -27,12 +27,14 @@
   color: #fff;
   margin-bottom: 15px;
 }
+
 @supports (-webkit-text-stroke: 1px black) {
   .slider-text h3 {
     -webkit-text-stroke: 0.5px #F24726;
     -webkit-text-fill-color: #fff;
   }
 }
+
 .carousel-indicators .active {
   opacity: 1;
   padding: 1px;
