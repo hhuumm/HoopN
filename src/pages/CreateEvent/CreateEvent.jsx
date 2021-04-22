@@ -96,7 +96,7 @@ class CreateEvent extends Component {
                         <div className="in">
                             <input
                                 name="title"
-                                placeholder="Event Name"
+                                placeholder="Enter Game Title"
                                 id="event_title"
                                 type="text"
                                 className="active"
@@ -110,7 +110,7 @@ class CreateEvent extends Component {
                         <div className="input-field col s12">
                             <input
                                 name="court"
-                                placeholder="Court Name"
+                                placeholder="Enter Court Name"
                                 id="court"
                                 type="text"
                                 className="active"
@@ -152,14 +152,13 @@ class CreateEvent extends Component {
                         className="button"
                         disabled={this.state.invalidForm}
                     >
-                        <i className="material-icons left">Add Event</i>
+                        <i className="material-icons left">Add New Game</i>
                     </button>
                 </form>
             </div>
         );
     }
 }
-
 
 export default CreateEvent;
 
