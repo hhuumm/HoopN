@@ -96,14 +96,14 @@ class App extends Component {
 
   handleUpdateEvent = async updatedEventData => {
     const updatedEvent = await eventAPI.update(updatedEventData);
-    updatedEvent.createdBy = { name: this.state.user.name, _id: this.state.user._id }
     const newEventsArray = this.state.events.map(e =>
       e._id === updatedEvent._id ? updatedEvent : e
     );
     this.setState(
-      { events: newEventsArray },
-      () => this.props.history.push('/events')
+      { events: newEventsArray }
     );
+    // () => this.props.history.push('/events')
+    this.props.history.push({pathname:"/events/details",event:updatedEvent})
   }
 
   handleAddReview = async newReviewData => {
