@@ -22,7 +22,7 @@ export function indexReviews(reviews) {
 
 export function addParticipant(user,event)
 {
-    fetch(`${BASE_URL}addP/${event._id}`, {
+    fetch(`${BASE_URL}addP/${user._id}`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json',

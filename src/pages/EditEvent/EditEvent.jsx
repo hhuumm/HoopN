@@ -32,7 +32,6 @@ class EditEvent extends Component {
 	render() {
 		return (
 			<div className="EditEvent">
-				<h4>Edit My Game</h4><br />
 				<form
 					className="col s12"
 					ref={this.formRef}
@@ -40,24 +39,19 @@ class EditEvent extends Component {
 				>
 					<div className="row">
 						<div className="input-field col s12">
-							<label htmlFor="event_title">Game Name:</label>
 							<input
-
 								name="location"
 								id="location"
 								type="text"
 								disabled
 								className="active"
-
 								value={this.props.location.thisPlace.name} 
-
 								onChange={this.handleChange}
 							/>
 						</div>
 					</div>
 					<div className="row">
 						<div className="input-field col s12">
-							<label htmlFor="createdBy">Created By:</label>
 							<input
 								name="title"
 								id="event_title"
@@ -67,8 +61,6 @@ class EditEvent extends Component {
 								onChange={this.handleChange}
 								required
 							/>
-
-
 						</div>
 					</div>
 					<div className="row">
@@ -82,19 +74,15 @@ class EditEvent extends Component {
 								onChange={this.handleChange}
 								required
 							/>
-
 						</div>
 					</div>
 					<div className="row">
 						<div className="input-field col s12">
-							<label htmlFor="date">Date:</label>
 							<input
 								name="date"
 								id="date"
-
 								min={this.todaysDate()}
 								type="date"
-
 								className="active"
 								value={this.state.formData.date}
 								onChange={this.handleChange}
@@ -104,9 +92,6 @@ class EditEvent extends Component {
 					</div>
 					<div className="row">
 						<div className="input-field col s12">
-							<label htmlFor="time">
-								Time:
-							</label>
 							<input
 								name="time"
 								id="time"
@@ -118,12 +103,13 @@ class EditEvent extends Component {
 							/>
 						</div>
 					</div>
+
 					<div className="up-del">
 						<Button
 							variant="success"
 							type="submit"
 							disabled={this.state.invalidForm}
-						>Save Changes</Button>
+						>Save</Button>
 						<Link
 							to={{
 								pathname: '/events'

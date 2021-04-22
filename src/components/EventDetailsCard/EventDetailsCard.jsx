@@ -8,8 +8,10 @@ import EventDetails from '../../pages/EventDetails/EventDetails' //??????
 function EventDetailsCard(props) {
 
 
-	const { user, event, deleteEvent, participant, court, places,update } = props
+
+	const { user, event, deleteEvent, participant, court, places,update ,handleAddPlayer} = props
 	
+
 
 	console.log(props, "\n^^^Props Event Details Card")
 	console.log(places, "\nPlaces at the details card^^")
@@ -60,7 +62,9 @@ function EventDetailsCard(props) {
 								 participants.name
 								
 							)}
+
 							{inGame ? <button onClick={updateEvent}>Leave</button> : <button onClick={updateEvent}> join </button> 
+
 							}
 						
 							</span>
