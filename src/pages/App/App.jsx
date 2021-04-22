@@ -260,6 +260,7 @@ class App extends Component {
               places={this.state.places}
               weather={this.state.weather}
               history={history}
+              getPhoto={apiService.default.getPhoto}
             />
           )}
         />
