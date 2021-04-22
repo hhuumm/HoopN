@@ -8,7 +8,10 @@ import EventDetails from '../../pages/EventDetails/EventDetails' //??????
 function EventDetailsCard(props) {
 
 
-	const { user, event, deleteEvent, participant, court, places, handleAddPlayer } = props
+
+	const { user, event, deleteEvent, participant, court, places,update ,handleAddPlayer} = props
+	
+
 
 	console.log(props, "\n^^^Props Event Details Card")
 	console.log(places, "\nPlaces at the details card^^")
@@ -23,7 +26,22 @@ function EventDetailsCard(props) {
 	event.participant.forEach(p => {
 		if(p._id === user._id)  {inGame = true} }
 	)
-
+	function updateEvent(){
+	
+	
+		if(inGame)
+			{ 	
+				console.log("Leaving Game")
+				let players = event.participant.filter(player=>{return player._id!=user._id})
+				event.participant=players
+			}
+			else{
+				event.participant.push(user)
+				
+			}
+			console.log(event,"\n^^This is the new event")
+			update(event)
+	}
 
 	return (
 		<>
@@ -44,11 +62,9 @@ function EventDetailsCard(props) {
 								 participants.name
 								
 							)}
-							{inGame ? <button>Leave</button> : 
-							
-							<button
-							onClick={() => handleAddPlayer(user._id)}
-							> join </button> 
+
+							{inGame ? <button onClick={updateEvent}>Leave</button> : <button onClick={updateEvent}> join </button> 
+
 							}
 						
 							</span>
