@@ -7,6 +7,8 @@ class CreateEvent extends Component {
         formData: {
             title: '',
             placeId: this.props.location.props.location.state.park.place_id,
+            locName: this.props.location.props.location.state.park.name,
+            address: this.props.location.props.location.state.park.vicinity,
             court: '', 
             createdBy: this.props.user._id,
             participant: [this.props.user._id],
