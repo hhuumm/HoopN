@@ -24,7 +24,7 @@ function SearchLocations(props) {
           ))} */}
 
           <Card style={{ width: 'auto', margin: '20px' }}>
-            <Card.Header style={{ fontSize: '25px', fontWeight: 'bolder' }}>Near by Parks</Card.Header>
+            <Card.Header style={{ fontSize: '25px', fontWeight: 'bolder' }}>Nearby Parks</Card.Header>
             <ListGroup variant="flush">
             {places.map((park) => (
               <ListGroup.Item><Link to={{ pathname: '/location/details', state: { park } }}>
