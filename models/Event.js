@@ -13,6 +13,8 @@ const eventSchema = new Schema ({
 
     title: { type: String, required: true },
     placeId: { type: String, required: true },
+    locName: { type: String },
+    address: { type: String },
     court: { type: String, required: true },
     createdBy: { type: Schema.Types.ObjectId, ref: 'User'},
     participant: [{ type: Schema.Types.ObjectId, ref: 'User'}],

@@ -78,7 +78,9 @@ async function getPlaces(req,res)
     {
         let lat = req.params.lat;
         let lng = req.params.lng;
-     await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${process.env.GOOGLE_KEY}&location=${lat},${lng}&radius=8000&type=park&name=basketball`)
+
+     await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${process.env.GOOGLE_KEY}&location=${lat},${lng}&radius=16000&type=park`)
+
         .then(result=>{
             
           res.json(result.data.results)
