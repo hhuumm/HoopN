@@ -19,6 +19,8 @@ function EventList(props) {
         
         return (
             <>
+            <h3>Local Games</h3>
+            <h6>within 10 miles</h6>
                 {gamesNearMe.length ?
                     <div className='EventList-grid'>
                         {gamesNearMe.map(event =>

@@ -16,6 +16,7 @@ function MyEventsList(props) {
 
     return (
         <>
+        <h3>My Games</h3>
             {myGames.length ?
                 <div className='EventList-grid'>
                     {myGames.map(event =>
