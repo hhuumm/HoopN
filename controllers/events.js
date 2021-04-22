@@ -19,9 +19,11 @@ function indexReviews(req, res) {
     res.json(review)})
   .catch(err => {res.json(err)})
 }
+
 function addParticipant(req,res)
 {
 console.log(req.params.id+"\n^^^Event that user wants to participate in")
+
 
 }
 function createReview(req, res) {
