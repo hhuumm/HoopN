@@ -20,9 +20,9 @@ export function indexReviews(reviews) {
     .then(res => res.json());
 }
 
-export function addParticipant(user)
+export function addParticipant(user,event)
 {
-    fetch(`${BASE_URL}addP`, {
+    fetch(`${BASE_URL}addP/${event._id}`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json',

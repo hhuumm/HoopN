@@ -21,7 +21,7 @@ function indexReviews(req, res) {
 }
 function addParticipant(req,res)
 {
-console.log(req+"\n^^^Add participant request")
+console.log(req.params.id+"\n^^^Event that user wants to participate in")
 
 }
 function createReview(req, res) {
