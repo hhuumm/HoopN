@@ -27,13 +27,12 @@ console.log(req.params.id+"\n^^^Event that user wants to participate in")
 
 }
 function createReview(req, res) {
-  console.log(req.body, 
-    '\n^^ req.body')
   req.body.reviewer = req.user._id
-  req.body.content 
-  Event.createReview(req.body)
-  .then(review => {res.json(review)})
-  .catch(err => {res.json(err)})
+  reviews.push(req.body.content)
+  .populate('reviewer')
+  Event.createReview(req.body.content)
+  .then(review => res.json(review))
+  .catch(err => res.json(err))
 }
 
 function locationGames(req,res)
