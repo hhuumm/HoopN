@@ -7,7 +7,9 @@ import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 
 function SearchLocations(props) {
-  const { event, user, places, weather, history } = props;
+  const { event, user, places, weather, history,getPhoto} = props;
+
+
   
   return (
     <>
@@ -18,7 +20,8 @@ function SearchLocations(props) {
             <Card.Header style={{ fontSize: '25px', fontWeight: 'bolder' }}>Nearby Parks</Card.Header>
             <ListGroup variant="flush">
             {places.map((park) => (
-              <ListGroup.Item><Link to={{ pathname: '/location/details', state: { park } }}>
+              
+              <ListGroup.Item><Link to={{ pathname: '/location/details', state: { park },getPhoto }}>
               {park.name}
             </Link></ListGroup.Item>
             ))}

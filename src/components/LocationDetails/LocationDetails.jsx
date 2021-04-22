@@ -6,14 +6,19 @@ import './LocationDetails.css'
 
 function LocationDetails(props) {
   const { events, history, user, location, weather, places } = props;
+  const{getPhoto}=props.location
   const{park}=location.state;
-  let parkEvents=[]
-  events.forEach(event=>{
-    console.log("EventPlaceID::"+event.placeId+"\nParkPlaceID ::"+park.place_id)
-    if(event.placeId==park.place_id){console.log(true);parkEvents.push(event)}
-  
-  })
-  console.log(parkEvents,"\n^^These are the park Events at the Location Details Page")
+  const photos =[]
+
+  async function getphotos(pho){
+ 
+    return await getPhoto(pho.photo_reference).then(result=>{return result})
+   
+}
+park.photos.forEach(p=>{getphotos(p.photo_reference)})
+
+
+photos.forEach(photo=>{console.log("","\n^^This is a photo object")})
 
   
   return (
@@ -24,6 +29,11 @@ function LocationDetails(props) {
             <Card.Title  style={{ color: '#F24726', fontWeight: 'bolder' }}>{props.location.state.park.name}</Card.Title><br />
             <img
               src={props.location.state.park.icon}
+              className="park"
+              alt="hoop'n"
+            /><br /><br />
+               <img
+              src={photos[0]}
               className="park"
               alt="hoop'n"
             /><br /><br />

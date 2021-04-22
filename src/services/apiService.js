@@ -27,11 +27,16 @@ function getPlacesZ(zip)
 {
     return fetch (BASE_URL+"nps/zip/"+zip)
 }
+
+
+
+
 function getPhoto(ref)
 {
     return fetch (BASE_URL+"photos/"+ref)
     .then((response)=>{
-        return response.json()
+        console.log(response,"\n^^This is the photo response")
+        return response
 
     }) 
     .then((data)=>{
