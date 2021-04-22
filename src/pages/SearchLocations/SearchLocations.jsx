@@ -8,21 +8,12 @@ import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 function SearchLocations(props) {
   const { event, user, places, weather, history } = props;
-  // const handler=(e)=>{console.log(e.id, '\n this is e');history.push({ pathname: '/location/details', props: {event}})}
+  
   return (
     <>
       {places ? (
         <div className="locations-search" >
-          {/* <span>Near by Parks</span><br />
-          {places.map((park) => (
-            // <span>
-            <Link to={{ pathname: '/location/details', state: { park } }}>
-              {park.name}
-            </Link>
-            // <br></br>
-            // </span>
-          ))} */}
-
+          
           <Card style={{ width: 'auto', margin: '20px' }}>
             <Card.Header style={{ fontSize: '25px', fontWeight: 'bolder' }}>Nearby Parks</Card.Header>
             <ListGroup variant="flush">

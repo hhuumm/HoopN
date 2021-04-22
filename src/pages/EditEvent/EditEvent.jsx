@@ -25,6 +25,10 @@ class EditEvent extends Component {
 		});
 	};
 
+	todaysDate() {
+		return new Date().toJSON().split('T')[0]
+}
+
 	render() {
 		return (
 			<div className="EditEvent">
@@ -38,38 +42,15 @@ class EditEvent extends Component {
 						<div className="input-field col s12">
 							<label htmlFor="event_title">Game Name:</label>
 							<input
-								name="title"
-								id="event_title"
-								type="text"
-								className="active"
-								value={this.state.formData.title}
-								onChange={this.handleChange}
-								required
-							/>
-						</div>
-					</div>
-					<div className="row">
-						<div className="input-field col s12">
-							<label htmlFor="location">Park Name:</label>
-							<input
+
 								name="location"
 								id="location"
 								type="text"
+								disabled
 								className="active"
-								value={this.state.formData.location}
-								onChange={this.handleChange}
-							/>
-						</div>
-					</div>
-					<div className="row">
-						<div className="input-field col s12">
-							<label htmlFor="court">Court Name:</label>
-							<input
-								name="court"
-								id="court"
-								type="text"
-								className="active"
-								value={this.state.formData.court}
+
+								value={this.props.location.thisPlace.name} 
+
 								onChange={this.handleChange}
 							/>
 						</div>
@@ -78,13 +59,30 @@ class EditEvent extends Component {
 						<div className="input-field col s12">
 							<label htmlFor="createdBy">Created By:</label>
 							<input
-								name="createdBy"
-								id="createdBy"
+								name="title"
+								id="event_title"
 								type="text"
 								className="active"
-								value={this.state.formData.createdBy.name}
+								value={this.state.formData.title}
 								onChange={this.handleChange}
+								required
 							/>
+
+
+						</div>
+					</div>
+					<div className="row">
+						<div className="input-field col s12">
+							<input
+								name="court"
+								id="court"
+								type="text"
+								className="active"
+								value={this.state.formData.court} 
+								onChange={this.handleChange}
+								required
+							/>
+
 						</div>
 					</div>
 					<div className="row">
@@ -93,10 +91,14 @@ class EditEvent extends Component {
 							<input
 								name="date"
 								id="date"
-								type="text"
+
+								min={this.todaysDate()}
+								type="date"
+
 								className="active"
 								value={this.state.formData.date}
 								onChange={this.handleChange}
+								required
 							/>
 						</div>
 					</div>
@@ -108,10 +110,11 @@ class EditEvent extends Component {
 							<input
 								name="time"
 								id="time"
-								type="text"
+								type="time"
 								className="active"
 								value={this.state.formData.time}
 								onChange={this.handleChange}
+								required
 							/>
 						</div>
 					</div>
