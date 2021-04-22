@@ -27,7 +27,7 @@ class EditEvent extends Component {
 
 	todaysDate() {
 		return new Date().toJSON().split('T')[0]
-}
+	}
 
 	render() {
 		return (
@@ -45,7 +45,20 @@ class EditEvent extends Component {
 								type="text"
 								disabled
 								className="active"
-								value={this.props.location.thisPlace.name} 
+								value={this.props.location.thisPlace.name}
+								onChange={this.handleChange}
+							/>
+						</div>
+					</div>
+					<div className="row">
+						<div className="input-field col s12">
+							<input
+								name="location_vicinity"
+								id="location_vicinity"
+								type="text"
+								disabled
+								className="active"
+								value={this.props.location.thisPlace.vicinity}
 								onChange={this.handleChange}
 							/>
 						</div>
@@ -70,7 +83,7 @@ class EditEvent extends Component {
 								id="court"
 								type="text"
 								className="active"
-								value={this.state.formData.court} 
+								value={this.state.formData.court}
 								onChange={this.handleChange}
 								required
 							/>
