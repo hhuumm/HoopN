@@ -8,6 +8,13 @@ import axios from 'axios';
 
 
 function EventDetailsCard(props) {
+
+	const[rating,setRating]=React.useState(null)
+	const[review,setReview]=React.useState(null)
+
+
+
+
 	console.log(props,"^^Events details card inside events details")
 	
 	let event;
@@ -67,14 +74,34 @@ console.log(events,"\n^^Thisi s the events")
 			if(event.participant.includes(user._id)){participating=true}
 
 	}
-
-function clicked(e)
-{
-
-
-	console.log(e.target);
+const handleRating=(e)=>{
+	console.log(e.target.value,"\n^^e.target.value")
+	setRating(e.target.value)
 
 }
+const handleReview=(e)=>{
+	console.log(e.target.value,"\n^^e.target.value reviewww")
+	setReview(e.target.value)
+
+}
+async function clicked(e)
+{
+const rev={
+	reviewer:user._id,
+	rating:rating,
+	content:review
+}
+
+event.reviews.push(rev)
+
+await update(event)
+
+
+	
+
+}
+
+
 //thisPlace = current google place
 //event = current event
 
@@ -94,17 +121,18 @@ function clicked(e)
 						<span>Created By: {event.createdBy.name}</span><br/>
 						<div>
 						<span>Participants: <br/>
+						<div className="participants" >
 							{
 							  
 							event.participant.map(participants =>
-								 participants.name
+								 participants.name+","
 								
 							)}
-
+							</div>
 							{participating? <button onClick={updateEvent}>Leave</button> : <button onClick={updateEvent}> join </button> 
 
 							}
-						
+					
 							</span>
 						</div>
 					</Card.Body>
@@ -138,13 +166,13 @@ function clicked(e)
                         type="text"
                         className="active"
                         required
+						onChange={(e)=>handleRating(e)}
                     >
-                        <option></option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
                     </select>
                     <div className="row">
                         <div className="input-field col s12">
@@ -154,13 +182,11 @@ function clicked(e)
                                 id="location_review_content"
                                 type="text"
                                 className="active"
+								onChange={(e)=>handleReview(e)}
                             />
                         </div>
                     </div>
-					<button
-						className="button rev-btn"
-						onClick={clicked}
-					>Review</button>
+				
 						<button
 						className="button rev-btn"
 						onClick={clicked}

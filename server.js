@@ -10,7 +10,6 @@ const userRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 const apiRouter=require('./routes/api')
 const eventRouter = require('./routes/events');
-const locationsRouter = require('./routes/locations')
 
 
 const cors = require('cors')
@@ -25,7 +24,6 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
 app.use('/api/events', eventRouter);
-app.use('/api/locations', locationsRouter);
 app.use('/api/api', apiRouter);
 
 app.get('/*', function(req, res) {

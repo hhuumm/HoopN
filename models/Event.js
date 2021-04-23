@@ -20,7 +20,7 @@ const eventSchema = new Schema ({
     participant: [{ type: Schema.Types.ObjectId, ref: 'User'}],
     date: {type: String, format: Date, required: true},
     time: {type: String, format: Date, required: true},
-    reviews: [reviewSchema]
+    
 
 }, { timestamps: true })
 
