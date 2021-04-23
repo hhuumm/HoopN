@@ -37,6 +37,15 @@ We used Trello to oranize our project throughout development. Our Trello board c
 ##### List of Nearby Parks/Courts:
 ![Nearby Parks Page](public/images/HoopN_Screen_NearbyParks.png)
 
+##### Create a New Game Page:
+![Create New Game Page](public/images/HoopN_Screen_CreateEvent.png)
+
+##### Local Games Page:
+![Local Games Page](public/images/HoopN_Screen_LocalGames.png)
+
+##### Game Details Page:
+![Game Details Page](public/images/HoopN_Screen_GameDetails.png)
+
 ### Technologies Used:
 * MongoDB
 * Express
