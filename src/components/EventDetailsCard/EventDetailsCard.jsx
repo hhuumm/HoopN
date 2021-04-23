@@ -16,8 +16,7 @@ function EventDetailsCard(props) {
 	const { user, deleteEvent, participant, court, places, update, handleAddPlayer, history, events } = props
 	let participating = false;
 	let inGame = [];
-	if (event) { }
-	else if (id && events) {
+	if (id && events) {
 		console.log("Looking for event")
 		events.forEach(e => {
 			if (e._id.toString() == id.toString()) {
@@ -72,6 +71,7 @@ function EventDetailsCard(props) {
 		await update(event)
 		setReview('')
 		setRating('0')
+		console.log(event.reviews,"\n^^These are the reviews")
 	}
 	const randPic = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
 	// console.log(`/images/${randPic}.jpg`)
@@ -165,18 +165,18 @@ function EventDetailsCard(props) {
 
 
 					</div>
-				</Card>
-				{	event.reviews.forEach(review=>{
-						<div>
-						<label>Reviewer:{review.name}</label>
-						<label>Review:{review.content}</label>
-						<label>Rating:{review.rating}</label>
-						</div>
+					{
+						event.reviews.forEach(review=>{
+							<button>{review.content}</button>
+						
 					})
 
 
 
 					}
+				</Card>
+				
+			
 			</div>
 		</>
 	)
