@@ -38,10 +38,7 @@ function EventDetailsCard(props) {
 	}
 	console.log(event,"Event b4 execution")
 	
-console.log(id, "\n THis is the id^^^^")
-console.log(events,"\n^^Thisi s the events")
-	console.log(props, "\n^^^Props Event Details Card")
-	console.log(places, "\nPlaces at the details card^^")
+
 	let thisPlace = null;
 	places.forEach(place => {
 		if (event.placeId === place.place_id) {
@@ -82,10 +79,10 @@ const handleRating=(e)=>{
 const handleReview=(e)=>{
 	console.log(e.target.value,"\n^^e.target.value reviewww")
 	setReview(e.target.value)
-
+	
 }
 async function clicked(e)
-{
+{console.log(event,"\n^^This is the event before we create review obj")
 const rev={
 	reviewer:user._id,
 	rating:rating,
@@ -93,7 +90,7 @@ const rev={
 }
 
 event.reviews.push(rev)
-
+console.log(event,"\nAdded to the event ^^ look")
 await update(event)
 
 
@@ -189,7 +186,7 @@ await update(event)
 				
 						<button
 						className="button rev-btn"
-						onClick={clicked}
+						onClick={(e)=>clicked(e)}
 					>Submit</button>
 				</Card>
 			</div>
