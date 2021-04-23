@@ -67,7 +67,7 @@
 
 .join-leave {
   border-radius: 50%;
-  font-weight: 500;
+  font-weight: 500 !important;
   margin-right: 8px;
 }
 #location_review_content {
@@ -77,6 +77,10 @@
   padding: 8px;
   border-radius: 8px;
   margin-top: 10px;
+}
+
+.participants span {
+  font-size: 20px;
 }
 
 

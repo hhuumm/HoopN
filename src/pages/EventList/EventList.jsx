@@ -20,7 +20,7 @@ function EventList(props) {
         return (
             <>
                 <div className='nearby'>
-                    <h5 className='n1'>Games within 20 miles </h5>
+                    <h5 className='n1'>Games within 10 miles </h5>
                     <h5 className='n2'> from {weather.name}</h5>
                 </div>
                 {gamesNearMe.length ?

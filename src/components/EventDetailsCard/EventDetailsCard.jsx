@@ -65,7 +65,7 @@ function EventDetailsCard(props) {
 		console.log(event, "\n^^This is the event before we create review obj")
 		const rev = {
 			reviewer: user._id,
-			name:user.name,
+			name: user.name,
 			rating: rating,
 			content: review
 		}
@@ -74,7 +74,7 @@ function EventDetailsCard(props) {
 		await update(event)
 		setReview('')
 		setRating('0')
-		console.log(event.reviews,"\n^^These are the reviews")
+		console.log(event.reviews, "\n^^These are the reviews")
 	}
 	const randPic = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
 	// console.log(`/images/${randPic}.jpg`)
@@ -100,10 +100,15 @@ function EventDetailsCard(props) {
 										event.participant.map(participants =>
 											participants.name + ", \n"
 										)}
-									{participating ?
-										<span ><br/><Link className="active join-leave" onClick={updateEvent}><img src="https://i.ibb.co/Q6xz3ch/remove-user.png" /></Link>Leave Game</span>
-											:
-										<span><br/><Link className="join-leave" onClick={updateEvent}><img src="https://i.ibb.co/vVgQY4N/add-user.png" /></Link>Join Game</span>}
+									{user && (user._id === event.createdBy || user._id !== event.createdBy._id) &&
+										<>
+											{participating ?
+												<span><br /><Link className="active join-leave" onClick={updateEvent}><img src="https://i.ibb.co/Q6xz3ch/remove-user.png" /></Link>Leave Game</span>
+												:
+												<span><br /><Link className="join-leave" onClick={updateEvent}><img src="https://i.ibb.co/vVgQY4N/add-user.png" /></Link>Join Game</span>
+											}
+										</>
+									}
 								</div>
 							</span>
 						</div>
@@ -163,23 +168,23 @@ function EventDetailsCard(props) {
 							className="button rev-btn"
 							onClick={(e) => clicked(e)}
 						>Submit</button>
-				
+
 
 
 
 					</div>
 					{
-						event.reviews.forEach(review=>{
+						event.reviews.forEach(review => {
 							<button>{review.content}</button>
-						
-					})
+
+						})
 
 
 
 					}
 				</Card>
-				
-			
+
+
 			</div>
 		</>
 	)
