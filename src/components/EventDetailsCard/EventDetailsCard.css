@@ -40,3 +40,28 @@
   margin-bottom: 15px;
 }
 
+.rev-span {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.review-card {
+  display: flex;
+}
+
+.one-five {
+  font-size: 20px !important;
+}
+.slct {
+  margin-right: 10px;
+  width: 30px;
+}
+
+.join-leave {
+  border-radius: 50%;
+  font-weight: 500;
+  margin-right: 8px;
+}
+
+
+

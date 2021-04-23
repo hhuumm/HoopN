@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link,useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import './EventDetailsCard.css'
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
@@ -8,14 +8,18 @@ import axios from 'axios';
 
 function EventDetailsCard(props) {
 
+
 	const[rating,setRating]=React.useState(1)
 	const[review,setReview]=React.useState('')
 
-	console.log(props,"^^Events details card inside events details")
-	
+
+	console.log(props, "^^Events details card inside events details")
+
 	let event;
-	
+
 	const { id } = useParams()
+
+
 	const { user, deleteEvent, participant, court, places,update ,handleAddPlayer,history,events} = props
 	let participating=false;
 	let inGame=[];
@@ -27,13 +31,14 @@ function EventDetailsCard(props) {
 			if(e._id.toString()==id.toString())
 			{
 				event=e
+
 			}
 
 		})
 
 	}
-	console.log(event,"Event b4 execution")
-	
+	console.log(event, "Event b4 execution")
+
 
 	let thisPlace = null;
 	places.forEach(place => {
@@ -42,48 +47,39 @@ function EventDetailsCard(props) {
 		}
 	})
 	console.log(event.participant)
-	async function updateEvent(){
-	
-	
-		if(participating)
-			{ 	
-				console.log("Leaving Game")
-				let players = event.participant.filter(player=>{return player._id!=user._id})
-				event.participant=players
-			}
-			else{
-				event.participant.push(user)
-				
-			}
-			
-			await update(event)
+	async function updateEvent() {
+
+
+		if (participating) {
+			console.log("Leaving Game")
+			let players = event.participant.filter(player => { return player._id != user._id })
+			event.participant = players
 		}
-	try{
-	let inGame =event.participant.filter(person=>person._id.toString()==user._id.toString())
-	if(inGame.length>0){participating=true;}
-	
+		else {
+			event.participant.push(user)
+
+		}
+
+		await update(event)
 	}
-	catch(err){
-			if(event.participant.includes(user._id)){participating=true}
+	try {
+		let inGame = event.participant.filter(person => person._id.toString() == user._id.toString())
+		if (inGame.length > 0) { participating = true; }
 
 	}
-const handleRating=(e)=>{
-	console.log(e.target.value,"\n^^e.target.value")
-	setRating(e.target.value)
+	catch (err) {
+		if (event.participant.includes(user._id)) { participating = true }
 
-}
-const handleReview=(e)=>{
-	console.log(e.target.value,"\n^^e.target.value reviewww")
-	setReview(e.target.value)
-	
-}
-async function clicked(e)
-{console.log(event,"\n^^This is the event before we create review obj")
-const rev={
-	reviewer:user._id,
-	rating:rating,
-	content:review
-}
+	}
+	const handleRating = (e) => {
+		console.log(e.target.value, "\n^^e.target.value")
+		setRating(e.target.value)
+
+	}
+	const handleReview = (e) => {
+		console.log(e.target.value, "\n^^e.target.value reviewww")
+		setReview(e.target.value)
+
 
 event.reviews.push(rev)
 console.log(event,"\nAdded to the event ^^ look")
@@ -96,33 +92,35 @@ console.log(event.reviews,"\nThese are the reviews for this page^^")
 
 const randPic = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
 
+
 	return (
 		<>
 			<div className='EventList-detail'>
 				<Card style={{ width: '18rem' }}>
 
-					<Card.Img variant="top" src={`/images/${randPic}.jpg`}/>
+					<Card.Img variant="top" src={`/images/${randPic}.jpg`} />
 					<Card.Body>
 						<Card.Title>{event.title}</Card.Title>
-						<span style={{ fontWeight: '500'}}>{event.locName}</span><br/>
-						<span>{event.address}</span><br/>
-						<span>{event.date} - </span> 
-            <span>{event.time}</span><br/>
-						<span>Created By: {event.createdBy.name}</span><br/>
+						<span style={{ fontWeight: '500' }}>{event.locName}</span><br />
+						<span>{event.address}</span><br />
+						<span>{event.date} - </span>
+						<span>{event.time}</span><br />
+						<span>Created By: {event.createdBy.name}</span><br />
 						<div>
-						<span>Participants: <br/>
-						<div className="participants" >
-							{
-							  
-							event.participant.map(participants =>
-								 participants.name+","
-								
-							)}
-							</div>
-							{participating? <button onClick={updateEvent}>Leave</button> : <button onClick={updateEvent}> join </button> 
+							<i class="fas fa-user-minus" />
+							<span>Participants: <br />
+								<div className="participants" >
 
-							}
-					
+									{
+										event.participant.map(participants =>
+											participants.name + ", \n"
+										)}
+									{event.participating ?
+										<span><br/><Link className="active join-leave" onClick={updateEvent}><img src="https://i.ibb.co/Q6xz3ch/remove-user.png" /></Link>Leave Game</span>
+											:
+											<span><br/><Link className="join-leave" onClick={updateEvent}><img src="https://i.ibb.co/vVgQY4N/add-user.png" /></Link>Join Game</span>}
+								</div>
+
 							</span>
 						</div>
 					</Card.Body>
@@ -148,6 +146,7 @@ const randPic = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
 							</div>
 						</>
 					}
+
 					<span className="active-span" >Rate(1-5): </span>
                     <select
                         name="rating"
@@ -178,11 +177,12 @@ const randPic = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
                             />
                         </div>
                     </div>
-				
+
 						<button
-						className="button rev-btn"
-						onClick={(e)=>clicked(e)}
-					>Submit</button>
+							className="button rev-btn"
+							onClick={(e) => clicked(e)}
+						>Submit</button>
+					</div>
 				</Card>
 			</div>
 		</>
