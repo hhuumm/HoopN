@@ -76,6 +76,12 @@ function EventDetailsCard(props) {
 		setRating('0')
 		console.log(event.reviews, "\n^^These are the reviews")
 	}
+
+	async function removeEvent(e){
+		deleteEvent(event._id)
+		history.push('/events')
+
+	}
 	const randPic = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
 	// console.log(`/images/${randPic}.jpg`)
 	//thisPlace = current google place
@@ -119,7 +125,7 @@ function EventDetailsCard(props) {
 								<Button
 									variant="danger"
 									type="submit"
-									onClick={() => deleteEvent(event._id)}
+									onClick={removeEvent}
 								>Delete</Button>
 								<Link
 									to={{

@@ -32,11 +32,16 @@ class App extends Component {
   };
   async componentDidMount() {
     const events = await eventAPI.getAll();
+    let lat;
+    let lng;
     window.navigator.geolocation.getCurrentPosition(
       success => {
+        lat=success.coords.latitude;lng=success.coords.longitude;
         this.setState({ events, latitude: success.coords.latitude, longitude: success.coords.longitude })
-      }, err => { this.setState({ events }) }
+      }
     )
+
+   
   }
 
   async componentDidUpdate(previousProps, previousState) {
