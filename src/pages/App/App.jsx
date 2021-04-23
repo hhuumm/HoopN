@@ -66,10 +66,10 @@ class App extends Component {
   handleAddEvent = async newEventData => {
     const newEvent = await eventAPI.create(newEventData)
     .then(response => { return response})
-    const events = await eventAPI.getAll();
+    const newEvents = await eventAPI.getAll();
     
     this.setState(state => ({
-      events: events
+      events: newEvents
     }));
  this.props.history.push(`/events/details/${newEvent._id}`)
     
@@ -78,9 +78,11 @@ class App extends Component {
   handleDeleteEvent = async id => {
     if (authService.getUser()) {
       await eventAPI.deleteOne(id);
-      this.setState(state => ({
-        events: state.events.filter(m => m._id !== id)
-      }), () => this.props.history.push('/events'));
+      const newEventsArray = await eventAPI.getAll();
+      this.setState(
+        { events: newEventsArray }
+      );
+       this.props.history.push('/events');
     } else {
       this.props.history.push('/login')
     }

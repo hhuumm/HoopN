@@ -9,21 +9,24 @@ function EventDetailsCard(props) {
 	const [rating, setRating] = React.useState(null)
 	const [review, setReview] = React.useState(null)
 	console.log(props, "^^Events details card inside events details")
-	let event;
+	const [event,setEvent]=React.useState(null)
 
 
 	const { id } = useParams()
+	console.log(id,"\n^^ID on event details page")
 	const { user, deleteEvent, participant, court, places, update, handleAddPlayer, history, events } = props
 	let participating = false;
 	let inGame = [];
-	if (id && events) {
+	
 		console.log("Looking for event")
 		events.forEach(e => {
+			console.log("comparing\n",e._id.toString(),"\n",id.toString())
 			if (e._id.toString() == id.toString()) {
-				event = e
+				setEvent(e)
+				console.log(e,"Found Event")
 			}
 		})
-	}
+	
 	console.log(event, "Event b4 execution")
 	let thisPlace = null;
 	places.forEach(place => {
