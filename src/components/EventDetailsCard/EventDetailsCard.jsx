@@ -100,7 +100,10 @@ await update(event)
 	
 
 }
+const randPic = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
 
+
+// console.log(`/images/${randPic}.jpg`)
 
 //thisPlace = current google place
 //event = current event
@@ -111,7 +114,7 @@ await update(event)
 			<div className='EventList-detail'>
 				<Card style={{ width: '18rem' }}>
 
-					<Card.Img variant="top" src="holder.js/100px180" />
+					<Card.Img variant="top" src={`/images/${randPic}.jpg`}/>
 					<Card.Body>
 						<Card.Title>{event.title}</Card.Title>
 						<span style={{ fontWeight: '500'}}>{event.locName}</span><br/>
