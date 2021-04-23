@@ -143,7 +143,8 @@ class App extends Component {
         />
         <Route
           exact path="/Main"
-          render={({ history }) => (
+          render={({ history }) =>
+            authService.getUser() ?
             <Main
               history={history}
               weather={weather}
@@ -152,7 +153,9 @@ class App extends Component {
               sunset={this.state.sunset}
               user={this.state.user}
             />
-          )}
+            :
+            <Redirect to='/login' />
+          }
         />
         <Route
           exact path="/signup"
@@ -174,10 +177,14 @@ class App extends Component {
         />
         <Route
           exact path="/users"
-          render={({ history }) => user ? <Users /> : <Redirect to="/login" />
+          render={({ history }) => authService.getUser() ? 
+            <Users /> 
+            : 
+            <Redirect to="/login" />
           }
         />
-        <Route exact path='/events/add'
+        <Route 
+          exact path='/events/add'
           render={({ history, location }) => authService.getUser() ?
             <CreateEvent
               handleAddEvent={this.handleAddEvent}
@@ -191,9 +198,10 @@ class App extends Component {
           }
         />
        
-           <Route
+        <Route
           exact path="/events/details/:id"
-          render={({ history }) => (
+          render={({ history }) =>
+            authService.getUser() ?
             <EventDetails
               events={this.state.events}
               history={history}
@@ -203,9 +211,14 @@ class App extends Component {
               places={this.state.places}
               handleAddPlayer={this.handleAddPlayer}
             />
-                      )}
+            :
+            <Redirect to='/login' />
+          }
         />
-        <Route exact path='/events' render={() =>
+        <Route
+          exact path='/events'
+          render={() =>
+            authService.getUser() ?
           <EventList
             events={this.state.events}
             user={this.state.user}
@@ -215,9 +228,14 @@ class App extends Component {
             places={this.state.places}
             weather={weather}
           />
+          :
+          <Redirect to='/login' />
         }
         />
-        <Route exact path='/myEvents' render={() =>
+        <Route
+          exact path='/myEvents'
+          render={() =>
+            authService.getUser() ?
           <MyEventsList
             events={this.state.events}
             user={this.state.user}
@@ -225,9 +243,14 @@ class App extends Component {
             myEvent={true}
             places={this.state.places}
           />
+          :
+          <Redirect to='/login' />
         }
         />
-        <Route exact path='/edit' render={({ location }) => authService.getUser() ?
+        <Route
+          exact path='/edit'
+          render={({ location }) => 
+            authService.getUser() ?
           <EditEvent
             handleUpdateEvent={this.handleUpdateEvent}
             location={location}
@@ -239,7 +262,8 @@ class App extends Component {
         />
         <Route
           exact path="/locations"
-          render={() => (
+          render={() =>
+            authService.getUser() ?
             <SearchLocations
               user={this.state.user}
               events={this.state.events}
@@ -248,11 +272,14 @@ class App extends Component {
               history={history}
               getPhoto={apiService.default.getPhoto}
             />
-          )}
+            :
+            <Redirect to='/login' />
+          }
         />
         <Route
           exact path="/location/details"
-          render={({ location }) => (
+          render={({ location }) =>
+            authService.getUser() ?
             <LocationDetails
               user={this.state.user}
               events={this.state.events}
@@ -261,10 +288,9 @@ class App extends Component {
               history={history}
               location={location}
             />
-
-
-            
-          )}
+            :
+            <Redirect to='/login' />
+          }
         />
       </>
     );
