@@ -58,7 +58,7 @@ function update(req, res) {
   req.body.reviews.forEach(review=>{
     review.reviewer=ObjectId(review.reviewer)
     review.rating=parseInt(review.rating)
-    // review=Evet
+    
   })
   console.log(req.body,"\n^^The Update to the event in the backend")
     Event.findByIdAndUpdate(req.params.id, req.body, {new: true})

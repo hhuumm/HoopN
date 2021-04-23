@@ -15,6 +15,7 @@ const eventSchema = new Schema ({
     placeId: { type: String, required: true },
     locName: { type: String },
     address: { type: String },
+    reviews:[reviewSchema],
     court: { type: String, required: true },
     createdBy: { type: Schema.Types.ObjectId, ref: 'User'},
     participant: [{ type: Schema.Types.ObjectId, ref: 'User'}],
