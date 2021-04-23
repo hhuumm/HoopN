@@ -86,6 +86,12 @@ function EventDetailsCard(props) {
 	// console.log(`/images/${randPic}.jpg`)
 	//thisPlace = current google place
 	//event = current event
+	event.reviews.map(review => 
+		{
+			review.content.toString()
+			
+			console.log(review.content)
+		})	
 	return (
 		<>
 			<div className='EventList-detail'>
@@ -179,15 +185,13 @@ function EventDetailsCard(props) {
 
 
 					</div>
+					<div>
 					{
-						event.reviews.forEach(review => {
-							<button>{review.content}</button>
-
-						})
-
-
-
+						event.reviews.map((review,indx)=>
+							<div>{review.content}</div>
+						)
 					}
+					</div>
 				</Card>
 
 
