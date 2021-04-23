@@ -125,7 +125,7 @@ function EventDetailsCard(props) {
 						<div className="input-field col s12 rev-span">
 							<input
 								name="content"
-								placeholder="Write Review Here"
+								placeholder="Leave Your Comment Here"
 								id="location_review_content"
 								type="text"
 								value={review}
@@ -135,7 +135,7 @@ function EventDetailsCard(props) {
 						</div>
 					</div>
 					<div className="review-card">
-						<span className="active-span one-five" >Rate(1-5):</span>
+						<span className="active-span one-five">Rate(1-5):</span>
 						<select
 							name="rating"
 							placeholder="Rating 1-5"
