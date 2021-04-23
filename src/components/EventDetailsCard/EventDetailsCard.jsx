@@ -3,7 +3,6 @@ import { Link,useParams } from "react-router-dom";
 import './EventDetailsCard.css'
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
-import EventDetails from '../../pages/EventDetails/EventDetails' //??????
 import axios from 'axios';
 
 
@@ -11,9 +10,6 @@ function EventDetailsCard(props) {
 
 	const[rating,setRating]=React.useState(null)
 	const[review,setReview]=React.useState(null)
-
-
-
 
 	console.log(props,"^^Events details card inside events details")
 	
@@ -93,19 +89,10 @@ event.reviews.push(rev)
 console.log(event,"\nAdded to the event ^^ look")
 await update(event)
 
-
-	
-
 }
+
 const randPic = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
 
-
-// console.log(`/images/${randPic}.jpg`)
-
-//thisPlace = current google place
-//event = current event
-
- 
 	return (
 		<>
 			<div className='EventList-detail'>

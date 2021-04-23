@@ -5,7 +5,7 @@ import "./NewNavBar.css";
 import { CSSTransition } from "react-transition-group";
 
 const NewNavBar = ({ user, handleLogout }) => {
-  // export default function Header() {
+
   const [isNavVisible, setNavVisibility] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
