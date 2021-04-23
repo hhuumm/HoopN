@@ -15,7 +15,6 @@ import EventList from '../EventList/EventList'
 import MyEventsList from '../MyEventsList/MyEventsList'
 import EditEvent from '../EditEvent/EditEvent'
 import EventDetails from "../EventDetails/EventDetails";
-import EventReviews from "../EventReviews/EventReviews"
 import SearchLocations from '../SearchLocations/SearchLocations'
 import LocationDetails from '../../components/LocationDetails/LocationDetails'
 import { getTimeFromTimestamp, getWindDirection } from '../../services/utils';
@@ -237,18 +236,6 @@ class App extends Component {
           :
           <Redirect to='/login' />
         }
-        />
-        <Route exact path='/events/review'
-          render={({ location, history }) => authService.getUser() ?
-            <EventReviews
-              handleAddReview={this.handleAddReview}
-              history={history}
-              location={location}
-              user={this.state.user}
-            />
-            :
-            <Redirect to='/login' />
-          }
         />
         <Route
           exact path="/locations"
