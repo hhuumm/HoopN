@@ -10,6 +10,8 @@ function EventDetailsCard(props) {
 	const [review, setReview] = React.useState(null)
 	console.log(props, "^^Events details card inside events details")
 	let event;
+
+
 	const { id } = useParams()
 	const { user, deleteEvent, participant, court, places, update, handleAddPlayer, history, events } = props
 	let participating = false;
@@ -61,6 +63,7 @@ function EventDetailsCard(props) {
 		console.log(event, "\n^^This is the event before we create review obj")
 		const rev = {
 			reviewer: user._id,
+			name:user.name,
 			rating: rating,
 			content: review
 		}
@@ -157,8 +160,23 @@ function EventDetailsCard(props) {
 							className="button rev-btn"
 							onClick={(e) => clicked(e)}
 						>Submit</button>
+				
+
+
+
 					</div>
 				</Card>
+				{	event.reviews.forEach(review=>{
+						<div>
+						<label>Reviewer:{review.name}</label>
+						<label>Review:{review.content}</label>
+						<label>Rating:{review.rating}</label>
+						</div>
+					})
+
+
+
+					}
 			</div>
 		</>
 	)
