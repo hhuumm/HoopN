@@ -6,6 +6,7 @@ import './EventListCard.css';
 
 function EventListCard(props) {
   const { event, handleShow, user, history,places ,events} = props;
+  const randPic = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
 
   return (
     <>
@@ -13,6 +14,7 @@ function EventListCard(props) {
         <Card style={{ width: '18rem' }}>
           <Card.Body>
             <Card.Title>{event.title}</Card.Title>
+            <img width='200' src={`/images/${randPic}.jpg`}/><br/>
             <span style={{ fontWeight: '500' }}>{event.locName}</span><br/>
             <span>{event.address}</span><br/>
             <span>{event.date} - </span> 
