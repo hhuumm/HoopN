@@ -77,6 +77,22 @@ function EventDetailsCard(props) {
 		console.log(event.reviews, "\n^^These are the reviews")
 	}
 
+	function renderSwitch(param) {
+		switch(param) {
+			case 1:
+				return '☆'
+			case 2:
+				return '☆☆'
+			case 3:
+				return '☆☆☆'
+			case 4:
+				return '☆☆☆☆'
+			case 5:
+				return '☆☆☆☆☆'
+		  default:
+			return 'no rating';
+		}
+	  }
 	async function removeEvent(e){
 		deleteEvent(event._id)
 		history.push('/events')
@@ -188,7 +204,11 @@ function EventDetailsCard(props) {
 					<div>
 					{
 						event.reviews.map((review,indx)=>
-							<div>{review.content}</div>
+						<>
+							<div>{review.name}:{review.content}</div>
+							<div>{renderSwitch(review.rating)}</div>
+							</>
+							
 						)
 					}
 					</div>
