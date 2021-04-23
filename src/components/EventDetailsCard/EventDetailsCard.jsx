@@ -9,7 +9,7 @@ function EventDetailsCard(props) {
 	const [rating, setRating] = React.useState(null)
 	const [review, setReview] = React.useState(null)
 	console.log(props, "^^Events details card inside events details")
-	const [event,setEvent]=React.useState(null)
+	let event = null;
 
 
 	const { id } = useParams()
@@ -20,9 +20,9 @@ function EventDetailsCard(props) {
 	
 		console.log("Looking for event")
 		events.forEach(e => {
-			console.log("comparing\n",e._id.toString(),"\n",id.toString())
-			if (e._id.toString() == id.toString()) {
-				setEvent(e)
+			console.log("comparing\n",typeof e._id,"\n",typeof id)
+			if (e._id === id) {
+				event=e
 				console.log(e,"Found Event")
 			}
 		})

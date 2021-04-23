@@ -68,7 +68,7 @@ class App extends Component {
     .then(response => { return response})
     const newEvents = await eventAPI.getAll();
     
-    this.setState(state => ({
+    this.setState(({
       events: newEvents
     }));
  this.props.history.push(`/events/details/${newEvent._id}`)
