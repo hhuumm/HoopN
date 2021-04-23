@@ -1,4 +1,5 @@
 const Event = require('../models/Event')
+const {ObjectId} = require('mongodb'); 
 
 module.exports = {
   create,
@@ -54,6 +55,12 @@ function myGames(req, res) {
   }
 
 function update(req, res) {
+  req.body.reviews.forEach(review=>{
+    review.reviewer=ObjectId(review.reviewer)
+    review.rating=parseInt(review.rating)
+    // review=Evet
+  })
+  console.log(req.body,"\n^^The Update to the event in the backend")
     Event.findByIdAndUpdate(req.params.id, req.body, {new: true})
     .then(event => {res.json(event)})
     .catch(err => {res.json(err)})

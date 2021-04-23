@@ -92,6 +92,7 @@ class App extends Component {
   }
 
   handleUpdateEvent = async updatedEventData => {
+    console.log(updatedEventData,"\n^^This is us trying to update the data")
     const updatedEvent = await eventAPI.update(updatedEventData);
     const newEventsArray = await eventAPI.getAll();
     this.setState(
