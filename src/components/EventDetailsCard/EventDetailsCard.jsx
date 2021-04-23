@@ -80,15 +80,15 @@ function EventDetailsCard(props) {
 	function renderSwitch(param) {
 		switch(param) {
 			case 1:
-				return '☆'
+				return '⭐'
 			case 2:
-				return '☆☆'
+				return '⭐⭐'
 			case 3:
-				return '☆☆☆'
+				return '⭐⭐⭐'
 			case 4:
-				return '☆☆☆☆'
+				return '⭐⭐⭐⭐'
 			case 5:
-				return '☆☆☆☆☆'
+				return '⭐⭐⭐⭐⭐'
 		  default:
 			return 'no rating';
 		}
@@ -201,12 +201,11 @@ function EventDetailsCard(props) {
 
 
 					</div>
-					<div>
+					<div className="reviews-div">
 					{
 						event.reviews.map((review,indx)=>
 						<>
-							<div>{review.name}:{review.content}</div>
-							<div>{renderSwitch(review.rating)}</div>
+							<span className="reviews-span">{review.name}: <span className="allstars" >{renderSwitch(review.rating)}</span> {review.content}</span>
 							</>
 							
 						)
