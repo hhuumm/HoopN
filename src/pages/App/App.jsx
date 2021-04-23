@@ -15,7 +15,6 @@ import EventList from '../EventList/EventList'
 import MyEventsList from '../MyEventsList/MyEventsList'
 import EditEvent from '../EditEvent/EditEvent'
 import EventDetails from "../EventDetails/EventDetails";
-import EventReviews from "../EventReviews/EventReviews"
 import SearchLocations from '../SearchLocations/SearchLocations'
 import LocationDetails from '../../components/LocationDetails/LocationDetails'
 import { getTimeFromTimestamp, getWindDirection } from '../../services/utils';
@@ -66,11 +65,11 @@ class App extends Component {
 
   handleAddEvent = async newEventData => {
     const newEvent = await eventAPI.create(newEventData)
-    .then(response => {console.log(response, '\n^^this is RESPONSE from handleAddEvent'); return response})
+    .then(response => { return response})
     const events = await eventAPI.getAll();
     
     this.setState(state => ({
-      events: [events]
+      events: events
     }));
  this.props.history.push(`/events/details/${newEvent._id}`)
     
@@ -144,7 +143,8 @@ class App extends Component {
         />
         <Route
           exact path="/Main"
-          render={({ history }) => (
+          render={({ history }) =>
+            authService.getUser() ?
             <Main
               history={history}
               weather={weather}
@@ -153,7 +153,9 @@ class App extends Component {
               sunset={this.state.sunset}
               user={this.state.user}
             />
-          )}
+            :
+            <Redirect to='/login' />
+          }
         />
         <Route
           exact path="/signup"
@@ -175,10 +177,14 @@ class App extends Component {
         />
         <Route
           exact path="/users"
-          render={({ history }) => user ? <Users /> : <Redirect to="/login" />
+          render={({ history }) => authService.getUser() ? 
+            <Users /> 
+            : 
+            <Redirect to="/login" />
           }
         />
-        <Route exact path='/events/add'
+        <Route 
+          exact path='/events/add'
           render={({ history, location }) => authService.getUser() ?
             <CreateEvent
               handleAddEvent={this.handleAddEvent}
@@ -192,9 +198,10 @@ class App extends Component {
           }
         />
        
-           <Route
+        <Route
           exact path="/events/details/:id"
-          render={({ history }) => (
+          render={({ history }) =>
+            authService.getUser() ?
             <EventDetails
               events={this.state.events}
               history={history}
@@ -204,9 +211,14 @@ class App extends Component {
               places={this.state.places}
               handleAddPlayer={this.handleAddPlayer}
             />
-                      )}
+            :
+            <Redirect to='/login' />
+          }
         />
-        <Route exact path='/events' render={() =>
+        <Route
+          exact path='/events'
+          render={() =>
+            authService.getUser() ?
           <EventList
             events={this.state.events}
             user={this.state.user}
@@ -216,9 +228,14 @@ class App extends Component {
             places={this.state.places}
             weather={weather}
           />
+          :
+          <Redirect to='/login' />
         }
         />
-        <Route exact path='/myEvents' render={() =>
+        <Route
+          exact path='/myEvents'
+          render={() =>
+            authService.getUser() ?
           <MyEventsList
             events={this.state.events}
             user={this.state.user}
@@ -226,9 +243,14 @@ class App extends Component {
             myEvent={true}
             places={this.state.places}
           />
+          :
+          <Redirect to='/login' />
         }
         />
-        <Route exact path='/edit' render={({ location }) => authService.getUser() ?
+        <Route
+          exact path='/edit'
+          render={({ location }) => 
+            authService.getUser() ?
           <EditEvent
             handleUpdateEvent={this.handleUpdateEvent}
             location={location}
@@ -238,21 +260,10 @@ class App extends Component {
           <Redirect to='/login' />
         }
         />
-        <Route exact path='/events/review'
-          render={({ location, history }) => authService.getUser() ?
-            <EventReviews
-              handleAddReview={this.handleAddReview}
-              history={history}
-              location={location}
-              user={this.state.user}
-            />
-            :
-            <Redirect to='/login' />
-          }
-        />
         <Route
           exact path="/locations"
-          render={() => (
+          render={() =>
+            authService.getUser() ?
             <SearchLocations
               user={this.state.user}
               events={this.state.events}
@@ -261,11 +272,14 @@ class App extends Component {
               history={history}
               getPhoto={apiService.default.getPhoto}
             />
-          )}
+            :
+            <Redirect to='/login' />
+          }
         />
         <Route
           exact path="/location/details"
-          render={({ location }) => (
+          render={({ location }) =>
+            authService.getUser() ?
             <LocationDetails
               user={this.state.user}
               events={this.state.events}
@@ -274,10 +288,9 @@ class App extends Component {
               history={history}
               location={location}
             />
-
-
-            
-          )}
+            :
+            <Redirect to='/login' />
+          }
         />
       </>
     );

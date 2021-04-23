@@ -6,21 +6,8 @@ import './LocationDetails.css'
 
 function LocationDetails(props) {
   const { events, history, user, location, weather, places } = props;
-  const{getPhoto}=props.location
+
   const{park}=location.state;
-  const photos =[]
-
-  async function getphotos(pho){
- 
-    return await getPhoto(pho.photo_reference).then(result=>{return result})
-   
-}
-park.photos.forEach(p=>{getphotos(p.photo_reference)})
-
-
-photos.forEach(photo=>{console.log("","\n^^This is a photo object")})
-
-
 
   
   return (
@@ -34,11 +21,7 @@ photos.forEach(photo=>{console.log("","\n^^This is a photo object")})
               className="park"
               alt="hoop'n"
             /><br /><br />
-               <img
-              src={photos[0]}
-              className="park"
-              alt="hoop'n"
-            /><br /><br />
+              
             <span>
               {props.location.state.park.vicinity}
             </span><br /><br />

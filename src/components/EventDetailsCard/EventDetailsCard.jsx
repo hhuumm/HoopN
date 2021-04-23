@@ -3,16 +3,14 @@ import { Link, useParams } from "react-router-dom";
 import './EventDetailsCard.css'
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
-import EventDetails from '../../pages/EventDetails/EventDetails' //??????
 import axios from 'axios';
 
 
 function EventDetailsCard(props) {
 
-	const [rating, setRating] = React.useState(null)
-	const [review, setReview] = React.useState(null)
 
-
+	const[rating,setRating]=React.useState(1)
+	const[review,setReview]=React.useState('')
 
 
 	console.log(props, "^^Events details card inside events details")
@@ -20,16 +18,20 @@ function EventDetailsCard(props) {
 	let event;
 
 	const { id } = useParams()
-	const { user, deleteEvent, participant, court, places, update, handleAddPlayer, history, events } = props
-	let participating = false;
-	let inGame = [];
 
-	if (event) { }
-	else if (id && events) {
-		console.log("Looking for event")
-		events.forEach(e => {
-			if (e._id.toString() == id.toString()) {
-				event = e
+
+	const { user, deleteEvent, participant, court, places,update ,handleAddPlayer,history,events} = props
+	let participating=false;
+	let inGame=[];
+
+	if(event){}
+	else if(id&&events.length>0)
+	{	console.log("Looking for event")
+		events.forEach(e=>{
+			if(e._id.toString()==id.toString())
+			{
+				event=e
+
 			}
 
 		})
@@ -78,30 +80,17 @@ function EventDetailsCard(props) {
 		console.log(e.target.value, "\n^^e.target.value reviewww")
 		setReview(e.target.value)
 
-	}
-	async function clicked(e) {
-		console.log(event, "\n^^This is the event before we create review obj")
-		const rev = {
-			reviewer: user._id,
-			rating: rating,
-			content: review
-		}
 
-		event.reviews.push(rev)
-		console.log(event, "\nAdded to the event ^^ look")
-		await update(event)
+event.reviews.push(rev)
+console.log(event,"\nAdded to the event ^^ look")
+await update(event)
+setRating(0)
+setReview('')
+console.log(event.reviews,"\nThese are the reviews for this page^^")
 
+}
 
-
-
-	}
-	const randPic = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
-
-
-	// console.log(`/images/${randPic}.jpg`)
-
-	//thisPlace = current google place
-	//event = current event
+const randPic = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
 
 
 	return (
@@ -157,36 +146,38 @@ function EventDetailsCard(props) {
 							</div>
 						</>
 					}
-					<h5>Leave a Review</h5>
-					<div className="row">
-						<div className="input-field col s12 rev-span">
-							<input
-								name="content"
-								placeholder="Write Review Here"
-								id="location_review_content"
-								type="text"
-								className="active"
-								onChange={(e) => handleReview(e)}
-							/>
-						</div>
-					</div>
-					<div className="review-card">
-						<span className="active-span one-five" >Rate(1-5):</span>
-						<select
-							name="rating"
-							placeholder="Rating 1-5"
-							id="location_review_rating"
-							type="text"
-							className="active slct"
-							required
-							onChange={(e) => handleRating(e)}
-						>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select>
+
+					<span className="active-span" >Rate(1-5): </span>
+                    <select
+                        name="rating"
+                        placeholder="Rating 1-5"
+                        id="location_review_rating"
+                        type="text"
+                        className="active"
+                        required
+						value={rating}
+						onChange={(e)=>handleRating(e)}
+                    >
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+                    </select>
+                    <div className="row">
+                        <div className="input-field col s12">
+                            <input
+                                name="content"
+                                placeholder="Write Review Here"
+                                id="location_review_content"
+                                type="text"
+								value={review}
+                                className="active"
+								onChange={(e)=>handleReview(e)}
+                            />
+                        </div>
+                    </div>
+
 						<button
 							className="button rev-btn"
 							onClick={(e) => clicked(e)}
