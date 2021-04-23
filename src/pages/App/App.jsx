@@ -66,11 +66,11 @@ class App extends Component {
 
   handleAddEvent = async newEventData => {
     const newEvent = await eventAPI.create(newEventData)
-    .then(response => {console.log(response, '\n^^this is RESPONSE from handleAddEvent'); return response})
+    .then(response => { return response})
     const events = await eventAPI.getAll();
     
     this.setState(state => ({
-      events: [events]
+      events: events
     }));
  this.props.history.push(`/events/details/${newEvent._id}`)
     
