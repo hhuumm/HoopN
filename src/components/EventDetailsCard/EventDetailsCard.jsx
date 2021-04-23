@@ -25,7 +25,7 @@ function EventDetailsCard(props) {
 	let inGame=[];
 
 	if(event){}
-	else if(id&&events)
+	else if(id&&events.length>0)
 	{	console.log("Looking for event")
 		events.forEach(e=>{
 			if(e._id.toString()==id.toString())
