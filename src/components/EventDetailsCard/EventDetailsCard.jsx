@@ -9,8 +9,8 @@ import axios from 'axios';
 
 function EventDetailsCard(props) {
 
-	const[rating,setRating]=React.useState(null)
-	const[review,setReview]=React.useState(null)
+	const[rating,setRating]=React.useState(1)
+	const[review,setReview]=React.useState('')
 
 
 
@@ -92,6 +92,9 @@ const rev={
 event.reviews.push(rev)
 console.log(event,"\nAdded to the event ^^ look")
 await update(event)
+setRating(0)
+setReview('')
+console.log(event.reviews,"\nThese are the reviews for this page^^")
 
 
 	
@@ -166,6 +169,7 @@ const randPic = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
                         type="text"
                         className="active"
                         required
+						value={rating}
 						onChange={(e)=>handleRating(e)}
                     >
 						<option value="1">1</option>
@@ -181,6 +185,7 @@ const randPic = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
                                 placeholder="Write Review Here"
                                 id="location_review_content"
                                 type="text"
+								value={review}
                                 className="active"
 								onChange={(e)=>handleReview(e)}
                             />
