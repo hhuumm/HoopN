@@ -1,13 +1,47 @@
 .EditEvent {
-    display: grid;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 50px;
-    margin-top: 50px;
-  }
-  
-  .col {
-    display: grid;
-    gap: 10px;
+  display: grid;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.col {
+  display: grid;
+  gap: 10px;
+}
+
+.EventReviews {
+margin-top: 35px;
+width: 100%;
+display: grid;
+grid-template-columns: repeat(1, 1fr);
+grid-gap: 10px;
+justify-items: center;
+text-align: center;
+}
+.EventReviews h2 {
+color: #F24726;
+}
+
+.active {
+margin-bottom: 14px;
+font-size: 1em;
+padding: 8px;
+border-radius: 8px;
+}
+
+.active-span {
+font-size: 1.5em;
+padding: 8px;
+}
+
+.EventReviews input {
+margin-bottom: 30px;
+min-width: 300px;
+font-size: 1em;
+padding: 8px;
+border-radius: 8px;
+margin-top: 10px;
 }

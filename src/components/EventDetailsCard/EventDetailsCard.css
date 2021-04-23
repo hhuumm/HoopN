@@ -34,10 +34,12 @@
   justify-items: center;
   margin: 0 auto;
 }
-.rev-btn {
+button.button.rev-btn {
   display: inline-block;
   margin: 0 auto;
   margin-bottom: 15px;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 .rev-span {
@@ -54,15 +56,15 @@
 .one-five {
   font-size: 22px !important;
   margin-top: 20px !important;
+  margin-left: -8px;
 }
 .slct {
   margin-right: 10px;
-    margin-left: 10px;
-    width: 40px;
-    height: 40px;
-    font-size: 1em;
-    border-radius: 6px;
-    border: 1px solid;
+  width: 38px;
+  height: 40px;
+  font-size: 1em;
+  border-radius: 6px;
+  border: 1px solid;
 }
 
 .join-leave {
