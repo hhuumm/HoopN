@@ -43,7 +43,7 @@ class CreateEvent extends Component {
 
     render() {
         
-        const {park}= this.props.location.props.location.state
+        const {park} = this.props.location.props.location.state
         console.log(park,"\n^^This is the park")
         console.log(this.props, "\n^^This is props Create Event")
         

@@ -17,7 +17,7 @@ function SearchLocations(props) {
         <div className="locations-search" >
           
           <Card style={{ width: 'auto', margin: '20px' }}>
-            <Card.Header style={{ fontSize: '25px', fontWeight: 'bolder' }}>Nearby Parks</Card.Header>
+            <Card.Header style={{ fontSize: '25px', fontWeight: 'bolder' }}>Parks within 10 miles</Card.Header>
             <ListGroup variant="flush">
             {places.map((park) => (
               

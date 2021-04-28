@@ -6,8 +6,6 @@ module.exports=
     getPlaces,
     getPlaceById,
     getPhoto
-
-
 }
 
 async function getPhoto(req,res)
@@ -20,7 +18,6 @@ async function getPhoto(req,res)
             return(response.data)
         })
         .catch(err=>{console.log(err)})
-
 }
 
 async function getPlaceById(req, res) {
@@ -70,7 +67,9 @@ async function getPlaces(req,res)
     {
         let lat = req.params.lat;
         let lng = req.params.lng;
-
+        console.log(req.params.lat, "\n^^params.lat")
+        console.log(req.params.lng, "\n^^params.lng")
+        console.log(req.params, "\n^^ all params")
      await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${process.env.GOOGLE_KEY}&location=${lat},${lng}&radius=16000&type=park&name=basketball`)
 
         .then(result=>{
