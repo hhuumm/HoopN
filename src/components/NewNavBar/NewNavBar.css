@@ -1,5 +1,5 @@
 .Header {
-  /* position: fixed; */
+  position: fixed;
   top: 0; /* Stick it to the top */
   max-height: auto;
   width: 100vw;
@@ -10,6 +10,7 @@
   background-color: #d9d9da;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   /* margin-bottom: 20px; */
+  z-index: 1;
 }
 
 .nav-logo {
@@ -139,11 +140,10 @@ a:hover {
     grid-template-areas: "logo burger" "nav nav";
   }
   .Nav {
-    grid-template-rows: repeat(4, auto);
-    grid-template-columns: none;
-    grid-row-gap: 20px;
-
-    padding: 30px 0 30px;
+        /* grid-template-rows: repeat(4, auto); */
+        grid-template-columns: none;
+        /* grid-row-gap: 20px; */
+        padding: 16px 0 5px;
     background: #d9d9da;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-bottom-left-radius: 10px;
@@ -152,6 +152,10 @@ a:hover {
   
   .login-btn {
     visibility: hidden;
+  }
+  .logout {
+    visibility: visible !important;
+    padding-top: 1px !important;
   }
     
   .Burger {
