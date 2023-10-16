@@ -35,6 +35,13 @@ label{
   padding-bottom: 20px;
 }
 
+.reset-link{
+  color: #F24726;
+  font-weight: bold;
+  margin-top: 30px;
+  padding-bottom: 20px;
+}
+
 .Login button{
   margin-top: 30px;
 } 
