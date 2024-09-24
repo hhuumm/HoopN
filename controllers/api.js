@@ -10,9 +10,11 @@ module.exports=
 
 async function getPhoto(req,res)
 {
+    console.log(req.params,"^^This is the photoRef");
+    
     let photoRef=req.params.ref;
 
-    await axios.get(`https://maps.googleapis.com/maps/api/place/photo?key=${process.env.GOOGLE_KEY}&photoreference=${photoRef}`, {mode: 'cors'})
+    await axios.get(`https://maps.googleapis.com/maps/api/place/photo?photo_reference=${photoRef}&key=${process.env.GOOGLE_KEY}`, {mode: 'cors'})
         .then((response) => {
             console.log(response.data,"^^This is the response data")
             return(response.data)
@@ -61,8 +63,8 @@ function getWeather(req,res)
 async function getPlaces(req,res)
 {
     //conditional return based on req
-    //              -Does the request carry an exact coord or query search
-    //              -Will check for lat/lng within params and render accordingly 
+    // -Does the request carry an exact coord or query search
+    // -Will check for lat/lng within params and render accordingly 
     if(req.params.lat)
     {
         let lat = req.params.lat;
@@ -70,10 +72,10 @@ async function getPlaces(req,res)
         console.log(req.params.lat, "\n^^params.lat")
         console.log(req.params.lng, "\n^^params.lng")
         console.log(req.params, "\n^^ all params")
-     await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${process.env.GOOGLE_KEY}&location=${lat},${lng}&radius=16000&type=park&name=basketball`)
+     await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=32000&types=park&name=basktball&key=${process.env.GOOGLE_KEY}`)
 
         .then(result=>{
-            
+            console.log(result.data.results);
           res.json(result.data.results)
         
         })  
@@ -89,4 +91,49 @@ async function getPlaces(req,res)
         })  
 
     }
+}
+
+
+async function getPlaces2(req, res) {
+  const { lat, lng, zip } = req.params;
+  console.log("places:", lat, lng, zip);
+
+  if (lat && lng) {
+    try {
+        const response = await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json`, {
+          params: {
+            key: process.env.GOOGLE_KEY,
+            location: `${lat},${lng}`,
+            radius: 32000, // Adjust radius as needed
+            type: 'restaurant',   // You can change this to other types, e.g., 'restaurant', 'cafe', etc.
+            rankby: 'distance' // Optional: rank by distance instead of prominence
+          }
+        });
+        console.log(response.data);
+    
+        return res.json(response.data.results);
+      } catch (error) {
+        console.error("Error:", error);
+        return res.status(500).json({ message: "Error fetching nearby places", error: error.message });
+      }
+  } else if (zip) {
+    try {
+      const response = await axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json`, {
+        params: {
+          key: process.env.GOOGLE_KEY,
+          query: zip,
+          radius: 3200000, // Adjust radius as needed
+          type: 'park'   // You can change this to other types, e.g., 'restaurant', 'cafe', etc.
+        }
+      });
+      console.log(response.data);
+  
+      return res.json(response.data.results);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "Error fetching nearby places", error: error.message });
+    }
+  } else {
+    return res.status(400).json({ message: "Invalid request" });
+  }
 }

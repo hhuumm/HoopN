@@ -33,6 +33,8 @@ function getPlacesZ(zip)
 
 function getPhoto(ref)
 {
+    console.log(ref,"^^This is the photoRef");
+    
     return fetch (BASE_URL+"photos/"+ref)
     .then((response)=>{
         console.log(response,"\n^^This is the photo response")
@@ -53,12 +55,12 @@ function getPlacesL(lat,lng)
 {
    return fetch (BASE_URL+"nps/loc/"+lat+"&"+lng)
     .then((response)=>{
+        // console.log(response.json(), 'response.json() here');
         return response.json()
 
     }) 
     .then((data)=>{
-       
-        console.log(data, 'places')
+        console.log(data, 'places here')
        return data
         
     })
@@ -84,10 +86,10 @@ function getPlaceById(placeId) {
 // eslint-disable-next-line
 export default
 {
-getWeatherZ,
-getWeatherL,
-getPlacesZ,
-getPlacesL,
-getPlaceById,
-getPhoto
+    getWeatherZ,
+    getWeatherL,
+    getPlacesZ,
+    getPlacesL,
+    getPlaceById,
+    getPhoto
 }

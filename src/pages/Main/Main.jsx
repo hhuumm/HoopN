@@ -26,7 +26,7 @@ function Main(props) {
                         <span className="weather3">{weather.name}</span>
 
                         {weather.weather.map(weather =>
-                            <span className="weather1">{weather.main}<br /><img className="weather-icon" src={"https://s3.gifyu.com/images/" + weather.icon + ".png"}></img>
+                            <span key={weather.icon} className="weather1">{weather.main}<br /><img className="weather-icon" src={"https://s3.gifyu.com/images/" + weather.icon + ".png"}></img>
                             </span>
                         )}
 

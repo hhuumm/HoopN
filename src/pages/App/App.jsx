@@ -46,12 +46,14 @@ class App extends Component {
 
     if (previousState.latitude !== this.state.latitude) {
       let weather = await apiService.default.getWeatherL(this.state.latitude, this.state.longitude)
+      console.log(weather, "weather");
       let windDirection = await getWindDirection(weather.wind.deg)
       let sunrise = await getTimeFromTimestamp(weather.sys.sunrise);
       let sunset = await getTimeFromTimestamp(weather.sys.sunset);
       let places = await apiService.default.getPlacesL(this.state.latitude, this.state.longitude)
 
       this.setState({ weather, windDirection, places, sunset, sunrise })
+      console.log(places, "here");
     }
   }
 
