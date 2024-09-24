@@ -18,6 +18,7 @@ import EventDetails from "../EventDetails/EventDetails";
 import SearchLocations from '../SearchLocations/SearchLocations'
 import LocationDetails from '../../components/LocationDetails/LocationDetails'
 import { getTimeFromTimestamp, getWindDirection } from '../../services/utils';
+import Reset from "../ResetPassword/Reset";
 
 
 class App extends Component {
@@ -46,12 +47,14 @@ class App extends Component {
 
     if (previousState.latitude !== this.state.latitude) {
       let weather = await apiService.default.getWeatherL(this.state.latitude, this.state.longitude)
+      console.log(weather, "weather");
       let windDirection = await getWindDirection(weather.wind.deg)
       let sunrise = await getTimeFromTimestamp(weather.sys.sunrise);
       let sunset = await getTimeFromTimestamp(weather.sys.sunset);
       let places = await apiService.default.getPlacesL(this.state.latitude, this.state.longitude)
 
       this.setState({ weather, windDirection, places, sunset, sunrise })
+      console.log(places, "here");
     }
   }
 
@@ -180,6 +183,12 @@ class App extends Component {
             />
           )}
         />
+        <Route
+          exact
+          path="/reset-password" // Include the `:token` parameter in the path
+          render={(props) => <Reset {...props} />} // Pass the `match` object to the `Reset` component
+        />
+
         <Route
           exact path="/users"
           render={({ history }) => authService.getUser() ?

@@ -5,6 +5,8 @@ import './LocationDetails.css'
 
 
 function LocationDetails(props) {
+  console.log(props);
+  
   const { events, history, user, location, weather, places } = props;
 
   const{park}=location.state;

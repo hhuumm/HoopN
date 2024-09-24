@@ -1,13 +1,13 @@
 import React from "react";
 import "./SearchLocations.css";
-import LocationDetails from "../../components/LocationDetails/LocationDetails";
 import { Link } from 'react-router-dom'
 import Card from "react-bootstrap/Card"
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import { ListGroup } from 'react-bootstrap';
 
 
 function SearchLocations(props) {
-  const { event, user, places, weather, history,getPhoto} = props;
+  console.log(props);
+  const { event, user, places, weather, history, getPhoto} = props;
 
 
   
@@ -21,7 +21,7 @@ function SearchLocations(props) {
             <ListGroup variant="flush">
             {places.map((park) => (
               
-              <ListGroup.Item><Link to={{ pathname: '/location/details', state: { park },getPhoto }}>
+              <ListGroup.Item key={park.name}><Link to={{ pathname: '/location/details', state: { park }, getPhoto }}>
               {park.name}
             </Link></ListGroup.Item>
             ))}

@@ -1,0 +1,16 @@
+.Reset input{
+  margin-bottom:40px;
+  width: 300px;
+  font-size: 1em;
+  padding: 8px;
+  border-radius: 8px;
+}
+.Reset h2 {
+    color: #F24726;
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+.Reset button{
+  margin-top: 0px;
+} 

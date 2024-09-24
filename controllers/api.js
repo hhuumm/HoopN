@@ -10,9 +10,11 @@ module.exports=
 
 async function getPhoto(req,res)
 {
+    console.log(req.params,"^^This is the photoRef");
+    
     let photoRef=req.params.ref;
 
-    await axios.get(`https://maps.googleapis.com/maps/api/place/photo?key=${process.env.GOOGLE_KEY}&photoreference=${photoRef}`, {mode: 'cors'})
+    await axios.get(`https://maps.googleapis.com/maps/api/place/photo?photo_reference=${photoRef}&key=${process.env.GOOGLE_KEY}`, {mode: 'cors'})
         .then((response) => {
             console.log(response.data,"^^This is the response data")
             return(response.data)
@@ -61,8 +63,8 @@ function getWeather(req,res)
 async function getPlaces(req,res)
 {
     //conditional return based on req
-    //              -Does the request carry an exact coord or query search
-    //              -Will check for lat/lng within params and render accordingly 
+    // -Does the request carry an exact coord or query search
+    // -Will check for lat/lng within params and render accordingly 
     if(req.params.lat)
     {
         let lat = req.params.lat;
@@ -70,10 +72,10 @@ async function getPlaces(req,res)
         console.log(req.params.lat, "\n^^params.lat")
         console.log(req.params.lng, "\n^^params.lng")
         console.log(req.params, "\n^^ all params")
-     await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${process.env.GOOGLE_KEY}&location=${lat},${lng}&radius=16000&type=park&name=basketball`)
+     await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=32000&types=park&name=basktball&key=${process.env.GOOGLE_KEY}`)
 
         .then(result=>{
-            
+            console.log(result.data.results);
           res.json(result.data.results)
         
         })  

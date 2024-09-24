@@ -21,6 +21,7 @@ function MyEventsList(props) {
                 <div className='EventList-grid'>
                     {myGames.map(event =>
                         <EventListCard
+                            key={event._id}
                             event={event}
                             user={user}
                             handleShow={handleShow}
