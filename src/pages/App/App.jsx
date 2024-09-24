@@ -18,6 +18,7 @@ import EventDetails from "../EventDetails/EventDetails";
 import SearchLocations from '../SearchLocations/SearchLocations'
 import LocationDetails from '../../components/LocationDetails/LocationDetails'
 import { getTimeFromTimestamp, getWindDirection } from '../../services/utils';
+import Reset from "../ResetPassword/Reset";
 
 
 class App extends Component {
@@ -182,6 +183,12 @@ class App extends Component {
             />
           )}
         />
+        <Route
+          exact
+          path="/reset-password" // Include the `:token` parameter in the path
+          render={(props) => <Reset {...props} />} // Pass the `match` object to the `Reset` component
+        />
+
         <Route
           exact path="/users"
           render={({ history }) => authService.getUser() ?

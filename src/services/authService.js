@@ -43,10 +43,35 @@ function login(creds) {
   .then(({ token }) => tokenService.setToken(token));
 }
 
+function reset(email, token) {
+  console.log(email, token, "HERE");
+  return fetch(BASE_URL + `reset-password/${token}`, {
+    method: 'POST',
+    headers: new Headers({ 'Content-Type': 'application/json' }),
+    body: JSON.stringify(email)
+  })
+    .then(res => {
+      if (res.ok) return res.json();
+      throw new Error('Reset password request failed');
+    })
+    .then(data => {
+      // Handle the response data as needed
+      console.log(data);
+      return data;
+    })
+    .catch(error => {
+      console.error('Error resetting password:', error);
+      throw error;
+    });
+}
+
+
+
 // eslint-disable-next-line
 export default {
   signup,
   getUser,
   logout,
   login,
+  reset,
 };
