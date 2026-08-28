@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { router } from "react-router-dom"
+import React from "react";
 import { Link } from "react-router-dom";
 import './Main.css'
 
 
 function Main(props) {
 
-    const { weather, history, sunrise, sunset, windDirection,user } = props;
+    const { weather, sunrise, sunset, windDirection, user } = props;
 
 
     return (
@@ -26,7 +25,7 @@ function Main(props) {
                         <span className="weather3">{weather.name}</span>
 
                         {weather.weather.map(weather =>
-                            <span key={weather.icon} className="weather1">{weather.main}<br /><img className="weather-icon" src={"https://s3.gifyu.com/images/" + weather.icon + ".png"}></img>
+                            <span key={weather.icon} className="weather1">{weather.main}<br /><img className="weather-icon" src={"https://s3.gifyu.com/images/" + weather.icon + ".png"} alt=""></img>
                             </span>
                         )}
 
@@ -41,9 +40,7 @@ function Main(props) {
                     </div>
                 </div>
                 :
-                <div>
-                    <img className="load-gif" className="load-gif" src="https://media.giphy.com/media/vZROLXfaqhbhHO8qwr/giphy.gif"></img>
-                </div>
+                <p className="main-page">Local weather is unavailable right now. You can still browse and create games.</p>
             }
 
         </>

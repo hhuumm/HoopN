@@ -1,12 +1,12 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt')
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
-const SALT_ROUNDS = 6;
+const SALT_ROUNDS = 12;
 
 const userSchema = new mongoose.Schema({
-  name: String,
-  email: {type: String, required: true, lowercase: true, unique: true},
-  password: String
+  name: { type: String, required: true, trim: true, maxlength: 80 },
+  email: { type: String, required: true, lowercase: true, trim: true, unique: true, maxlength: 254 },
+  password: { type: String, required: true, minlength: 8, select: false },
 }, {
   timestamps: true
 });
@@ -19,19 +19,13 @@ userSchema.set('toJSON', {
   }
 });
 
-userSchema.pre("save", function (next) {
-  // this will be set to the current document
-  const user = this;
-  if(!user.isModified("password")) return next()
-  bcrypt.hash(user.password, SALT_ROUNDS, function (err, hash) {
-    if (err) return next(err)
-    user.password = hash
-    next()
-  })
+userSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
+  this.password = await bcrypt.hash(this.password, SALT_ROUNDS);
 });
 
-userSchema.methods.comparePassword = function(tryPassword, cb) {
-  bcrypt.compare(tryPassword, this.password, cb)
-}
+userSchema.methods.comparePassword = function (candidate) {
+  return bcrypt.compare(candidate, this.password);
+};
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model("User", userSchema);

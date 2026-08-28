@@ -1,94 +1,80 @@
-const Event = require('../models/Event')
-const {ObjectId} = require('mongodb'); 
+const Event = require("../models/Event");
 
-module.exports = {
-  create,
-  index,
-  delete: deleteEvent,
-  update,
-  myGames,
-  locationGames,
-  createReview,
-  indexReviews,
-  addParticipant
+const populated = (query) => query.populate("createdBy", "name").populate("participant", "name").populate("reviews.reviewer", "name");
+const eventInput = (body) => ({
+  title: body.title,
+  placeId: body.placeId,
+  locName: body.locName,
+  address: body.address,
+  court: body.court,
+  date: body.date,
+  time: body.time,
+});
+
+module.exports = { create, index, delete: deleteEvent, update, myGames, locationGames, createReview, addParticipant, removeParticipant };
+
+async function index(_req, res, next) {
+  try { res.json(await populated(Event.find({}).sort({ date: 1, time: 1 }))); }
+  catch (error) { next(error); }
 }
 
-function indexReviews(req, res) {
-  Event.reviews.find({})
-  .populate('reviewer')
-  .then(review => {console.log(review)
-    res.json(review)})
-  .catch(err => {res.json(err)})
+async function locationGames(req, res, next) {
+  try { res.json(await populated(Event.find({ placeId: req.params.id }).sort({ date: 1, time: 1 }))); }
+  catch (error) { next(error); }
 }
 
-function addParticipant(req,res)
-{
-console.log(req.params.id+"\n^^^Event that user wants to participate in")
-
-
-}
-function createReview(req, res) {
-  req.body.reviewer = req.user._id
-  reviews.push(req.body.content)
-  .populate('reviewer')
-  Event.createReview(req.body.content)
-  .then(review => res.json(review))
-  .catch(err => res.json(err))
+async function myGames(req, res, next) {
+  try { res.json(await populated(Event.find({ participant: req.user._id }).sort({ date: 1, time: 1 }))); }
+  catch (error) { next(error); }
 }
 
-function locationGames(req,res)
-{
-  const locationID=req.params.id;
-  Event.find({placeId: locationID})
-  .then((events) => {
-    res.json(events)
-  })
+async function create(req, res, next) {
+  try {
+    const event = await Event.create({ ...eventInput(req.body), createdBy: req.user._id, participant: [req.user._id] });
+    res.status(201).json(await populated(Event.findById(event._id)));
+  } catch (error) { error.status = 400; error.expose = true; next(error); }
 }
-function myGames(req, res) {
-  Event.find({participant: req.user.id})
-  .then((events) => {
-    res.json(events)
-  })
-  participant.push(req.user._id)
-  .then(events => {res.json(events)})
-  .catch(err => {res.json(err)})
-  }
 
-function update(req, res) {
-  req.body.reviews.forEach(review=>{
-    review.reviewer=ObjectId(review.reviewer)
-    review.rating=parseInt(review.rating)
-    
-  })
-  console.log(req.body,"\n^^The Update to the event in the backend")
-    Event.findByIdAndUpdate(req.params.id, req.body, {new: true})
-    .then(event => {res.json(event)})
-    .catch(err => {res.json(err)})
-  }
+async function update(req, res, next) {
+  try {
+    const event = await populated(Event.findOneAndUpdate({ _id: req.params.id, createdBy: req.user._id }, eventInput(req.body), { new: true, runValidators: true }));
+    if (!event) return res.status(404).json({ error: "Event not found or not owned by this user" });
+    res.json(event);
+  } catch (error) { error.status = 400; error.expose = true; next(error); }
+}
 
-function deleteEvent(req, res) {
-    Event.findByIdAndDelete(req.params.id)
-    .then(event => {res.json(event)})
-    .catch(err => {res.json(err)})
-  }
-  
+async function deleteEvent(req, res, next) {
+  try {
+    const event = await Event.findOneAndDelete({ _id: req.params.id, createdBy: req.user._id });
+    if (!event) return res.status(404).json({ error: "Event not found or not owned by this user" });
+    res.json(event);
+  } catch (error) { next(error); }
+}
 
-function create(req, res) {
-    req.body.createdBy = req.user._id
+async function addParticipant(req, res, next) {
+  try {
+    const event = await populated(Event.findByIdAndUpdate(req.params.id, { $addToSet: { participant: req.user._id } }, { new: true }));
+    if (!event) return res.status(404).json({ error: "Event not found" });
+    res.json(event);
+  } catch (error) { next(error); }
+}
 
-    req.body.participant = [req.user._id]
-    // req.body.location = req.location._id
+async function removeParticipant(req, res, next) {
+  try {
+    const event = await populated(Event.findByIdAndUpdate(req.params.id, { $pull: { participant: req.user._id } }, { new: true }));
+    if (!event) return res.status(404).json({ error: "Event not found" });
+    res.json(event);
+  } catch (error) { next(error); }
+}
 
-    Event.create(req.body)
-    .then(event => {res.json(event)})
-    .catch(err => {res.json(err)})
-  }
-
-function index(req, res) {
-    Event.find({})
-    .populate('createdBy')
-    .populate('location')
-    .populate('participant')
-    .then(events => {res.json(events)})
-    .catch(err => {res.json(err)})
-  }
+async function createReview(req, res, next) {
+  const rating = Number(req.body.rating);
+  const content = String(req.body.content || "").trim();
+  if (!Number.isInteger(rating) || rating < 1 || rating > 5 || !content)
+    return res.status(400).json({ error: "A rating from 1 to 5 and review text are required" });
+  try {
+    const event = await populated(Event.findByIdAndUpdate(req.params.id, { $push: { reviews: { reviewer: req.user._id, name: req.user.name, rating, content } } }, { new: true, runValidators: true }));
+    if (!event) return res.status(404).json({ error: "Event not found" });
+    res.json(event);
+  } catch (error) { next(error); }
+}

@@ -1,221 +1,116 @@
-import React from 'react';
-import { Link, useParams } from "react-router-dom";
-import './EventDetailsCard.css'
-import Card from "react-bootstrap/Card"
-import Button from "react-bootstrap/Button"
-import EventDetails from '../../pages/EventDetails/EventDetails' //??????
-import axios from 'axios';
-function EventDetailsCard(props) {
-	const [rating, setRating] = React.useState(null)
-	const [review, setReview] = React.useState(null)
-	console.log(props, "^^Events details card inside events details")
-	let event = null;
+import React, { useMemo, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import './EventDetailsCard.css';
 
+const stars = (rating) => '⭐'.repeat(Number(rating) || 0) || 'Not rated';
+const identity = (value) => String(value?._id || value || '');
 
-	const { id } = useParams()
-	console.log(id,"\n^^ID on event details page")
-	const { user, deleteEvent, participant, court, places, update, handleAddPlayer, history, events } = props
-	let participating = false;
-	let inGame = [];
-	
-		console.log("Looking for event")
-		events.forEach(e => {
-			console.log("comparing\n",typeof e._id,"\n",typeof id)
-			if (e._id === id) {
-				event=e
-				console.log(e,"Found Event")
-			}
-		})
-	
-	console.log(event, "Event b4 execution")
-	let thisPlace = null;
-	places.forEach(place => {
-		if (event.placeId === place.place_id) {
-			thisPlace = place;
-		}
-	})
-	console.log(event.participant)
-	async function updateEvent() {
-		if (participating) {
-			console.log("Leaving Game")
-			let players = event.participant.filter(player => { return player._id != user._id })
-			event.participant = players
-		}
-		else {
-			event.participant.push(user)
-		}
-		await update(event)
-	}
-	try {
-		let inGame = event.participant.filter(person => person._id.toString() == user._id.toString())
-		if (inGame.length > 0) { participating = true; }
-	}
-	catch (err) {
-		if (event.participant.includes(user._id)) { participating = true }
-	}
-	const handleRating = (e) => {
-		console.log(e.target.value, "\n^^e.target.value")
-		setRating(e.target.value)
-	}
-	const handleReview = (e) => {
-		console.log(e.target.value, "\n^^e.target.value reviewww")
-		setReview(e.target.value)
-	}
-	async function clicked(e) {
-		console.log(event, "\n^^This is the event before we create review obj")
-		const rev = {
-			reviewer: user._id,
-			name: user.name,
-			rating: rating,
-			content: review
-		}
-		event.reviews.push(rev)
-		console.log(event, "\nAdded to the event ^^ look")
-		await update(event)
-		setReview('')
-		setRating('0')
-		console.log(event.reviews, "\n^^These are the reviews")
-	}
+function EventDetailsCard({ events = [], places = [], user, deleteEvent, history, setParticipation, addReview }) {
+  const { id } = useParams();
+  const [rating, setRating] = useState('');
+  const [review, setReview] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const event = events.find(candidate => candidate._id === id);
+  const imageNumber = useMemo(() => (id ? [...id].reduce((sum, char) => sum + char.charCodeAt(0), 0) % 20 + 1 : 1), [id]);
 
-	function renderSwitch(param) {
-		switch(param) {
-			case 1:
-				return '⭐'
-			case 2:
-				return '⭐⭐'
-			case 3:
-				return '⭐⭐⭐'
-			case 4:
-				return '⭐⭐⭐⭐'
-			case 5:
-				return '⭐⭐⭐⭐⭐'
-		  default:
-			return 'no rating';
-		}
-	  }
-	async function removeEvent(e){
-		deleteEvent(event._id)
-		history.push('/events')
+  if (!event) {
+    return <div className="event-status" role="status">Loading game details…</div>;
+  }
 
-	}
-	const randPic = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
-	// console.log(`/images/${randPic}.jpg`)
-	//thisPlace = current google place
-	//event = current event
-	event.reviews.map(review => 
-		{
-			review.content.toString()
-			
-			console.log(review.content)
-		})	
-	return (
-		<>
-			<div className='EventList-detail'>
-				<Card style={{ width: '18rem' }}>
-					<Card.Img variant="top" src={`/images/${randPic}.jpg`} />
-					<Card.Body>
-						<Card.Title>{event.title}</Card.Title>
-						<span style={{ fontWeight: '500' }}>{event.locName}</span><br />
-						<span>{event.address}</span><br />
-						<span>{event.date} - </span>
-						<span>{event.time}</span><br />
-						<span>Created By: {event.createdBy.name}</span><br />
-						<div>
-							<i class="fas fa-user-minus" />
-							<span>Participants: <br />
-								<div className="participants" >
-									{
-										event.participant.map(participants =>
-											participants.name + ", \n"
-										)}
-									{user && (user._id === event.createdBy || user._id !== event.createdBy._id) &&
-										<>
-											{participating ?
-												<span><br /><Link className="active join-leave" onClick={updateEvent}><img src="https://i.ibb.co/Q6xz3ch/remove-user.png" /></Link>Leave Game</span>
-												:
-												<span><br /><Link className="join-leave" onClick={updateEvent}><img src="https://i.ibb.co/vVgQY4N/add-user.png" /></Link>Join Game</span>
-											}
-										</>
-									}
-								</div>
-							</span>
-						</div>
-					</Card.Body>
-					{user && (user._id === event.createdBy || user._id === event.createdBy._id) &&
-						<>
-							<div className="up-del" >
-								<Button
-									variant="danger"
-									type="submit"
-									onClick={removeEvent}
-								>Delete</Button>
-								<Link
-									to={{
-										pathname: '/edit',
-										state: { event },
-										thisPlace
-									}}
-								><Button variant="primary">Edit</Button></Link>
-							</div>
-						</>
-					}
-					<h5>Leave a Review</h5>
-					<div className="row">
-						<div className="input-field col s12 rev-span">
-							<input
-								name="content"
-								placeholder="Leave Your Comment Here"
-								id="location_review_content"
-								type="text"
-								value={review}
-								className="active"
-								onChange={(e) => handleReview(e)}
-							/>
-						</div>
-					</div>
-					<div className="review-card">
-						<span className="active-span one-five">Rate(1-5):</span>
-						<select
-							name="rating"
-							placeholder="Rating 1-5"
-							id="location_review_rating"
-							type="text"
-							className="active slct"
-							required
-							value={rating}
-							onChange={(e) => handleRating(e)}
-						>
-							<option value="0"></option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select>
-						<button
-							className="button rev-btn"
-							onClick={(e) => clicked(e)}
-						>Submit</button>
+  const participants = event.participant || [];
+  const reviews = event.reviews || [];
+  const isParticipating = participants.some(person => identity(person) === identity(user));
+  const isOwner = identity(event.createdBy) === identity(user);
+  const thisPlace = places.find(place => place.place_id === event.placeId);
 
+  async function run(action) {
+    setBusy(true);
+    setError('');
+    try {
+      await action();
+    } catch (requestError) {
+      setError(requestError.message || 'Something went wrong. Please try again.');
+    } finally {
+      setBusy(false);
+    }
+  }
 
+  function removeEvent() {
+    run(async () => {
+      await deleteEvent(event._id);
+      history.push('/events');
+    });
+  }
 
+  function toggleParticipation() {
+    run(() => setParticipation(event._id, isParticipating));
+  }
 
-					</div>
-					<div className="reviews-div">
-					{
-						event.reviews.map((review,indx)=>
-						<>
-							<span className="reviews-span">{review.name}: <span className="allstars" >{renderSwitch(review.rating)}</span> {review.content}</span>
-							</>
-							
-						)
-					}
-					</div>
-				</Card>
+  function submitReview(submitEvent) {
+    submitEvent.preventDefault();
+    run(async () => {
+      await addReview(event._id, { rating: Number(rating), content: review });
+      setRating('');
+      setReview('');
+    });
+  }
 
+  return (
+    <div className="EventList-detail">
+      <Card className="event-detail-card">
+        <Card.Img variant="top" src={`/images/${imageNumber}.jpg`} alt="Outdoor basketball court" />
+        <Card.Body>
+          <Card.Title>{event.title}</Card.Title>
+          <p className="event-location"><strong>{event.locName}</strong><br />{event.address}</p>
+          <p>{event.date} at {event.time}</p>
+          <p>Created by {event.createdBy?.name || 'a HoopN player'}</p>
 
-			</div>
-		</>
-	)
+          <section aria-labelledby="participants-heading">
+            <h5 id="participants-heading">Players ({participants.length})</h5>
+            <p>{participants.map(person => person.name || 'Player').join(', ') || 'No players yet'}</p>
+            {!isOwner && (
+              <Button variant={isParticipating ? 'outline-danger' : 'success'} disabled={busy} onClick={toggleParticipation}>
+                {isParticipating ? 'Leave game' : 'Join game'}
+              </Button>
+            )}
+          </section>
+        </Card.Body>
+
+        {isOwner && (
+          <div className="up-del">
+            <Button variant="danger" disabled={busy} onClick={removeEvent}>Delete</Button>
+            <Link to={{ pathname: '/edit', state: { event, thisPlace } }}><Button variant="primary">Edit</Button></Link>
+          </div>
+        )}
+
+        <form className="review-card" onSubmit={submitReview}>
+          <h5>Leave a review</h5>
+          <label htmlFor="location_review_content">Comment</label>
+          <textarea id="location_review_content" value={review} onChange={changeEvent => setReview(changeEvent.target.value)} required />
+          <label htmlFor="location_review_rating">Rating</label>
+          <select id="location_review_rating" value={rating} onChange={changeEvent => setRating(changeEvent.target.value)} required>
+            <option value="">Choose 1–5</option>
+            {[1, 2, 3, 4, 5].map(value => <option key={value} value={value}>{value}</option>)}
+          </select>
+          <Button type="submit" disabled={busy}>Submit review</Button>
+          {error && <p className="event-error" role="alert">{error}</p>}
+        </form>
+
+        <section className="reviews-div" aria-labelledby="reviews-heading">
+          <h5 id="reviews-heading">Reviews</h5>
+          {reviews.length === 0 && <p>No reviews yet.</p>}
+          {reviews.map(item => (
+            <p className="reviews-span" key={item._id || `${item.name}-${item.createdAt}`}>
+              <strong>{item.name || item.reviewer?.name || 'Player'}</strong>: <span className="allstars" aria-label={`${item.rating} out of 5 stars`}>{stars(item.rating)}</span> {item.content}
+            </p>
+          ))}
+        </section>
+      </Card>
+    </div>
+  );
 }
+
 export default EventDetailsCard;

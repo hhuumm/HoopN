@@ -10,6 +10,8 @@
 
 # production
 /build
+/.vite
+/.codepilot
 
 # misc
 .DS_Store

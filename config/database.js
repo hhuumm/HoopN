@@ -1,14 +1,12 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-mongoose.connect(process.env.DATABASE_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false
-});
+async function connectDatabase() {
+  const url = process.env.DATABASE_URL;
+  if (!url) throw new Error("DATABASE_URL is required");
+  await mongoose.connect(url, { serverSelectionTimeoutMS: 10_000 });
+  const { name, host, port } = mongoose.connection;
+  console.log(`Connected to MongoDB ${name} at ${host}:${port}`);
+  return mongoose.connection;
+}
 
-const db = mongoose.connection;
-
-db.once('connected', () => {
-  console.log(`Connected to MongoDB ${db.name} at ${db.host}:${db.port}`);
-});
+module.exports = { connectDatabase };

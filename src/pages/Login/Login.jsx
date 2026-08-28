@@ -17,7 +17,6 @@ class LoginPage extends Component {
 
   handleSubmit = async (e) => {
     const { history, handleSignupOrLogin } = this.props;
-    console.log(history, handleSignupOrLogin, e, this.props);
     e.preventDefault();
     try {
       await authService.login(this.state);
@@ -55,12 +54,7 @@ class LoginPage extends Component {
             onChange={this.handleChange}
           />
           <br></br>
-          <span>Forgot password? </span>
-          <Link className="reset-link" to="/reset-password">
-            Reset
-          </Link>
-          <br></br>
-          <span>No account yet??? </span>
+          <span>No account yet? </span>
           <Link className="sign-up-link" to="/signup">
             Sign Up
           </Link>

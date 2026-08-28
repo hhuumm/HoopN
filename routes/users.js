@@ -13,7 +13,7 @@ router.get("/", checkAuth, usersCtrl.index)
 
 function checkAuth(req, res, next) {
   if (req.user) return next();
-  return res.status(401).json({msg: 'Not Authorized'});
+  return res.status(401).json({ error: 'Authentication required' });
 }
 
 module.exports = router;

@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import './CreateEvent.css'
 
 class CreateEvent extends Component {
@@ -6,9 +6,9 @@ class CreateEvent extends Component {
         invalidForm: true,
         formData: {
             title: '',
-            placeId: this.props.location.props.location.state.park.place_id,
-            locName: this.props.location.props.location.state.park.name,
-            address: this.props.location.props.location.state.park.vicinity,
+            placeId: this.props.location.state.park.place_id,
+            locName: this.props.location.state.park.name,
+            address: this.props.location.state.park.vicinity,
             court: '', 
             createdBy: this.props.user._id,
             participant: [this.props.user._id],
@@ -23,7 +23,6 @@ class CreateEvent extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        console.log(this.state.formData, "\n^^ this is formData")
         this.props.handleAddEvent(this.state.formData)
     }
 
@@ -43,9 +42,7 @@ class CreateEvent extends Component {
 
     render() {
         
-        const {park} = this.props.location.props.location.state
-        console.log(park,"\n^^This is the park")
-        console.log(this.props, "\n^^This is props Create Event")
+        const { park } = this.props.location.state
         
         return (
             <div className="CreateEvent">
@@ -118,8 +115,9 @@ class CreateEvent extends Component {
                                 id="court"
                                 type="text"
                                 className="active"
-                                value={this.state.formData.court.name}
+                                value={this.state.formData.court}
                                 onChange={this.handleChange}
+                                required
                             />
                         </div>
                     </div>
@@ -131,8 +129,9 @@ class CreateEvent extends Component {
                                 min={this.todaysDate()}
                                 type="date"
                                 className="active"
-                                value={this.state.formData.court.name}
+                                value={this.state.formData.date}
                                 onChange={this.handleChange}
+                                required
                             >
                             </input>
                         </div>
@@ -144,8 +143,9 @@ class CreateEvent extends Component {
                                 id="time"
                                 type="time"
                                 className="active"
-                                value={this.state.formData.court.time}
+                                value={this.state.formData.time}
                                 onChange={this.handleChange}
+                                required
                             >
                             </input>
                         </div>
