@@ -1,94 +1,71 @@
-const axios = require("axios")
+const axios = require("axios");
 
-module.exports=
-{
-    getWeather,
-    getPlaces,
-    getPlaceById,
-    getPhoto
+module.exports = { getWeather, getPlaces, getPlaceById, getPhoto };
+
+function requiredKey(name) {
+  const value = process.env[name];
+  if (!value) {
+    const error = new Error(`${name} is not configured`);
+    error.status = 503;
+    error.expose = true;
+    throw error;
+  }
+  return value;
 }
 
-async function getPhoto(req,res)
-{
-    console.log(req.params,"^^This is the photoRef");
-    
-    let photoRef=req.params.ref;
-
-    await axios.get(`https://maps.googleapis.com/maps/api/place/photo?photo_reference=${photoRef}&key=${process.env.GOOGLE_KEY}`, {mode: 'cors'})
-        .then((response) => {
-            console.log(response.data,"^^This is the response data")
-            return(response.data)
-        })
-        .catch(err=>{console.log(err)})
+async function getWeather(req, res, next) {
+  try {
+    const params = req.params.lat
+      ? { lat: req.params.lat, lon: req.params.lng }
+      : { zip: `${req.params.zip},us` };
+    const response = await axios.get("https://api.openweathermap.org/data/2.5/weather", {
+      params: { ...params, appid: requiredKey("OPENWEATHER_KEY"), units: "imperial" },
+      timeout: 10_000,
+    });
+    res.json(response.data);
+  } catch (error) { next(upstreamError(error, "Weather service request failed")); }
 }
 
-async function getPlaceById(req, res) {
-    let placeId = req.params.id
-
-    await axios.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=${process.env.GOOGLE_KEY}`, {mode: 'cors'})
-        .then((response) => {
-            console.log(response.data)
-            return(response.data)
-        })
-        .then((data)=>{res.json(data)})
-        .catch(err=>{console.log(err)})
+async function getPlaces(req, res, next) {
+  try {
+    const nearby = Boolean(req.params.lat);
+    const endpoint = nearby ? "nearbysearch" : "textsearch";
+    const params = nearby
+      ? { location: `${req.params.lat},${req.params.lng}`, radius: 16_000, type: "park", keyword: "basketball court" }
+      : { query: `basketball courts near ${req.params.zip}`, radius: 16_000, type: "park" };
+    const response = await axios.get(`https://maps.googleapis.com/maps/api/place/${endpoint}/json`, {
+      params: { ...params, key: requiredKey("GOOGLE_KEY") },
+      timeout: 10_000,
+    });
+    res.json(response.data.results || []);
+  } catch (error) { next(upstreamError(error, "Places service request failed")); }
 }
 
-function getWeather(req,res)
-{
-    if(req.params.lat)
-    {
-        let lat = req.params.lat;
-        let lng= req.params.lng;
-        
-        axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.OPENWEATHER_KEY}&units=imperial`,{mode:'cors'})
-            .then((response)=>
-            {
-                return(response.data)
-            })
-            .then((data)=>{res.json(data)})
-            .catch(err=>{console.log(err)})
-
-    }
-    else if(req.params.zip){
-        
-       axios.get(`api.openweathermap.org/data/2.5/weather?zip=${req.params.zip},us&appid=${process.env.OPENWEATHER_KEY}&units=imperial`,{mode:'cors'})
-        .then((result)=>res.json(result.data))
-    }
-    else{ res.json("No weather For u")}
-
-   
+async function getPlaceById(req, res, next) {
+  try {
+    const response = await axios.get("https://maps.googleapis.com/maps/api/place/details/json", {
+      params: { place_id: req.params.id, key: requiredKey("GOOGLE_KEY") },
+      timeout: 10_000,
+    });
+    res.json(response.data);
+  } catch (error) { next(upstreamError(error, "Place details request failed")); }
 }
 
-async function getPlaces(req,res)
-{
-    //conditional return based on req
-    // -Does the request carry an exact coord or query search
-    // -Will check for lat/lng within params and render accordingly 
-    if(req.params.lat)
-    {
-        let lat = req.params.lat;
-        let lng = req.params.lng;
-        console.log(req.params.lat, "\n^^params.lat")
-        console.log(req.params.lng, "\n^^params.lng")
-        console.log(req.params, "\n^^ all params")
-     await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=32000&types=park&name=basktball&key=${process.env.GOOGLE_KEY}`)
+async function getPhoto(req, res, next) {
+  try {
+    const response = await axios.get("https://maps.googleapis.com/maps/api/place/photo", {
+      params: { photo_reference: req.params.ref, maxwidth: 1200, key: requiredKey("GOOGLE_KEY") },
+      responseType: "arraybuffer",
+      timeout: 10_000,
+    });
+    res.type(response.headers["content-type"] || "image/jpeg").send(response.data);
+  } catch (error) { next(upstreamError(error, "Place photo request failed")); }
+}
 
-        .then(result=>{
-            console.log(result.data.results);
-          res.json(result.data.results)
-        
-        })  
-    }
-    else if(req.params.zip){
-
-        let zip = req.params.zip;
-        await axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?key=${process.env.GOOGLE_KEY}&query=${zip}&radius=32000&type=park`)
-        .then(result=>{
-            
-          res.json(result.data.results)
-        
-        })  
-
-    }
+function upstreamError(error, fallback) {
+  if (error.status) return error;
+  const wrapped = new Error(fallback, { cause: error });
+  wrapped.status = error.response?.status || 502;
+  wrapped.expose = true;
+  return wrapped;
 }

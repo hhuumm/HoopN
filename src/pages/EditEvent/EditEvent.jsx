@@ -45,7 +45,7 @@ class EditEvent extends Component {
 								type="text"
 								disabled
 								className="active"
-								value={this.props.location.thisPlace.name}
+								value={this.props.location.state.thisPlace?.name || this.state.formData.locName}
 								onChange={this.handleChange}
 							/>
 						</div>
@@ -58,7 +58,7 @@ class EditEvent extends Component {
 								type="text"
 								disabled
 								className="active"
-								value={this.props.location.thisPlace.vicinity}
+								value={this.props.location.state.thisPlace?.vicinity || this.state.formData.address}
 								onChange={this.handleChange}
 							/>
 						</div>

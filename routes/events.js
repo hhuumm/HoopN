@@ -1,22 +1,20 @@
 const router = require('express').Router();
 const eventsCtrl = require('../controllers/events');
 
-// Public Routes
+router.get('/', eventsCtrl.index);
+router.get('/location/:id', eventsCtrl.locationGames);
 
-// Protected Routes
 router.use(require('../config/auth'));
-router.get('/', eventsCtrl.index)
-router.get('/', eventsCtrl.indexReviews)
-router.get('/:id',eventsCtrl.myGames)
-router.get('/location/:id',eventsCtrl.locationGames)
-router.post('/addP/:id',eventsCtrl.addParticipant)
-router.post('/', checkAuth, eventsCtrl.create)
-router.post('/', checkAuth, eventsCtrl.createReview)
+router.get('/mine', checkAuth, eventsCtrl.myGames);
+router.post('/', checkAuth, eventsCtrl.create);
+router.post('/:id/participants', checkAuth, eventsCtrl.addParticipant);
+router.delete('/:id/participants/me', checkAuth, eventsCtrl.removeParticipant);
+router.post('/:id/reviews', checkAuth, eventsCtrl.createReview);
 router.delete('/:id', checkAuth, eventsCtrl.delete);
-router.put('/:id', checkAuth, eventsCtrl.update)
+router.put('/:id', checkAuth, eventsCtrl.update);
 
 function checkAuth(req, res, next) {
-    return req.user ? next() : res.status(401).json({msg: 'Not Authorized'});
+    return req.user ? next() : res.status(401).json({ error: 'Authentication required' });
 }
 
 module.exports = router;

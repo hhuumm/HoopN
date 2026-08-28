@@ -18,7 +18,6 @@ import EventDetails from "../EventDetails/EventDetails";
 import SearchLocations from '../SearchLocations/SearchLocations'
 import LocationDetails from '../../components/LocationDetails/LocationDetails'
 import { getTimeFromTimestamp, getWindDirection } from '../../services/utils';
-import Reset from "../ResetPassword/Reset";
 
 
 class App extends Component {
@@ -32,29 +31,34 @@ class App extends Component {
     sunset: ''
   };
   async componentDidMount() {
-    const events = await eventAPI.getAll();
-    let lat;
-    let lng;
+    const events = await eventAPI.getAll().catch(() => []);
+    if (!window.navigator.geolocation) {
+      this.setState({ events });
+      return;
+    }
     window.navigator.geolocation.getCurrentPosition(
       success => {
-        lat = success.coords.latitude; lng = success.coords.longitude;
         this.setState({ events, latitude: success.coords.latitude, longitude: success.coords.longitude })
-      }
+      },
+      () => this.setState({ events })
     )
   }
 
   async componentDidUpdate(previousProps, previousState) {
 
     if (previousState.latitude !== this.state.latitude) {
-      let weather = await apiService.default.getWeatherL(this.state.latitude, this.state.longitude)
-      console.log(weather, "weather");
-      let windDirection = await getWindDirection(weather.wind.deg)
-      let sunrise = await getTimeFromTimestamp(weather.sys.sunrise);
-      let sunset = await getTimeFromTimestamp(weather.sys.sunset);
-      let places = await apiService.default.getPlacesL(this.state.latitude, this.state.longitude)
-
-      this.setState({ weather, windDirection, places, sunset, sunrise })
-      console.log(places, "here");
+      try {
+        const [weather, places] = await Promise.all([
+          apiService.default.getWeatherL(this.state.latitude, this.state.longitude),
+          apiService.default.getPlacesL(this.state.latitude, this.state.longitude),
+        ]);
+        const windDirection = await getWindDirection(weather.wind.deg);
+        const sunrise = await getTimeFromTimestamp(weather.sys.sunrise);
+        const sunset = await getTimeFromTimestamp(weather.sys.sunset);
+        this.setState({ weather, windDirection, places, sunset, sunrise });
+      } catch {
+        this.setState({ weather: null, places: [] });
+      }
     }
   }
 
@@ -99,7 +103,6 @@ class App extends Component {
   }
 
   handleUpdateEvent = async updatedEventData => {
-    console.log(updatedEventData, "\n^^This is us trying to update the data")
     const updatedEvent = await eventAPI.update(updatedEventData);
     const newEventsArray = await eventAPI.getAll();
     this.setState(
@@ -109,22 +112,20 @@ class App extends Component {
     this.props.history.push(`/events/details/${updatedEvent._id}`)
   }
 
-  handleAddReview = async newReviewData => {
-    const newReview = await eventAPI.createReview(newReviewData);
-    this.setState(state => ({
-      places: this.state.places,
-      selectedReview: newReview,
-      reviews: [state.events.reviews, newReview]
-    }), () => this.props.history.push('/events/details'));
+  refreshEvents = async () => {
+    const events = await eventAPI.getAll();
+    this.setState({ events });
+    return events;
   }
 
-  handleAddPlayer = async newPlayerData => {
-    const newPlayer = await eventAPI.addParticipant(newPlayerData);
-    this.setState(state => ({
-      // console.log(state),
-      player: newPlayer,
-      participant: [state.events.participant, newPlayer]
-    }), () => this.props.history.push('/events/details'));
+  handleAddReview = async (eventId, review) => {
+    await eventAPI.createReview(eventId, review);
+    await this.refreshEvents();
+  }
+
+  handleSetParticipation = async (eventId, participating) => {
+    await (participating ? eventAPI.leave(eventId) : eventAPI.join(eventId));
+    await this.refreshEvents();
   }
   render() {
 
@@ -184,12 +185,6 @@ class App extends Component {
           )}
         />
         <Route
-          exact
-          path="/reset-password" // Include the `:token` parameter in the path
-          render={(props) => <Reset {...props} />} // Pass the `match` object to the `Reset` component
-        />
-
-        <Route
           exact path="/users"
           render={({ history }) => authService.getUser() ?
             <Users />
@@ -223,7 +218,8 @@ class App extends Component {
                 user={this.state.user}
                 delete={this.handleDeleteEvent}
                 places={this.state.places}
-                handleAddPlayer={this.handleAddPlayer}
+                setParticipation={this.handleSetParticipation}
+                addReview={this.handleAddReview}
               />
               :
               <Redirect to='/login' />

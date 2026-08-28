@@ -8,7 +8,6 @@ class Users extends Component {
 
   async componentDidMount() {
     const users = await getAllUsers();
-    console.log(users)
     this.setState({ users });
   }
 

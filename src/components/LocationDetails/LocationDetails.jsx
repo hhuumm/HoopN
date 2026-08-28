@@ -5,11 +5,8 @@ import './LocationDetails.css'
 
 
 function LocationDetails(props) {
-  console.log(props);
-  
-  const { events, history, user, location, weather, places } = props;
-
-  const{park}=location.state;
+  const { location } = props;
+  const { park } = location.state;
 
   
   return (
@@ -31,10 +28,7 @@ function LocationDetails(props) {
               Google Rating: {props.location.state.park.rating}
             </span><br /><br />
             <Link className="button evt-btn"
-              to={{
-                pathname: '/events/add',
-                props: { location }
-              }}
+              to={{ pathname: '/events/add', state: { park } }}
             >
               Create New Game
             </Link><br></br>

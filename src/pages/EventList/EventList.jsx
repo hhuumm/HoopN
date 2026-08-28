@@ -2,10 +2,8 @@ import React from 'react';
 import EventListCard from '../../components/EventListCard/EventListCard'
 
 function EventList(props) {
-    const { user, events, handleShow, history, places, weather } = props
+    const { events, handleShow, history, places, weather } = props
     const gamesNearMe = []
-
-    console.log("This is all events")
 
     if (places) {
 
@@ -21,7 +19,7 @@ function EventList(props) {
             <>
                 <div className='nearby'>
                     <h5 className='n1'>Games within 10 miles </h5>
-                    <h5 className='n2'> from {weather.name}</h5>
+                    <h5 className='n2'> from {weather?.name || 'your area'}</h5>
                 </div>
                 {gamesNearMe.length ?
                     <div className='EventList-grid'>
@@ -38,9 +36,7 @@ function EventList(props) {
                         )}
                     </div>
                     :
-                    <div>
-                        <img className="load-gif" src="https://media.giphy.com/media/vZROLXfaqhbhHO8qwr/giphy.gif"></img>
-                    </div>
+                    <p className="nearby">No scheduled games were found nearby. Create the first one.</p>
                 }
             </>
         )
@@ -50,7 +46,7 @@ function EventList(props) {
         return (
             <>
                 <div>
-                    <img className="load-gif" src="https://media.giphy.com/media/vZROLXfaqhbhHO8qwr/giphy.gif"></img>
+                    <img className="load-gif" src="https://media.giphy.com/media/vZROLXfaqhbhHO8qwr/giphy.gif" alt="Loading nearby games" />
                 </div>
             </>
         )

@@ -1,88 +1,39 @@
-const User = require('../models/user');
-const jwt = require('jsonwebtoken')
-const { sendPasswordResetEmail } = require('../services/emailService');
+const User = require("../models/user");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
   signup,
   login,
   reset,
-  resetToken
 };
 
-// Server-side code
-async function resetToken(req, res, next) {
-  console.log(req, res, next, "I NEED TO SEE THIS 111");
-  const { token } = req.params;
-  const { password } = req.body;
-
-  try {
-    // Find the user by the password reset token
-    const user = await User.findOne({ passwordResetToken: token });
-
-    if (!user) {
-      return res.status(404).json({ error: 'Invalid or expired token' });
-    }
-
-    // Update the user's password
-    user.password = password;
-    user.passwordResetToken = undefined;
-    await user.save();
-
-    res.status(200).json({ message: 'Password reset successful' });
-  } catch (error) {
-    next(error);
-  }
-}
-
-
-async function reset(req, res, next) {
-  console.log(req, res, next, "I NEED TO SEE THIS 222");
-  try {
-    const user = await User.findOne({ email: req.body.email });
-    console.log(user);
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    // Generate a unique password reset token and save it to the user's record
-    const resetToken = await user.generatePasswordResetToken();
-
-    // Send an email to the user with the password reset link
-    const resetLink = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
-    await sendPasswordResetEmail(user.email, resetLink);
-
-    res.status(200).json({ message: 'Password reset email sent successfully' });
-  } catch (error) {
-    next(error);
-  }
+function reset(_req, res) {
+  res.status(501).json({ error: "Password reset is not configured for this deployment" });
 }
 
 
 async function signup(req, res) {
-  const user = new User(req.body);
+  const { name, email, password } = req.body;
+  if (!name?.trim() || !email?.trim() || typeof password !== "string" || password.length < 8)
+    return res.status(400).json({ error: "Name, email, and a password of at least 8 characters are required" });
+  const user = new User({ name: name.trim(), email: email.trim(), password });
   try {
     await user.save();
-    const token = createJWT(user)
+    const token = createJWT(user);
     res.json({ token });
   } catch (err) {
-    res.status(400).send({'err': err.errmsg});
+    res.status(err?.code === 11000 ? 409 : 400).json({ error: err?.code === 11000 ? "An account already uses that email" : "Could not create account" });
   }
 }
 
 async function login(req, res) {
   try {
-    const user = await User.findOne({ email: req.body.email });
-    if (!user) return res.status(401).json({ err: "bad credentials" });
-    user.comparePassword(req.body.pw, (err, isMatch) => {
-      if (isMatch) {
-        const token = createJWT(user);
-        res.json({ token });
-      } else {
-        return res.status(401).json({ err: "bad credentials" });
-      }
-    });
+    const user = await User.findOne({ email: String(req.body.email || "").trim().toLowerCase() }).select("+password");
+    if (!user || !(await user.comparePassword(req.body.pw || req.body.password || "")))
+      return res.status(401).json({ error: "Invalid email or password" });
+    res.json({ token: createJWT(user) });
   } catch (err) {
-    return res.status(400).json(err);
+    return res.status(400).json({ error: "Could not sign in" });
   }
 }
 
@@ -90,9 +41,10 @@ async function login(req, res) {
 /*  Helper functions  */
 
 function createJWT(user) {
+  if (!process.env.SECRET) throw new Error("SECRET is not configured");
   return jwt.sign(
-    { user }, //data payload
+    { user: { _id: user._id, name: user.name, email: user.email } },
     process.env.SECRET,
     { expiresIn: "24h" }
-  )
+  );
 }

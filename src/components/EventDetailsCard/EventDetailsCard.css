@@ -7,6 +7,15 @@
   margin-top: 30px;
 }
 
+.event-detail-card {
+  width: min(36rem, calc(100vw - 2rem));
+}
+
+.event-status {
+  margin: 4rem auto;
+  text-align: center;
+}
+
 .up-del {
   margin: 0 auto;
   display: flex;
@@ -48,9 +57,22 @@ button.button.rev-btn {
 }
 
 .review-card {
-  display: inline;
-  vertical-align: middle;
-  
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
+  text-align: left;
+}
+
+.review-card textarea,
+.review-card select {
+  border: 1px solid #adb5bd;
+  border-radius: 0.375rem;
+  padding: 0.65rem;
+}
+
+.event-error {
+  color: #b42318;
+  margin: 0;
 }
 
 .one-five {
@@ -91,6 +113,7 @@ span.allstars{
 }
 
 .reviews-div{
-  margin-bottom: 15px;
+  padding: 1rem;
+  text-align: left;
 }
 

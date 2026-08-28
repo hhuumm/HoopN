@@ -20,8 +20,8 @@ const eventSchema = new Schema ({
     court: { type: String, required: true },
     createdBy: { type: Schema.Types.ObjectId, ref: 'User'},
     participant: [{ type: Schema.Types.ObjectId, ref: 'User'}],
-    date: {type: String, format: Date, required: true},
-    time: {type: String, format: Date, required: true},
+    date: { type: String, required: true },
+    time: { type: String, required: true },
     
 
 }, { timestamps: true })

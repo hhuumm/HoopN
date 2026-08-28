@@ -1,95 +1,86 @@
+# HoopN
 
-# Hoop'n
-#### By Hamid Ebrahimi, David Cibin, Kentdrick Barnes, and Matt Packer  
+Find a nearby basketball court, organize a pickup game, and see who is playing before you arrive.
 
+HoopN began as a four-person General Assembly capstone in 2021. This repository now documents a deliberate modernization of that early-career project: the product idea and visual history remain recognizable, while the runtime, build system, API boundaries, authentication, deployment path, and automated checks have been rebuilt for a maintainable portfolio baseline.
 
-*Hoop'n* is a full 'MERN' (MongoDB, Express, React, Node) stack application that makes full use of CRUD (Create, Read, Update, Delete) data operations.  
+![HoopN landing page](public/images/HoopN_Screen_Landing.png)
 
-This application was designed to give basketball enthusiasts easier access to pick-up games in their local area. Using the Google Maps Places API, the app allows users to use their geolocation to find pick-up games and parks in their area, and provides real-time weather information from the OpenWeatherMap API.
+## What it does
 
-Users can also create their own events, and leave reviews for events they have participated in. This application was designed using a mobile-first approach and is fully responsive for use on mobile phones or PC/Mac web browsers. 
+- Discovers nearby basketball courts with the Google Places API
+- Shows local weather through OpenWeather
+- Lets authenticated players create and manage pickup games
+- Supports explicit join and leave actions without exposing arbitrary event updates
+- Lets players review games with a validated 1–5 rating
+- Restricts event editing and deletion to the organizer
 
-*Hoop'n* was created during the third unit of [General Assembly](https://www.generalassemb.ly)'s Software Engineering Immersive program. The initial version was planned, developed and deployed over the course of two weeks. It was created from scratch using technologies in the ‘MERN’ stack, including MongoDB, Mongoose, Express, React and Node.
+## Architecture
 
-Future enhancements are planned and are outlined below.
+```text
+React + Vite client
+        │
+        ▼
+Express 5 API ─────► Google Places / OpenWeather
+        │
+        ▼
+MongoDB + Mongoose
+```
 
+The browser only talks to the HoopN API. External API credentials stay on the server, JWTs are accepted through Bearer authorization headers, authentication traffic is rate-limited, and event mutations use narrow action endpoints.
 
-### Getting Started:
-The app can be launched [here](https://hoop-n.herokuapp.com/) and was deployed using Heroku.
+## Stack
 
-We used Trello to oranize our project throughout development. Our Trello board can be found [here](https://trello.com/b/Ob8kwzWp/unit-3-full-stack-mern-app-hoopn#).
+- Node.js 22, Express 5, MongoDB, Mongoose 8
+- React 19, Vite 8, React Router, React Bootstrap
+- Vitest, Testing Library, Supertest, GitHub Actions
+- Docker and Fly.io configuration
 
-##### Wireframes:
+## Run locally
 
-![hoop'n - unit 3 project](public/images/mobile-wireframe.png)  
+Requirements: Node.js 22+ and a local or hosted MongoDB database.
 
-### Screenshots:
+```bash
+git clone https://github.com/hhuumm/HoopN.git
+cd HoopN
+npm install
+cp .env.example .env
+npm run dev
+```
 
-##### Landing Page:
-![Landing Page](public/images/HoopN_Screen_Landing.png)
+On Windows PowerShell, copy the environment template with `Copy-Item .env.example .env`.
 
-##### Login Page:
-![Login Page](public/images/HoopN_Screen_Login.png)
+The Vite client runs at `http://localhost:3000` and proxies API requests to Express at `http://localhost:3001`.
 
-##### Post-Login Main Page:
-![Main Page](public/images/HoopN_Screen_Main.png)
+### Environment variables
 
-##### List of Nearby Parks/Courts:
-![Nearby Parks Page](public/images/HoopN_Screen_NearbyParks.png)
+| Variable | Purpose | Required |
+| --- | --- | --- |
+| `DATABASE_URL` | MongoDB connection string | Yes |
+| `SECRET` | Long random value used to sign JWTs | Yes |
+| `GOOGLE_KEY` | Google Places API key | For court discovery |
+| `OPENWEATHER_KEY` | OpenWeather API key | For weather |
+| `PORT` | Express port; defaults to `3001` | No |
+| `CORS_ORIGIN` | Comma-separated allowed browser origins | No |
 
-##### Create a New Game Page:
-![Create New Game Page](public/images/HoopN_Screen_CreateEvent.png)
+Never commit `.env`; only the key-free `.env.example` belongs in source control.
 
-##### Local Games Page:
-![Local Games Page](public/images/HoopN_Screen_LocalGames.png)
+## Verify and deploy
 
-##### Game Details Page:
-![Game Details Page](public/images/HoopN_Screen_GameDetails.png)
+```bash
+npm test
+npm run build
+npm run check
+```
 
-### Technologies Used:
-* MongoDB
-* Express
-* Node
-* React
-* Mongoose
-* HTML
-* CSS
-* JavaScript
-* [React Bootstrap](https://react-bootstrap.github.io/)
-* [React Transition Group - CSSTransition](http://reactcommunity.org/react-transition-group/css-transition)
-* Git
-* GitHub
-* Heroku
+For production, `npm run build` creates the static client in `build/`, and `npm start` serves both the API and that client. The included multi-stage Dockerfile builds the same artifact and exposes the configured service port.
 
+## Modernization notes
 
-### Additional Tools and Resources:
-* [Google Maps-Places API](https://developers.google.com/maps/documentation/places/web-service/overview)
-* [Open Weather Map-API](https://openweathermap.org/api) (Free Weather API)
-* [Dovora Interactive](https://www.dovora.com/resources/weather-icons/) (Weather Icons)
-* [PxHere](https://pxhere.com/) (Free Creative Commons Photos) 
-* [Visual Studio Code](https://code.visualstudio.com/) (VS Code)
-* [Trello](https://trello.com/en-US) (Project Planning, Organization, and Collaboration Tool)
-* [Whimsical](https://whimsical.com/) (Flowchart/Diagram/Wireframing Tool Used for ERD)
-* [Miro](https://miro.com) (Whiteboarding/Wireframing Tool)
-* [Slack](https://slack.com/) (Collaboration and Communication)
-* [Zoom](https://zoom.us) (Communication and Collaboration)
+The current modernization removes invalid Windows metadata filenames from the repository, replaces Create React App with Vite, upgrades the runtime and core dependencies, separates app construction from server startup for testability, fixes the production entrypoint, validates external-service failures, and removes a broken password-reset flow rather than advertising an unsafe incomplete feature.
 
+The next product-focused iteration can concentrate on the interface, accessibility, and court-search experience now that the underlying project is reproducible and testable.
 
-### Special Thanks:
-* Thank you to our instructors from General Assembly (Ben Manley, David Stinson, Shahzad Khan) for assistance in troubleshooting our APIs!
-* Thank you to Sam Gemberling and William Hunter Long for all the help with React, and with the back-end of our application!
-* Thank you to Ben Manley for the assistance with the OpenWeatherMap API, and for the code that allows us to easily display wind direction and sunrise/sunset in our app!
-* Our NavBar component was created with the help of [this](https://medium.com/@sidbentifraouine) resource, created by Sid Bentifraouine, contributor on Medium.
+## Project history and credits
 
-
-### Next Steps (Icebox Features):
-* Incorporate Google OAuth authentication to allow users to use their Google account to access the application.
-* Incorporate other sports into the application (i.e. soccer, volleyball, softball, tennis, etc.)
-* Allow users to set up a "squad" of players that frequently play together on a team.
-* Allow users to rank other players and see other player rankings.
-* Allow users to 'check-in' for an event when they arrive at a park, and see a list of other users who have checked-in.
-* Allow users to chat with each other in real-time.
-* Allow users to let other players for a game know whether they will be bringing a basketball.
-* Allow users to search for events/parks by zip code.
-* Show users actual photos of a park/gym when viewing the location details.
-
+The original two-week application was designed and built by Hamid Ebrahimi, David Cibin, Kentdrick Barnes, and Matt Packer during General Assembly's Software Engineering Immersive program. The screenshots in `public/images` preserve that original release. This modernization is intentionally presented as an evolution of collaborative early-career work, not as a newly authored greenfield product.

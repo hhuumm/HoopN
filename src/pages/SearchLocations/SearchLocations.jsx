@@ -6,8 +6,7 @@ import { ListGroup } from 'react-bootstrap';
 
 
 function SearchLocations(props) {
-  console.log(props);
-  const { event, user, places, weather, history, getPhoto} = props;
+  const { places, getPhoto } = props;
 
 
   
@@ -31,7 +30,7 @@ function SearchLocations(props) {
         </div>
       ) : (
         <div>
-          <img className="load-gif" src="https://media.giphy.com/media/vZROLXfaqhbhHO8qwr/giphy.gif"></img>
+          <img className="load-gif" src="https://media.giphy.com/media/vZROLXfaqhbhHO8qwr/giphy.gif" alt="Loading nearby parks" />
         </div>
       )}
     </>
